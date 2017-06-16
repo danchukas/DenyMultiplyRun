@@ -1,0 +1,17 @@
+{
+  "name": "danchukas/deny-multiply-run",
+  "description": "deny multiply run php-code",
+  "keywords": [
+    "deny",
+    "multiply"
+  ],
+  "homepage": "https://github.com/danchukas/DenyMultiplyRun",
+  "autoload": {
+    "psr-4": {
+      "DanchukAS\\DenyMultiplyRun\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.0"
+  }
+}
