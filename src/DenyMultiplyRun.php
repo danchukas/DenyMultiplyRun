@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace DanchukAS\DenyMultiplyRun;
 
+use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
+use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\FileExisted;
 use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
 
@@ -245,13 +247,37 @@ class DenyMultiplyRun
     /**
      * @param $pidFileResource
      *
-     * @throws \Exception
+     * @throws CloseFileFail
      */
     private function closePidFile($pidFileResource)
     {
-        $closed = fclose($pidFileResource);
+        // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
+        // помилку в записує в $this->lastError
+        set_error_handler([$this, 'errorHandle']);
+
+        // собачка потрібна щоб не засоряти логи.
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
+        $closed = @fclose($pidFileResource);
+
+        // Відновлюєм попередній обробник наче нічого і не робили.
+        restore_error_handler();
+
         if (FALSE === $closed) {
-            throw new \Exception('File can not close');
+
+            $file_close_error = $this->lastError;
+
+            // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
+            // помилку в записує в $this->lastError
+            set_error_handler([$this, 'errorHandle']);
+
+            // собачка потрібна щоб не засоряти логи.
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            $resource_data = @stream_get_meta_data($pidFileResource);
+
+            // Відновлюєм попередній обробник наче нічого і не робили.
+            restore_error_handler();
+
+            throw new CloseFileFail($resource_data['uri'] . ' - ' . $file_close_error);
         }
     }
 
@@ -260,14 +286,16 @@ class DenyMultiplyRun
      *
      * @param string $pidFilePath
      *
-     * @throws \Exception
+     * @throws DeleteFileFail
      */
     public function deletePidFile($pidFilePath)
     {
         $deleted = unlink($pidFilePath);
         if (FALSE === $deleted) {
-            if (is_file($pidFilePath)) {
-                throw new \Exception('Видалити pid-файл не вдалось.');
+            // file_exists а не is_file щоб таки отримати сповіщення в логах,
+            // бо якщо це директорія а не файл - бажано про це дізнатись якомога раніше.
+            if (file_exists($pidFilePath)) {
+                throw new DeleteFileFail($pidFilePath);
             }
         }
     }
