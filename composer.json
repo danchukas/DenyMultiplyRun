@@ -9,9 +9,18 @@
   "autoload": {
     "psr-4": {
       "DanchukAS\\DenyMultiplyRun\\": "src/"
+      , "DanchukAS\\Helper\\": "src/"
     }
   },
   "require": {
     "php": "^7.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DanchukAS\\HelperTest\\": "test/"
+    }
+  },
+  "require-dev": {
+    "phpunit/PHPUnit": "~6.2@stable"
   }
 }
