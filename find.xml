@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="All Places" />
-    <option name="defaultScopeName" value="All Places" />
-    <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="customScope" value="File '[DenyMultiplyRun] - .../test/DenyMultiplyRunTest.php'" />
+    <option name="defaultScopeName" value="File '[DenyMultiplyRun] - .../test/DenyMultiplyRunTest.php'" />
+    <option name="SEARCH_SCOPE" value="File '[DenyMultiplyRun] - .../test/DenyMultiplyRunTest.php'" />
     <option name="FILE_MASK" value="*.c" />
     <recentFileMasks>
       <mask>*.properties</mask>
