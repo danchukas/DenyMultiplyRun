@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: danchukas
  * Date: 2017-06-22 18:10
  */
+
+namespace DanchukAS\DenyMultiplyRunTest;
 
 use PHPUnit\Framework\TestCase;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
