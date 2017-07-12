@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 
-require __DIR__ . '/../vendor/autoload.php';
 
 class DenyMultiplyRunTest extends TestCase
 {
