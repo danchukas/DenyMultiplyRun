@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: danchukas
@@ -7,8 +8,8 @@
 
 namespace DanchukAS\HelperTest;
 
-use PHPUnit\Framework\TestCase;
 use DanchukAS\Helper\HiddenError;
+use PHPUnit\Framework\TestCase;
 
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -26,7 +27,8 @@ class HiddenErrorTest extends TestCase
      */
     function testConstructor()
     {
-        new HiddenError();
+        $class = "HiddenError";
+        new $class();
     }
 
 

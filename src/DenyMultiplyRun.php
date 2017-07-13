@@ -4,13 +4,20 @@ declare(strict_types=1);
 namespace DanchukAS\DenyMultiplyRun;
 
 use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
+use DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail;
 use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\FileExisted;
+use DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax;
+use DanchukAS\DenyMultiplyRun\Exception\PidFileEmpty;
 use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
+use DanchukAS\DenyMultiplyRun\Exception\ReadFileFail;
+
 
 /**
  * Class denyMultiplyRun
  * Забороняє паралельний запуск скрипта
+ *
+ * @todo: extract work with file to another lib.
  *
  * @package DanchukAS\DenyMultiplyRun
  */
@@ -48,15 +55,14 @@ class DenyMultiplyRun
      */
     public static function setPidFile($pidFilePath)
     {
-
         self::preparePidDir($pidFilePath);
 
         try {
             $file_resource = DenyMultiplyRun::createPidFile($pidFilePath);
-            $pid_file_empty = true;
+            $pid_file_existed = false;
         } catch (FileExisted $exception) {
             $file_resource = DenyMultiplyRun::openPidFile($pidFilePath);
-            $pid_file_empty = false;
+            $pid_file_existed = true;
         }
 
         DenyMultiplyRun::lockPidFile($file_resource);
@@ -64,19 +70,26 @@ class DenyMultiplyRun
         try {
             // оголошено тут щоб шторм не ругався нижче, бо не може зрозуміти що змінна вже оголошена
             $prev_pid = null;
-            if (!$pid_file_empty) {
-                $prev_pid = DenyMultiplyRun::getPidFromFile($file_resource);
-                DenyMultiplyRun::checkRunnedPid($prev_pid);
+            if ($pid_file_existed) {
+                try {
+                    $prev_pid = DenyMultiplyRun::getPidFromFile($file_resource);
+                    DenyMultiplyRun::checkRunnedPid($prev_pid);
+                } catch (PidFileEmpty $exception) {
+                }
                 DenyMultiplyRun::truncatePidFile($file_resource);
             }
 
             $self_pid = getmypid();
             DenyMultiplyRun::setPidIntoFile($self_pid, $file_resource);
 
-            if (!$pid_file_empty) {
-                $message = "pid-file exist, but process with contained ID($prev_pid) in it is not exist."
+            if ($pid_file_existed) {
+                $message_reason = is_null($prev_pid)
+                    ? ", but file empty."
+                    : ", but process with contained ID($prev_pid) in it is not exist.";
+                $message = "pid-file exist" . $message_reason
                     . " pid-file updated with pid this process: " . $self_pid;
-                trigger_error($message, E_USER_WARNING);
+
+                trigger_error($message, E_USER_NOTICE);
             }
         } finally {
             try {
@@ -175,17 +188,54 @@ class DenyMultiplyRun
     {
         // Розмір PID (int в ОС) навряд буде більший ніж розмір int в PHP.
         // Зазвичай PID має до 5 цифр.
+        // @todo: if fread error - warning, error_handler, ...
         $pid_from_file = fread($pidFileResource, 64);
 
-        // буває що pid = "" хоча насправді у файлі записана одиниця. чому так - не зрозуміло.
-        if (FALSE === $pid_from_file || empty($pid_from_file)) {
-            // @todo extract Exception
-            throw new \Exception("pid-файл є, але прочитати що в ньому не вдалось.");
+
+        if (FALSE === $pid_from_file) {
+            throw new ReadFileFail("pid-файл є, але прочитати що в ньому не вдалось.");
         }
 
-        $pid_from_file = intval($pid_from_file, 10);
+        $pid_int = self::validatePid($pid_from_file);
 
-        return $pid_from_file;
+        return $pid_int;
+    }
+
+    /**
+     * @param $pid_from_file
+     * @return int
+     * @throws PidFileEmpty
+     */
+    private static function validatePid(string $pid_from_file): int
+    {
+        // На випадок коли станеться виліт скрипта після створення файла і до запису ІД.
+        if ('' === $pid_from_file) {
+            throw new PidFileEmpty();
+        }
+
+        $pid_int = (int)$pid_from_file;
+
+        // verify available PID in file.
+        // if PID not available - why it happens ?
+        // For *nix system
+        $pid_max_storage = "/proc/sys/kernel/pid_max";
+        if (file_exists($pid_max_storage)) {
+            $pid_max = (int)file_get_contents($pid_max_storage);
+            if ($pid_max < $pid_int) {
+                $message = "PID in file has unavailable value: $pid_int. In /proc/sys/kernel/pid_max set $pid_max.";
+                throw new PidBiggerMax($message);
+            }
+        }
+
+        // verify converting. (PHP_MAX_INT)
+        // verify PID in file is right (something else instead ciphers).
+        if ("{$pid_int}" !== $pid_from_file) {
+            $message = "pid_int({$pid_int}) !== pid_string($pid_from_file)"
+                . ", or pid_string($pid_from_file) is not Process ID)";
+            throw new ConvertPidFail($message);
+        }
+
+        return $pid_int;
     }
 
     /**
@@ -313,7 +363,7 @@ class DenyMultiplyRun
 
             self::$lastError = $error;
         } finally {
-            // Відновлюєм попередній обробник наче нічого і не робили. 
+            // Відновлюєм попередній обробник наче нічого і не робили.
             restore_error_handler();
         }
 
@@ -323,7 +373,6 @@ class DenyMultiplyRun
 
         // а якщо файла й не було - то й нехай. це не проблема даного метода.
     }
-
 
     /**
      * @param int $messageType

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace DanchukAS\DenyMultiplyRunTest;
 
-use PHPUnit\Framework\TestCase;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class UseTest
@@ -38,8 +38,25 @@ class UseTest extends TestCase
     function testUsualUse()
     {
         $file_name = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+        $count_try = 2;
+        while (--$count_try) {
+            DenyMultiplyRun::setPidFile($file_name);
+            self::assertStringEqualsFile($file_name, getmypid());
+
+            DenyMultiplyRun::deletePidFile($file_name);
+            self::assertFileNotExists($file_name);
+        }
+    }
+
+    /**
+     * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
+     */
+    function testDoubleCall()
+    {
+        //@todo provider for filename and delete file. *teardown upset
+        $file_name = sys_get_temp_dir() . '/' . uniqid('vd_', true);
         DenyMultiplyRun::setPidFile($file_name);
-        DenyMultiplyRun::deletePidFile($file_name);
+        DenyMultiplyRun::setPidFile($file_name);
 
     }
 }
