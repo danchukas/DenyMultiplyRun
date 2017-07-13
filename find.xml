@@ -1,9 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '[DenyMultiplyRun] - .../test/DenyMultiplyRunTest.php'" />
-    <option name="defaultScopeName" value="File '[DenyMultiplyRun] - .../test/DenyMultiplyRunTest.php'" />
-    <option name="SEARCH_SCOPE" value="File '[DenyMultiplyRun] - .../test/DenyMultiplyRunTest.php'" />
-    <option name="FILE_MASK" value="*.c" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <recentFileMasks>
       <mask>*.properties</mask>
       <mask>*.html</mask>
@@ -16,10 +15,10 @@
       <mask>*.php</mask>
       <mask>*.ph</mask>
       <mask>*.p</mask>
-      <mask>*.</mask>
       <mask>*.css</mask>
       <mask>*.cs</mask>
       <mask>*.c</mask>
+      <mask>*.</mask>
     </recentFileMasks>
   </component>
 </application>
