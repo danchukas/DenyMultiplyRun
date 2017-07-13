@@ -1,0 +1,18 @@
+Index: .travis.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .travis.yml	(revision d73033b89fd13e731d3f714b06d87937a86fff84)
++++ .travis.yml	(revision 9051c15c018355c28e804db9feadd73068cd2e8e)
+@@ -1,10 +1,5 @@
+ language: php
+ php:
+-  - '5.4'
+-  - '5.5'
+-  - '5.6'
+   - '7.0'
+   - '7.1'
+-  - hhvm # on Trusty only
+   - nightly
+-
