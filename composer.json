@@ -20,6 +20,6 @@
     }
   },
   "require-dev": {
-    "phpunit/PHPUnit": "~6.2@stable"
+    "phpunit/PHPUnit": "@stable"
   }
 }
