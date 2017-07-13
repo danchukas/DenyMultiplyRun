@@ -14,6 +14,11 @@ use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use PHPUnit\Framework\TestCase;
 
 
+/**
+ * Class AdditionTest
+ * поглиблені тести на "всі найбільш можливі ситуації"
+ * @package DanchukAS\DenyMultiplyRunTest
+ */
 class AdditionTest extends TestCase
 {
 
@@ -37,25 +42,6 @@ class AdditionTest extends TestCase
         @unlink(self::$existFileName);
     }
 
-
-    private static function waitError()
-    {
-
-        /** @noinspection PhpUnusedParameterInspection */
-        set_error_handler(function (int $messageType, string $messageText) {
-            self::$lastError = $messageText;
-        });
-
-        self::$lastError = null;
-    }
-
-    private static function catchError(string $message)
-    {
-        restore_error_handler();
-        self::assertStringMatchesFormat("$message", self::$lastError);
-    }
-
-
     /**
      * @expectedException \Error
      */
@@ -75,6 +61,28 @@ class AdditionTest extends TestCase
         $wait_error = "pid-file exist, but file empty. pid-file updated with pid this process: %i";
         self::catchError($wait_error);
     }
+
+    private static function waitError()
+    {
+
+        /** @noinspection PhpUnusedParameterInspection */
+        set_error_handler(function (int $messageType, string $messageText) {
+            self::$lastError = $messageText;
+        });
+
+        self::$lastError = null;
+    }
+
+    /**
+     * перевіряє чи помилка відбулась, і саме та яка очікувалась.
+     * @param string $message
+     */
+    private static function catchError(string $message)
+    {
+        restore_error_handler();
+        self::assertStringMatchesFormat("$message", self::$lastError);
+    }
+
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
      */
