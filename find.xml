@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="git_repo_lib" />
-    <option name="defaultScopeName" value="git_repo_lib" />
-    <option name="SEARCH_SCOPE" value="git_repo_lib" />
+    <option name="customScope" value="php_lib_usual" />
+    <option name="defaultScopeName" value="php_lib_usual" />
+    <option name="SEARCH_SCOPE" value="php_lib_usual" />
     <recentFileMasks>
       <mask>*.properties</mask>
       <mask>*.html</mask>
