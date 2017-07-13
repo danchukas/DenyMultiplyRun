@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+
+
 /**
  * Created by PhpStorm.
  * User: danchukas
@@ -17,30 +19,22 @@ class AdditionTest extends TestCase
 
     private static $lastError;
 
-    /**
-     * @expectedException Error
-     */
-    function testConstructor()
-    {
+    private static $noExistFileName;
 
-        // Because not founded how disable inspection "Call to private from invalid context" for phpstorm.
-        //new $class; new DenyMultiplyRun;
-        $class = "DenyMultiplyRun";
-        new $class;
+    private static $existFileName;
+
+    function setUp()
+    {
+        self::$noExistFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
     }
 
-    function testSetPidFile_if_exist_file()
+    function tearDown()
     {
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
-
-
-        self::waitError();
-        DenyMultiplyRun::setPidFile($file_name);
-        $wait_error = "pid-file exist, but file empty. pid-file updated with pid this process: %i";
-        self::catchError($wait_error);
-
-        unlink($file_name);
+        @unlink(self::$noExistFileName);
+        @unlink(self::$existFileName);
     }
+
 
     private static function waitError()
     {
@@ -58,13 +52,33 @@ class AdditionTest extends TestCase
         self::assertStringMatchesFormat("$message", self::$lastError);
     }
 
+
+    /**
+     * @expectedException Error
+     */
+    function testConstructor()
+    {
+
+        // Because not founded how disable inspection "Call to private from invalid context" for phpstorm.
+        //new $class; new DenyMultiplyRun;
+        $class = "DenyMultiplyRun";
+        new $class;
+    }
+
+    function testSetPidFile_if_exist_file()
+    {
+        self::waitError();
+        DenyMultiplyRun::setPidFile(self::$existFileName);
+        $wait_error = "pid-file exist, but file empty. pid-file updated with pid this process: %i";
+        self::catchError($wait_error);
+    }
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
      */
     function testSetPidFile_if_exist_file_with_exist_pid()
     {
 
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
+        $file_name = self::$existFileName;
         file_put_contents($file_name, getmypid());
 
         DenyMultiplyRun::setPidFile($file_name);
@@ -73,69 +87,62 @@ class AdditionTest extends TestCase
     function testSetPidFile_if_exist_file_with_no_exist_pid()
     {
 
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
-        $pid = 1;
-        while (++$pid < PHP_INT_MAX) {
-            if (false === posix_kill($pid, 0)
+        $no_exist_pid = 1;
+        while (++$no_exist_pid < PHP_INT_MAX) {
+            if (false === posix_kill($no_exist_pid, 0)
                 && 3 === posix_get_last_error()
             ) {
                 break;
             }
         }
-        file_put_contents($file_name, $pid);
+        file_put_contents(self::$existFileName, $no_exist_pid);
 
         self::waitError();
-        DenyMultiplyRun::setPidFile($file_name);
+        DenyMultiplyRun::setPidFile(self::$existFileName);
         $wait_error = "pid-file exist, but process with contained ID(%i) in it is not exist. pid-file updated with pid this process: %i";
         self::catchError($wait_error);
-
-        unlink($file_name);
     }
 
-    /**
-     * @expectedException DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax
-     */
+
     function testSetPidFile_if_exist_file_with_bigger_pid()
     {
+        file_put_contents(self::$existFileName, PHP_INT_MAX);
 
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
-        file_put_contents($file_name, PHP_INT_MAX);
-
-        DenyMultiplyRun::setPidFile($file_name);
-
-        unlink($file_name);
+        self::expectException("DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax");
+        DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
-    /**
-     * @expectedException DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail
-     */
     function testSetPidFile_if_exist_file_with_novalidate_pid()
     {
+        file_put_contents(self::$existFileName, "12as");
 
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
-        file_put_contents($file_name, "12as");
-
-        DenyMultiplyRun::setPidFile($file_name);
-
-        unlink($file_name);
+        self::expectException("DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail");
+        DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
 
-
-    function testDeleteUnExistedPidFile()
+    function testDeleteNoExistedPidFile()
     {
-        $file_name = sys_get_temp_dir() . '/' . uniqid('vd_', true);
-        DenyMultiplyRun::deletePidFile($file_name);
+        DenyMultiplyRun::deletePidFile(self::$noExistFileName);
         self::assertFalse(self::hasOutput());
     }
 
 
-    /**
-     * @expectedException DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail
-     */
     function testNegDeleteExistedPidFile()
     {
+        // existed file without write access for current user.
+        // for Ubuntu is /etc/hosts.
         $file_name = "/etc/hosts";
+
+        if (!file_exists($file_name)) {
+            self::markTestSkipped("test only for *nix.");
+        }
+
+        if (is_writable($file_name)) {
+            self::markTestSkipped("test runned under super/admin user. Change user.");
+        }
+
+        self::expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile($file_name);
     }
 
