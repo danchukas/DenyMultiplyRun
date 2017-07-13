@@ -20,6 +20,18 @@ use PHPUnit\Framework\TestCase;
 class UseTest extends TestCase
 {
 
+    private static $randomFileName;
+
+    function setUp()
+    {
+        self::$randomFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+    }
+
+    function tearDown()
+    {
+        @unlink(self::$randomFileName);
+    }
+
     /**
      * DenyMultiplyRun лише для статичного визова методів
      * щоб зменшити використання пам'яті і полегшити дебаг і розуміння.
@@ -37,7 +49,8 @@ class UseTest extends TestCase
 
     function testUsualUse()
     {
-        $file_name = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+        $file_name = self::$randomFileName;
+
         $count_try = 2;
         while (--$count_try) {
             DenyMultiplyRun::setPidFile($file_name);
@@ -53,8 +66,7 @@ class UseTest extends TestCase
      */
     function testDoubleCall()
     {
-        //@todo provider for filename and delete file. *teardown upset
-        $file_name = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+        $file_name = self::$randomFileName;
         DenyMultiplyRun::setPidFile($file_name);
         DenyMultiplyRun::setPidFile($file_name);
 
