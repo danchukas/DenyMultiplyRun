@@ -5,7 +5,7 @@
          colors="true">
     <testsuites>
         <testsuite name="DanchukAS-HiddenError Test Suite">
-            <directory>./tests/DenyMultiplyRunTest</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 

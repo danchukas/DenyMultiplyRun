@@ -1,4 +1,13 @@
 # DenyMultiplyRun
+
+для уникнення повторного запуска скрипта (по крону, з консолі, ...)
+
+    $file_name = "/var/run/some_job_or_daemon.pid";
+    DenyMultiplyRun::setPidFile($file_name);
+    // @something_do
+    DenyMultiplyRun::deletePidFile($file_name);
+
+
 Deny multiply run php-code while previous process exist. 
 Use for cron job or daemon.
 
