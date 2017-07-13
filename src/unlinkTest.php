@@ -4,9 +4,6 @@ declare(strict_types=1);
 try {
     unlink("/tmp/sdfsfsdf.sdf");
 } catch (\Error $error) {
-    if (file_exists($pidFilePath)) {
-        throw new Exception($pidFilePath);
-    }
     var_dump($error);
 
     // а якщо файла й не було - то й нехай. це не проблема даного метода.

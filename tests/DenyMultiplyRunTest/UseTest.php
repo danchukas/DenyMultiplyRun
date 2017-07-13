@@ -29,13 +29,14 @@ class UseTest extends TestCase
 
     function tearDown()
     {
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$randomFileName);
     }
 
     /**
      * DenyMultiplyRun лише для статичного визова методів
      * щоб зменшити використання пам'яті і полегшити дебаг і розуміння.
-     * @expectedException Error
+     * @expectedException \Error
      */
     function testConstructor()
     {

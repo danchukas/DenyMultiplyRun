@@ -188,7 +188,7 @@ class DenyMultiplyRun
     {
         // Розмір PID (int в ОС) навряд буде більший ніж розмір int в PHP.
         // Зазвичай PID має до 5 цифр.
-        // @todo: if fread error - warning, error_handler, ...
+        // @todo: if error - warning, error_handler, ...
         $pid_from_file = fread($pidFileResource, 64);
 
 
@@ -202,8 +202,9 @@ class DenyMultiplyRun
     }
 
     /**
-     * @param $pid_from_file
+     * @param string $pid_from_file
      * @return int
+     * @throws PidBiggerMax
      * @throws PidFileEmpty
      */
     private static function validatePid(string $pid_from_file): int
