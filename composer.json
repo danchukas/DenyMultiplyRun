@@ -17,7 +17,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "DanchukAS\\HelperTest\\": "test/"
+      "DanchukAS\\HelperTest\\": "tests/",
+      "DanchukAS\\DenyMultiplyTest\\": "tests/DenyMultiplyTest"
     }
   },
   "require-dev": {

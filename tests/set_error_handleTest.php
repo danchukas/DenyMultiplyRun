@@ -6,7 +6,6 @@
  */
 
 use PHPUnit\Framework\TestCase;
-use DanchukAS\Helper\HiddenError;
 
 
 class set_error_handleTest extends TestCase
