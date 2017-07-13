@@ -219,6 +219,7 @@ class HiddenError
 
     /**
      * @param int $error_types Дефолтне значення суто для зручності, щоб можна було метод визивати без нього.
+     * @throws \Error
      */
     private static function setHandler($error_types = E_ALL)
     {
@@ -253,6 +254,8 @@ class HiddenError
 
 
 }
+
+
 
 
 /**

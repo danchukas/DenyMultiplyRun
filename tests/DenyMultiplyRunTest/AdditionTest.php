@@ -31,7 +31,9 @@ class AdditionTest extends TestCase
 
     function tearDown()
     {
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$noExistFileName);
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$existFileName);
     }
 
@@ -39,6 +41,7 @@ class AdditionTest extends TestCase
     private static function waitError()
     {
 
+        /** @noinspection PhpUnusedParameterInspection */
         set_error_handler(function (int $messageType, string $messageText) {
             self::$lastError = $messageText;
         });
@@ -54,7 +57,7 @@ class AdditionTest extends TestCase
 
 
     /**
-     * @expectedException Error
+     * @expectedException \Error
      */
     function testConstructor()
     {
@@ -99,7 +102,8 @@ class AdditionTest extends TestCase
 
         self::waitError();
         DenyMultiplyRun::setPidFile(self::$existFileName);
-        $wait_error = "pid-file exist, but process with contained ID(%i) in it is not exist. pid-file updated with pid this process: %i";
+        $wait_error = "pid-file exist, but process with contained ID(%i) in it is not exist. "
+            . "pid-file updated with pid this process: %i";
         self::catchError($wait_error);
     }
 

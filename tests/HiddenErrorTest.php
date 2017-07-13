@@ -60,56 +60,59 @@ class HiddenErrorTest extends TestCase
     function testUndefinedFunction()
     {
         self::markTestIncomplete("maybe has logic error");
-        return;
-        HiddenError::enable();
-        try {
-            assdfdSF();
-        } catch (\Error $throwable) {
 
-        }
+//        HiddenError::enable();
+//        try {
+//            assdfdSF();
+//        } catch (\Error $throwable) {
+//
+//        }
     }
 
     function testHandleAsCallback()
     {
 
         self::markTestIncomplete("maybe has logic error");
-        return;
 
-        try {
-            error_clear_last();
-
-            set_error_handler(function () {
-            });
-            restore_error_handler();
-            self::assertNull(error_get_last());
-
-            set_error_handler([__CLASS__, __FUNCTION__]);
-            restore_error_handler();
-            self::assertNull(error_get_last());
-
-            echo @set_error_handler(1);
-            self::assertNotNull(error_get_last());
-            error_clear_last();
-
-            echo @set_error_handler(['NotExistClass' . uniqid('_uniqid_'), 'anyMethod']);
-            self::assertNotNull(error_get_last());
-            error_clear_last();
-
-            echo @set_error_handler([__CLASS__, 'notExistMethod' . uniqid('_uniqid_')]);
-            self::assertNotNull(error_get_last());
-            error_clear_last();
-
-            echo @set_error_handler('notExistFunction' . uniqid('_uniqid_'));
-            self::assertNotNull(error_get_last());
-            error_clear_last();
-
-        } catch (\Error $error) {
-            self::markTestIncomplete("Author not tested. set_error_handler throw Error.");
-        } catch (\Exception $exception) {
-            self::markTestIncomplete("Author not tested. set_error_handler throw any Exception.");
-        } catch (\Throwable $throwable) {
-            self::markTestIncomplete("Author not tested. set_error_handler throw any Throwable.");
-        }
+//        try {
+//            error_clear_last();
+//
+//            set_error_handler(function () {
+//            });
+//            restore_error_handler();
+//            self::assertNull(error_get_last());
+//
+//            set_error_handler([__CLASS__, __FUNCTION__]);
+//            restore_error_handler();
+//            self::assertNull(error_get_last());
+//
+//            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+//            echo @set_error_handler(1);
+//            self::assertNotNull(error_get_last());
+//            error_clear_last();
+//
+//            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+//            echo @set_error_handler(['NotExistClass' . uniqid('_uniqid_'), 'anyMethod']);
+//            self::assertNotNull(error_get_last());
+//            error_clear_last();
+//
+//            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+//            echo @set_error_handler([__CLASS__, 'notExistMethod' . uniqid('_uniqid_')]);
+//            self::assertNotNull(error_get_last());
+//            error_clear_last();
+//
+//            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+//            echo @set_error_handler('notExistFunction' . uniqid('_uniqid_'));
+//            self::assertNotNull(error_get_last());
+//            error_clear_last();
+//
+//        } catch (\Error $error) {
+//            self::markTestIncomplete("Author not tested. set_error_handler throw Error.");
+//        } catch (\Exception $exception) {
+//            self::markTestIncomplete("Author not tested. set_error_handler throw any Exception.");
+//        } catch (\Throwable $throwable) {
+//            self::markTestIncomplete("Author not tested. set_error_handler throw any Throwable.");
+//        }
     }
 
 
@@ -123,7 +126,7 @@ class HiddenErrorTest extends TestCase
         try {
             $return_set_error = set_error_handler("handle2");
         } catch (\Throwable $throwable) {
-            throw new LogicException(PHP_EOL . " Test incomplete.");
+            throw new \LogicException(PHP_EOL . " Test incomplete.");
         }
 
         switch ($return_set_error) {
