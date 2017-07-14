@@ -6,20 +6,26 @@
     "multiply"
   ],
   "homepage": "https://github.com/danchukas/DenyMultiplyRun",
+
   "autoload": {
     "psr-4": {
       "DanchukAS\\DenyMultiplyRun\\": "src/"
     }
   },
+
   "require": {
     "php": "^7.0"
   },
+
   "autoload-dev": {
     "psr-4": {
       "DanchukAS\\DenyMultiplyTest\\": "tests/DenyMultiplyTest"
     }
   },
+
   "require-dev": {
     "phpunit/PHPUnit": "@stable"
+    , "satooshi/php-coveralls": "dev-master"
   }
+
 }
