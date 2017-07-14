@@ -33,20 +33,6 @@ class UseTest extends TestCase
         @unlink(self::$randomFileName);
     }
 
-    /**
-     * DenyMultiplyRun лише для статичного визова методів
-     * щоб зменшити використання пам'яті і полегшити дебаг і розуміння.
-     * @expectedException \Error
-     */
-    function testConstructor()
-    {
-
-        // Because not founded how disable inspection "Call to private from invalid context" for phpstorm.
-        //new $class; new DenyMultiplyRun;
-        $class = "DenyMultiplyRun";
-        new $class;
-    }
-
 
     function testUsualUse()
     {
@@ -62,14 +48,5 @@ class UseTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
-     */
-    function testDoubleCall()
-    {
-        $file_name = self::$randomFileName;
-        DenyMultiplyRun::setPidFile($file_name);
-        DenyMultiplyRun::setPidFile($file_name);
 
-    }
 }

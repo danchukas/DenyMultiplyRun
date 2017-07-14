@@ -62,4 +62,16 @@ class SurprisingTest extends TestCase
     }
 
 
+    /**
+     * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
+     */
+    function testDoubleCall()
+    {
+        $file_name = self::$randomFileName;
+        DenyMultiplyRun::setPidFile($file_name);
+        DenyMultiplyRun::setPidFile($file_name);
+
+    }
+
+
 }
