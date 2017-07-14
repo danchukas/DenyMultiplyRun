@@ -10,7 +10,6 @@ return array(
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'DanchukAS\\Helper\\' => array($baseDir . '/src'),
-    'DanchukAS\\HelperTest\\' => array($baseDir . '/test'),
+    'DanchukAS\\DenyMultiplyTest\\' => array($baseDir . '/tests/DenyMultiplyTest'),
     'DanchukAS\\DenyMultiplyRun\\' => array($baseDir . '/src'),
 );

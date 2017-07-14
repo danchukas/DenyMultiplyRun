@@ -159,4 +159,13 @@ class AdditionTest extends TestCase
     }
 
 
+    function testPidFileLocked()
+    {
+        $file_resource = fopen(self::$existFileName, "r+");
+        flock($file_resource,LOCK_EX);
+
+        self::expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
+        DenyMultiplyRun::setPidFile(self::$existFileName);
+    }
+
 }

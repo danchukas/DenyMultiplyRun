@@ -7,6 +7,7 @@ use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail;
 use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\FileExisted;
+use DanchukAS\DenyMultiplyRun\Exception\LockFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax;
 use DanchukAS\DenyMultiplyRun\Exception\PidFileEmpty;
 use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
@@ -175,7 +176,20 @@ class DenyMultiplyRun
     {
         $locked = flock($pidFileResource, LOCK_EX | LOCK_NB);
         if (FALSE === $locked) {
-            throw new \Exception("не вдалось отримати ексклюзивні права на перезапис pid-файла.");
+            $error = self::$lastError;
+
+            // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
+            // помилку в записує в self::$lastError
+            set_error_handler([__CLASS__, 'errorHandle']);
+
+            // собачка потрібна щоб не засоряти логи.
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            $resource_data = @stream_get_meta_data($pidFileResource);
+
+            // Відновлюєм попередній обробник наче нічого і не робили.
+            restore_error_handler();
+
+            throw new LockFileFail($resource_data['uri'] . ' - ' . $error);
         }
     }
 
