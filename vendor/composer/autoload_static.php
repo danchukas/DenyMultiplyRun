@@ -19,8 +19,7 @@ class ComposerStaticInit5dee8653b146bc3e885c99fdd6f18e97
         array (
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
-            'DanchukAS\\Helper\\' => 17,
-            'DanchukAS\\HelperTest\\' => 21,
+            'DanchukAS\\DenyMultiplyTest\\' => 27,
             'DanchukAS\\DenyMultiplyRun\\' => 26,
         ),
     );
@@ -44,13 +43,9 @@ class ComposerStaticInit5dee8653b146bc3e885c99fdd6f18e97
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'DanchukAS\\Helper\\' => 
+        'DanchukAS\\DenyMultiplyTest\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
-        'DanchukAS\\HelperTest\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/test',
+            0 => __DIR__ . '/../..' . '/tests/DenyMultiplyTest',
         ),
         'DanchukAS\\DenyMultiplyRun\\' => 
         array (
@@ -571,6 +566,7 @@ class ComposerStaticInit5dee8653b146bc3e885c99fdd6f18e97
         'SebastianBergmann\\Diff\\Line' => __DIR__ . '/..' . '/sebastian/diff/src/Line.php',
         'SebastianBergmann\\Diff\\Parser' => __DIR__ . '/..' . '/sebastian/diff/src/Parser.php',
         'SebastianBergmann\\Environment\\Console' => __DIR__ . '/..' . '/sebastian/environment/src/Console.php',
+        'SebastianBergmann\\Environment\\OperatingSystem' => __DIR__ . '/..' . '/sebastian/environment/src/OperatingSystem.php',
         'SebastianBergmann\\Environment\\Runtime' => __DIR__ . '/..' . '/sebastian/environment/src/Runtime.php',
         'SebastianBergmann\\Exporter\\Exporter' => __DIR__ . '/..' . '/sebastian/exporter/src/Exporter.php',
         'SebastianBergmann\\GlobalState\\Blacklist' => __DIR__ . '/..' . '/sebastian/global-state/src/Blacklist.php',

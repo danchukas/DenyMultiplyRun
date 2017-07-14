@@ -10,11 +10,5 @@ before_install:
 before_script:
   - composer install --dev
 
-script:
-  - phpunit --coverage-clover=coverage.xml
-  - phpunit --coverage-clover build/logs/clover.xml
-
 after_success:
   - codecov
-  - php vendor/bin/coveralls -v
-
