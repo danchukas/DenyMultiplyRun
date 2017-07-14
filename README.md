@@ -1,5 +1,6 @@
 # DenyMultiplyRun
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/279f7dc7abed4027819beb644620fd88)](https://www.codacy.com/app/volk160590/DenyMultiplyRun?utm_source=github.com&utm_medium=referral&utm_content=danchukas/DenyMultiplyRun&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/danchukas/DenyMultiplyRun.svg?branch=master)](https://travis-ci.org/danchukas/DenyMultiplyRun)
 [![Code Coverage](https://codecov.io/gh/danchukas/DenyMultiplyRun/branch/master/graph/badge.svg)](https://codecov.io/gh/danchukas/DenyMultiplyRun)
 
