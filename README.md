@@ -1,5 +1,9 @@
 # DenyMultiplyRun
 
+[![Build Status](https://travis-ci.org/danchukas/DenyMultiplyRun.svg?branch=master)](https://travis-ci.org/danchukas/DenyMultiplyRun)
+[![Code Coverage](https://codecov.io/gh/danchukas/DenyMultiplyRun/branch/master/graph/badge.svg)](https://codecov.io/gh/danchukas/DenyMultiplyRun)
+
+
 для уникнення повторного запуска скрипта (по крону, з консолі, ...)
 
     $file_name = "/var/run/some_job_or_daemon.pid";
