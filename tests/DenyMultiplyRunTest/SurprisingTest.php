@@ -24,15 +24,21 @@ class SurprisingTest extends TestCase
 
     private static $noExistFileName;
 
+    private static $randomFileName;
+
+
     function setUp()
     {
         self::$noExistFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+        self::$randomFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
     }
 
     function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$noExistFileName);
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
+        @unlink(self::$randomFileName);
     }
 
 
