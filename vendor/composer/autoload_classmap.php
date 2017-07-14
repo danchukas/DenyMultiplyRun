@@ -6,6 +6,18 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Codacy\\Coverage\\Application' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Application.php',
+    'Codacy\\Coverage\\Command\\Clover' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Command/Clover.php',
+    'Codacy\\Coverage\\Command\\Phpunit' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Command/Phpunit.php',
+    'Codacy\\Coverage\\Parser\\CloverParser' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Parser/CloverParser.php',
+    'Codacy\\Coverage\\Parser\\IParser' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Parser/Parser.php',
+    'Codacy\\Coverage\\Parser\\PhpUnitXmlParser' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Parser/PhpUnitXmlParser.php',
+    'Codacy\\Coverage\\Parser\\XMLParser' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Parser/Parser.php',
+    'Codacy\\Coverage\\Report\\CoverageReport' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Report/CoverageReport.php',
+    'Codacy\\Coverage\\Report\\FileReport' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Report/FileReport.php',
+    'Codacy\\Coverage\\Util\\CodacyApiClient' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Util/CodacyApiClient.php',
+    'Codacy\\Coverage\\Util\\GitClient' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Util/GitClient.php',
+    'Codacy\\Coverage\\Util\\JsonProducer' => $vendorDir . '/codacy/coverage/src/Codacy/Coverage/Util/JsonProducer.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

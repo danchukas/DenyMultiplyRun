@@ -7,8 +7,11 @@ php:
 before_install:
   - sudo pip install codecov
 
-before_script:
-  - composer install --dev
-
 after_success:
   - codecov
+
+script:
+  - php vendor/bin/phpunit
+
+after_script:
+  - php vendor/bin/codacycoverage clover build/logs/clover.xml
