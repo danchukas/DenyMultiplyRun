@@ -3,3 +3,18 @@ php:
   - '7.0'
   - '7.1'
   - nightly
+
+before_install:
+  - sudo pip install codecov
+
+before_script:
+  - composer install --dev
+
+script:
+  - phpunit --coverage-clover=coverage.xml
+  - phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - codecov
+  - php vendor/bin/coveralls -v
+
