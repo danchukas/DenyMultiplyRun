@@ -59,29 +59,29 @@ class DenyMultiplyRun
         self::preparePidDir($pidFilePath);
 
         try {
-            $file_resource = DenyMultiplyRun::createPidFile($pidFilePath);
+            $file_resource = self::createPidFile($pidFilePath);
             $pid_file_existed = false;
         } catch (FileExisted $exception) {
-            $file_resource = DenyMultiplyRun::openPidFile($pidFilePath);
+            $file_resource = self::openPidFile($pidFilePath);
             $pid_file_existed = true;
         }
 
-        DenyMultiplyRun::lockPidFile($file_resource);
+        self::lockPidFile($file_resource);
 
         try {
             // оголошено тут щоб шторм не ругався нижче, бо не може зрозуміти що змінна вже оголошена
             $prev_pid = null;
             if ($pid_file_existed) {
                 try {
-                    $prev_pid = DenyMultiplyRun::getPidFromFile($file_resource);
-                    DenyMultiplyRun::checkRunnedPid($prev_pid);
+                    $prev_pid = self::getPidFromFile($file_resource);
+                    self::checkRunnedPid($prev_pid);
                 } catch (PidFileEmpty $exception) {
                 }
-                DenyMultiplyRun::truncatePidFile($file_resource);
+                self::truncatePidFile($file_resource);
             }
 
             $self_pid = getmypid();
-            DenyMultiplyRun::setPidIntoFile($self_pid, $file_resource);
+            self::setPidIntoFile($self_pid, $file_resource);
 
             if ($pid_file_existed) {
                 $message_reason = is_null($prev_pid)
@@ -94,9 +94,9 @@ class DenyMultiplyRun
             }
         } finally {
             try {
-                DenyMultiplyRun::unlockPidFile($file_resource);
+                self::unlockPidFile($file_resource);
             } finally {
-                DenyMultiplyRun::closePidFile($file_resource);
+                self::closePidFile($file_resource);
             }
         }
 
