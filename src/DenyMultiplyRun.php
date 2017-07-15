@@ -168,7 +168,7 @@ class DenyMultiplyRun
     }
 
     /**
-     * @param resource $pidFileResource
+     * @param $pidFileResource
      *
      * @throws \Exception
      */
@@ -294,7 +294,7 @@ class DenyMultiplyRun
 
     /**
      * @param int $self_pid
-     * @param resource $pidFileResource
+     * @param $pidFileResource
      *
      * @throws \Exception
      */
@@ -309,7 +309,7 @@ class DenyMultiplyRun
     }
 
     /**
-     * @param resource $pidFileResource
+     * @param $pidFileResource
      */
     private static function unlockPidFile($pidFileResource)
     {
