@@ -3,7 +3,7 @@ checks:
 build:
     tests:
         override:
-            - phpcs-run --ignore=*/vendor/*,*/docs/*
+            - phpcs-run --ignore=./vendor/,./docs/
     environment:
         php:
             version: 7.1
