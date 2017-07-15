@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 
 /**
@@ -121,7 +121,7 @@ class SurprisingTest extends TestCase
             , [false]
             , [0]
             , [[]]
-            , [function () {
+            , [function() {
             }]
             , [new \Exception]
             , [$r]];
