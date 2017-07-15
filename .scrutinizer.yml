@@ -3,7 +3,7 @@ checks:
 build:
     tests:
         override:
-            - phpcs-run --ignore=./vendor/*
+            - phpcs-run --ignore=*/vendor/*,*/docs/*
     environment:
         php:
             version: 7.1
@@ -16,7 +16,7 @@ tools:
     php_pdepend: true
     php_loc:
         enabled: true
-        excluded_dirs: [vendor]
+        excluded_dirs: [vendor, docs]
     php_cpd:
         enabled: true
-        excluded_dirs: [vendor]
+        excluded_dirs: [vendor, docs]
