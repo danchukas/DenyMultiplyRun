@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace DanchukAS\DenyMultiplyRun;
 
@@ -228,14 +228,14 @@ class DenyMultiplyRun
             throw new PidFileEmpty();
         }
 
-        $pid_int = (int)$pid_from_file;
+        $pid_int = (int) $pid_from_file;
 
         // verify available PID in file.
         // if PID not available - why it happens ?
         // For *nix system
         $pid_max_storage = "/proc/sys/kernel/pid_max";
         if (file_exists($pid_max_storage)) {
-            $pid_max = (int)file_get_contents($pid_max_storage);
+            $pid_max = (int) file_get_contents($pid_max_storage);
             if ($pid_max < $pid_int) {
                 $message = "PID in file has unavailable value: $pid_int. In /proc/sys/kernel/pid_max set $pid_max.";
                 throw new PidBiggerMax($message);
