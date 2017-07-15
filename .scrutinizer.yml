@@ -20,3 +20,7 @@ tools:
     php_cpd:
         enabled: true
         excluded_dirs: [vendor, docs]
+filter:
+    excluded_paths:
+        - 'vendor/*'
+        - 'docs/*'
