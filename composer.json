@@ -24,8 +24,8 @@
   },
 
   "require-dev": {
-    "phpunit/PHPUnit": "~6.2@stable"
-    , "codacy/coverage": "dev-master",
+    "phpunit/PHPUnit": "~6.2@stable",
+    "codacy/coverage": "dev-master",
     "phpdocumentor/phpdocumentor": "2.*"
   }
 

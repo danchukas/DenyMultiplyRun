@@ -146,7 +146,7 @@ class SurprisingTest extends TestCase
 
         $method->setAccessible(true);
         self::expectException("DanchukAS\DenyMultiplyRun\Exception\CloseFileFail");
-        $method->invoke("DenyMultiplyRun", $badResource);
+        $method->invoke(null, $badResource);
         $method->setAccessible(false);
 
     }
