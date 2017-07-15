@@ -45,5 +45,23 @@ class ExistWrongPidFileTest extends TestCase
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
+    function testNoAccessFile()
+    {
+        // existed file without write access for current user.
+        // for Ubuntu is /etc/hosts.
+        $file_name = "/etc/hosts";
+
+        if (!file_exists($file_name)) {
+            self::markTestSkipped("test only for *nix.");
+        }
+
+        if (is_writable($file_name)) {
+            self::markTestSkipped("test runned under super/admin user. Change user.");
+        }
+
+        self::expectException("DanchukAS\DenyMultiplyRun\Exception\OpenFileFail");
+        DenyMultiplyRun::setPidFile($file_name);
+    }
+
 
 }
