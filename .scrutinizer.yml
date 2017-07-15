@@ -4,12 +4,8 @@ build:
     tests:
         override:
             - phpcs-run
-            -
-              command: phpunit --coverage-clover=build/logs/clover.xml
-                  coverage:
-                      file: build/logs/clover.xml
-                      format: php-clover
-
     environment:
         php:
             version: 7.1
+tools:
+    external_code_coverage: true

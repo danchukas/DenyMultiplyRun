@@ -20,3 +20,6 @@ script:
   - php vendor/bin/phpunit
 after_script:
   - php vendor/bin/codacycoverage clover build/logs/clover.xml
+  # next all for scrutinizer-ci.com
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
