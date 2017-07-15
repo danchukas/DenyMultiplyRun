@@ -179,7 +179,7 @@ class DenyMultiplyRun
         }
 
         if (!is_null(self::$lastError)) {
-            throw new OpenFileFail((string)self::$lastError);
+            throw new OpenFileFail((string) self::$lastError);
         }
 
         return $pid_file_handle;
