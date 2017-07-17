@@ -17,18 +17,18 @@ class ExistRightPidFileTest extends TestCase
 
     private static $existFileName;
 
-    function setUp()
+    public function setUp()
     {
         self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
     }
 
-    function tearDown()
+    public function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$existFileName);
     }
 
-    function testEmptyFile()
+    public function testEmptyFile()
     {
         self::waitError();
         DenyMultiplyRun::setPidFile(self::$existFileName);
@@ -60,7 +60,7 @@ class ExistRightPidFileTest extends TestCase
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
      */
-    function testExistedPid()
+    public function testExistedPid()
     {
 
         $file_name = self::$existFileName;
@@ -69,7 +69,7 @@ class ExistRightPidFileTest extends TestCase
         DenyMultiplyRun::setPidFile($file_name);
     }
 
-    function testNoExistedPid()
+    public function testNoExistedPid()
     {
 
         $no_exist_pid = 1;
@@ -89,7 +89,7 @@ class ExistRightPidFileTest extends TestCase
         self::catchError($wait_error);
     }
 
-    function testLockedFile()
+    public function testLockedFile()
     {
         $file_resource = fopen(self::$existFileName, "r+");
         flock($file_resource, LOCK_EX);

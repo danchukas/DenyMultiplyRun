@@ -27,13 +27,13 @@ class SurprisingTest extends TestCase
     private static $existFileName;
 
 
-    function setUp()
+    public function setUp()
     {
         self::$noExistFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
         self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
     }
 
-    function tearDown()
+    public function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$noExistFileName);
@@ -45,7 +45,7 @@ class SurprisingTest extends TestCase
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
      */
-    function testDoubleCall()
+    public function testDoubleCall()
     {
         $file_name = self::$noExistFileName;
         DenyMultiplyRun::setPidFile($file_name);
@@ -54,21 +54,21 @@ class SurprisingTest extends TestCase
     }
 
 
-    function testDeleteNoExistedPidFile()
+    public function testDeleteNoExistedPidFile()
     {
         self::expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile(self::$noExistFileName);
     }
 
 
-    function testDeletePidFileWrongParam()
+    public function testDeletePidFileWrongParam()
     {
         self::expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile(null);
     }
 
 
-    function testDeleteNoAccessFile()
+    public function testDeleteNoAccessFile()
     {
         // existed file without write access for current user.
         // for Ubuntu is /etc/hosts.
@@ -90,7 +90,7 @@ class SurprisingTest extends TestCase
      * @dataProvider notString
      * @param mixed $notString
      */
-    function testWrongTypeParam($notString)
+    public function testWrongTypeParam($notString)
     {
         self::expectException("TypeError");
         DenyMultiplyRun::setPidFile($notString);
@@ -101,7 +101,7 @@ class SurprisingTest extends TestCase
      * @dataProvider WrongParam
      * @param string $no_valid_file_name
      */
-    function testWrongParam(string $no_valid_file_name)
+    public function testWrongParam(string $no_valid_file_name)
     {
         self::expectException("Exception");
         DenyMultiplyRun::setPidFile($no_valid_file_name);
@@ -111,7 +111,7 @@ class SurprisingTest extends TestCase
     /**
      * @return array
      */
-    function notString()
+    public function notString()
     {
         $r = fopen(__FILE__, "r");
         fclose($r);
@@ -131,7 +131,7 @@ class SurprisingTest extends TestCase
     /**
      * @return array
      */
-    function WrongParam()
+    public function WrongParam()
     {
         return [[""], ["."], ["/"], ['//']];
     }
@@ -140,7 +140,7 @@ class SurprisingTest extends TestCase
     /**
      * @dataProvider notString
      */
-    function testLockedFileBeforeClose($badResource)
+    public function testLockedFileBeforeClose($badResource)
     {
         $method = new \ReflectionMethod("DanchukAS\DenyMultiplyRun\DenyMultiplyRun", "closePidFile");
 

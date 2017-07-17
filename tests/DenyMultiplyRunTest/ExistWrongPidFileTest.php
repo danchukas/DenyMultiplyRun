@@ -16,19 +16,19 @@ class ExistWrongPidFileTest extends TestCase
 
     private static $existFileName;
 
-    function setUp()
+    public function setUp()
     {
         self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
     }
 
-    function tearDown()
+    public function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$existFileName);
     }
 
 
-    function testNoValidPid()
+    public function testNoValidPid()
     {
         file_put_contents(self::$existFileName, "12as");
 
@@ -37,7 +37,7 @@ class ExistWrongPidFileTest extends TestCase
     }
 
 
-    function testBiggerPid()
+    public function testBiggerPid()
     {
         file_put_contents(self::$existFileName, PHP_INT_MAX);
 
@@ -45,7 +45,7 @@ class ExistWrongPidFileTest extends TestCase
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
-    function testNoAccessFile()
+    public function testNoAccessFile()
     {
         // existed file without write access for current user.
         // for Ubuntu is /etc/hosts.
