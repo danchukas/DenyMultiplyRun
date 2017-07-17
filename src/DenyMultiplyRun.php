@@ -362,7 +362,6 @@ class DenyMultiplyRun
             restore_error_handler();
         }
 
-
         if (false === $closed) {
             $file_close_error = self::$lastError;
 
@@ -380,6 +379,7 @@ class DenyMultiplyRun
                 // Відновлюєм попередній обробник наче нічого і не робили.
                 restore_error_handler();
             }
+
             throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
         }
     }
