@@ -50,7 +50,7 @@ class SurprisingTest extends TestCase
         $file_name = self::$noExistFileName;
         DenyMultiplyRun::setPidFile($file_name);
         DenyMultiplyRun::setPidFile($file_name);
-    }
+    }/** @noinspection PhpMethodNamingConventionInspection */
 
 
     /**
@@ -63,6 +63,7 @@ class SurprisingTest extends TestCase
     }
 
 
+    /** @noinspection PhpMethodNamingConventionInspection */
     public function testDeletePidFileWrongParam()
     {
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
@@ -70,6 +71,7 @@ class SurprisingTest extends TestCase
     }
 
 
+    /** @noinspection PhpMethodNamingConventionInspection */
     public function testDeleteNoAccessFile()
     {
         // existed file without write access for current user.
@@ -86,7 +88,7 @@ class SurprisingTest extends TestCase
 
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile($file_name);
-    }
+    }/** @noinspection PhpMethodNamingConventionInspection */
 
     /**
      * @dataProvider notString
@@ -137,11 +139,12 @@ class SurprisingTest extends TestCase
     public function wrongParam()
     {
         return [[""], ["."], ["/"], ['//']];
-    }
+    }/** @noinspection PhpMethodNamingConventionInspection */
 
 
     /**
      * @dataProvider notString
+     * @param mixed $badResource from dataProvider
      */
     public function testLockedFileBeforeClose($badResource)
     {

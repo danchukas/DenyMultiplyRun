@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: danchukas
@@ -10,6 +11,13 @@ namespace DanchukAS\DenyMultiplyRunTest;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use PHPUnit\Framework\TestCase;
 
+/** @noinspection PhpClassNamingConventionInspection */
+
+/**
+ * Class ExistRightPidFileTest
+ * Тести з вірним підфайлом.
+ * @package DanchukAS\DenyMultiplyRunTest
+ */
 class ExistRightPidFileTest extends TestCase
 {
 
