@@ -32,7 +32,8 @@ class ExistRightPidFileTest extends TestCase
     {
         self::waitError();
         DenyMultiplyRun::setPidFile(self::$existFileName);
-        $wait_error = "pid-file exist, but file empty. pid-file updated with pid this process: %i";
+        $wait_error = "[" . E_USER_NOTICE . "] pid-file exist, but file empty."
+            . " pid-file updated with pid this process: %i";
         self::catchError($wait_error);
     }
 
@@ -40,8 +41,8 @@ class ExistRightPidFileTest extends TestCase
     {
 
         /** @noinspection PhpUnusedParameterInspection */
-        set_error_handler(function(int $messageType, string $messageText) {
-            self::$lastError = $messageText;
+        set_error_handler(function (int $messageType, string $messageText) {
+            self::$lastError = "[$messageType] " . $messageText;
         });
 
         self::$lastError = null;
@@ -84,8 +85,9 @@ class ExistRightPidFileTest extends TestCase
 
         self::waitError();
         DenyMultiplyRun::setPidFile(self::$existFileName);
-        $wait_error = "pid-file exist, but process with contained ID(%i) in it is not exist. "
-            . "pid-file updated with pid this process: %i";
+        $wait_error = "[" . E_USER_NOTICE . "] pid-file exist"
+            . ", but process with contained ID(%i) in it is not exist."
+            . " pid-file updated with pid this process: %i";
         self::catchError($wait_error);
     }
 
