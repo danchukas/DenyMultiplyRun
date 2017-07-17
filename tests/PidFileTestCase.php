@@ -101,4 +101,44 @@ abstract class PidFileTestCase extends TestCase
 
         return $file_name_list;
     }
+
+    /**
+     * return array
+     */
+    public function deletePidFileProvider()
+    {
+        static $param = null;
+
+        if (is_null($param)) {
+            // existed file without write access for current user.
+            // for Ubuntu is /etc/hosts.
+            $file_name = "/etc/hosts";
+
+            $message = $this->sudoOrNotUnix($file_name);
+
+            $param = [
+                "noExistFileName" => [self::$noExistFileName]
+                , "wrongParam" => [null]
+                , "accessDenied" => [$file_name, $message]
+            ];
+        }
+
+        return $param;
+    }
+
+    /**
+     * @param $file_name
+     * @return null|string
+     */
+    private function sudoOrNotUnix($file_name)
+    {
+        $message = null;
+
+        if (!file_exists($file_name)) {
+            $message = "test only for *nix.";
+        } elseif (is_writable($file_name)) {
+            $message = "test runned under super/admin user. Change user.";
+        }
+        return $message;
+    }
 }

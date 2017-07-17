@@ -29,54 +29,21 @@ class SurprisingTest extends PidFileTestCase
         $file_name = self::$noExistFileName;
         DenyMultiplyRun::setPidFile($file_name);
         DenyMultiplyRun::setPidFile($file_name);
-    }/** @noinspection PhpMethodNamingConventionInspection */
+    }
 
-
+    /** @noinspection PhpMethodNamingConventionInspection */
     /**
      * Delete if no exist pid file.
+     * @dataProvider deletePidFileProvider
      */
-    public function testDeleteNoExistedPidFile()
+    public function testDeletePidFile($param, $message = null)
     {
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
-        DenyMultiplyRun::deletePidFile(self::$noExistFileName);
-    }
-
-
-    /** @noinspection PhpMethodNamingConventionInspection */
-    public function testDeletePidFileWrongParam()
-    {
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
-        DenyMultiplyRun::deletePidFile(null);
-    }
-
-
-    /** @noinspection PhpMethodNamingConventionInspection */
-    public function testDeleteNoAccessFile()
-    {
-        // existed file without write access for current user.
-        // for Ubuntu is /etc/hosts.
-        $file_name = "/etc/hosts";
-
-        if (!file_exists($file_name)) {
-            self::markTestSkipped("test only for *nix.");
-        }
-
-        if (is_writable($file_name)) {
-            self::markTestSkipped("test runned under super/admin user. Change user.");
+        if (!is_null($message)) {
+            self::markTestSkipped($message);
         }
 
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
-        DenyMultiplyRun::deletePidFile($file_name);
-    }/** @noinspection PhpMethodNamingConventionInspection */
-
-    /**
-     * @dataProvider notStringProvider
-     * @param mixed $notString
-     */
-    public function testWrongTypeParam($notString)
-    {
-        $this->expectException("TypeError");
-        DenyMultiplyRun::setPidFile($notString);
+        DenyMultiplyRun::deletePidFile($param);
     }
 
     /**
