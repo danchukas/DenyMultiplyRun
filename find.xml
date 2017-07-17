@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="php_lib_usual" />
-    <option name="defaultScopeName" value="php_lib_usual" />
-    <option name="SEARCH_SCOPE" value="php_lib_usual" />
+    <option name="customScope" value="File '[DenyMultiplyRun] - .../src/DenyMultiplyRun.php'" />
+    <option name="defaultScopeName" value="File '[DenyMultiplyRun] - .../src/DenyMultiplyRun.php'" />
+    <option name="SEARCH_SCOPE" value="File '[DenyMultiplyRun] - .../src/DenyMultiplyRun.php'" />
     <recentFileMasks>
       <mask>*.properties</mask>
       <mask>*.html</mask>
