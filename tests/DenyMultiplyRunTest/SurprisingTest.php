@@ -70,7 +70,7 @@ class SurprisingTest extends PidFileTestCase
     }/** @noinspection PhpMethodNamingConventionInspection */
 
     /**
-     * @dataProvider notString
+     * @dataProvider notStringProvider
      * @param mixed $notString
      */
     public function testWrongTypeParam($notString)
@@ -80,49 +80,20 @@ class SurprisingTest extends PidFileTestCase
     }
 
     /**
-     * @dataProvider wrongParam
-     * @param string $no_valid_file_name
+     * @dataProvider notFileNameProvider
+     * @param mixed $no_valid_file_name
+     * @param string $throwable_type
      */
-    public function testWrongParam(string $no_valid_file_name)
+    public function testWrongParam($no_valid_file_name, string $throwable_type)
     {
-        $this->expectException("Exception");
+        $this->expectException($throwable_type);
         DenyMultiplyRun::setPidFile($no_valid_file_name);
     }
 
 
+    /** @noinspection PhpMethodNamingConventionInspection */
     /**
-     * @return array
-     */
-    public function notString()
-    {
-        $right_resource = fopen(__FILE__, "r");
-        fclose($right_resource);
-        $fail_resource = $right_resource;
-
-        return [
-            [null]
-            , [false]
-            , [0]
-            , [[]]
-            , [function () {
-            }]
-            , [new \Exception]
-            , [$fail_resource]
-        ];
-    }
-
-
-    /**
-     * @return array
-     */
-    public function wrongParam()
-    {
-        return [[""], ["."], ["/"], ['//']];
-    }/** @noinspection PhpMethodNamingConventionInspection */
-
-
-    /**
-     * @dataProvider notString
+     * @dataProvider notStringProvider
      * @param mixed $badResource from dataProvider
      */
     public function testLockedFileBeforeClose($badResource)
