@@ -20,19 +20,40 @@ abstract class PidFileTestCase extends TestCase
 
     protected static $existFileName;
 
+    private static $tempFileList = [];
 
     public function setUp()
     {
-        self::$noExistFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
-        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
+        self::$noExistFileName = self::getFileName();
+        self::$existFileName = self::newTempFileName();
+    }
+
+    /**
+     * @return string
+     */
+    private static function getFileName(): string
+    {
+        $file_name = sys_get_temp_dir() . '/' . uniqid('vd_', true);
+        self::$tempFileList[] = $file_name;
+        return $file_name;
+    }
+
+    /**
+     * @return bool|string
+     */
+    private static function newTempFileName()
+    {
+        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
+        self::$tempFileList[] = $file_name;
+        return $file_name;
     }
 
     public function tearDown()
     {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$noExistFileName);
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$existFileName);
+        foreach (self::$tempFileList as $file_name) {
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            @unlink($file_name);
+        }
     }
 
     /**
@@ -105,7 +126,7 @@ abstract class PidFileTestCase extends TestCase
     /**
      * return array
      */
-    public function deletePidFileProvider()
+    public function deletePidFileParam()
     {
         static $param = null;
 
@@ -117,7 +138,7 @@ abstract class PidFileTestCase extends TestCase
             $message = $this->sudoOrNotUnix($file_name);
 
             $param = [
-                "noExistFileName" => [self::$noExistFileName]
+                "noExistFileName" => [self::getFileName()]
                 , "wrongParam" => [null]
                 , "accessDenied" => [$file_name, $message]
             ];
@@ -140,5 +161,55 @@ abstract class PidFileTestCase extends TestCase
             $message = "test runned under super/admin user. Change user.";
         }
         return $message;
+    }
+
+    /**
+     * return array
+     */
+    public function setPidFileParam()
+    {
+        static $param = null;
+
+        if (is_null($param)) {
+            $param = [
+                "lockedPidFile" => [
+                    self::lockedPidFile()
+                    , "DanchukAS\DenyMultiplyRun\Exception\LockFileFail"
+                ]
+                , "fileHasExistPid" => [
+                    self::fileWithExistedPid()
+                    , "DanchukAS\DenyMultiplyRun\Exception\ProcessExisted"
+                ]
+            ];
+        }
+
+        return $param;
+    }
+
+    /**
+     *
+     */
+    private static function lockedPidFile()
+    {
+        while (true) {
+            $file_name = self::newTempFileName();
+            $file_resource = fopen($file_name, "r+");
+            flock($file_resource, LOCK_EX);
+
+            yield $file_name;
+        }
+    }
+
+    /**
+     *
+     */
+    private static function fileWithExistedPid()
+    {
+        while (true) {
+            $file_name = self::newTempFileName();
+            file_put_contents($file_name, getmypid());
+
+            yield $file_name;
+        }
     }
 }

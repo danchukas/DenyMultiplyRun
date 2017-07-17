@@ -53,18 +53,6 @@ class ExistRightPidFileTest extends PidFileTestCase
         self::assertStringMatchesFormat("$message", self::$lastError);
     }
 
-    /**
-     * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
-     */
-    public function testExistedPid()
-    {
-
-        $file_name = self::$existFileName;
-        file_put_contents($file_name, getmypid());
-
-        DenyMultiplyRun::setPidFile($file_name);
-    }
-
     public function testNoExistedPid()
     {
 
@@ -86,12 +74,12 @@ class ExistRightPidFileTest extends PidFileTestCase
         self::catchError($wait_error);
     }
 
-    public function testLockedFile()
+    /**
+     * @dataProvider setPidFileParam
+     */
+    public function testLockedFile(\Generator $filename, string $exception)
     {
-        $file_resource = fopen(self::$existFileName, "r+");
-        flock($file_resource, LOCK_EX);
-
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
-        DenyMultiplyRun::setPidFile(self::$existFileName);
+        $this->expectException($exception);
+        DenyMultiplyRun::setPidFile($filename->current());
     }
 }

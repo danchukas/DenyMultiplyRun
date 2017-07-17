@@ -34,7 +34,7 @@ class SurprisingTest extends PidFileTestCase
     /** @noinspection PhpMethodNamingConventionInspection */
     /**
      * Delete if no exist pid file.
-     * @dataProvider deletePidFileProvider
+     * @dataProvider deletePidFileParam
      */
     public function testDeletePidFile($param, $message = null)
     {
