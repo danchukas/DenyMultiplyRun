@@ -56,14 +56,14 @@ class SurprisingTest extends TestCase
 
     public function testDeleteNoExistedPidFile()
     {
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile(self::$noExistFileName);
     }
 
 
     public function testDeletePidFileWrongParam()
     {
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile(null);
     }
 
@@ -82,7 +82,7 @@ class SurprisingTest extends TestCase
             self::markTestSkipped("test runned under super/admin user. Change user.");
         }
 
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
         DenyMultiplyRun::deletePidFile($file_name);
     }
 
@@ -92,7 +92,7 @@ class SurprisingTest extends TestCase
      */
     public function testWrongTypeParam($notString)
     {
-        self::expectException("TypeError");
+        $this->expectException("TypeError");
         DenyMultiplyRun::setPidFile($notString);
 
     }
@@ -103,7 +103,7 @@ class SurprisingTest extends TestCase
      */
     public function testWrongParam(string $no_valid_file_name)
     {
-        self::expectException("Exception");
+        $this->expectException("Exception");
         DenyMultiplyRun::setPidFile($no_valid_file_name);
     }
 
@@ -145,7 +145,7 @@ class SurprisingTest extends TestCase
         $method = new \ReflectionMethod("DanchukAS\DenyMultiplyRun\DenyMultiplyRun", "closePidFile");
 
         $method->setAccessible(true);
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\CloseFileFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\CloseFileFail");
         $method->invoke(null, $badResource);
         $method->setAccessible(false);
 
