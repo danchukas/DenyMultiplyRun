@@ -14,7 +14,6 @@ use DanchukAS\DenyMultiplyRun\Exception\PidFileEmpty;
 use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
 use DanchukAS\DenyMultiplyRun\Exception\ReadFileFail;
 
-
 /**
  * Class denyMultiplyRun
  * Забороняє паралельний запуск скрипта

@@ -13,7 +13,6 @@ namespace DanchukAS\DenyMultiplyRunTest;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  * Class SurprisingTest
  * поглиблені тести на "всі найбільш можливі ситуації"
