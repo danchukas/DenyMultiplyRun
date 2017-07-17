@@ -11,6 +11,7 @@ use DanchukAS\DenyMultiplyRun\Exception\LockFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\OpenFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax;
 use DanchukAS\DenyMultiplyRun\Exception\PidFileEmpty;
+use DanchukAS\DenyMultiplyRun\Exception\PidLessMin;
 use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
 use DanchukAS\DenyMultiplyRun\Exception\ReadFileFail;
 
@@ -244,23 +245,9 @@ class DenyMultiplyRun
     private static function validatePid(string $pid_from_file): int
     {
         // На випадок коли станеться виліт скрипта після створення файла і до запису ІД.
-        if ('' === $pid_from_file) {
-            throw new PidFileEmpty();
-        }
+        self::pidIsNoEmpty($pid_from_file);
 
         $pid_int = (int) $pid_from_file;
-
-        // verify available PID in file.
-        // if PID not available - why it happens ?
-        // For *nix system
-        $pid_max_storage = "/proc/sys/kernel/pid_max";
-        if (file_exists($pid_max_storage)) {
-            $pid_max = (int) file_get_contents($pid_max_storage);
-            if ($pid_max < $pid_int) {
-                $message = "PID in file has unavailable value: $pid_int. In /proc/sys/kernel/pid_max set $pid_max.";
-                throw new PidBiggerMax($message);
-            }
-        }
 
         // verify converting. (PHP_MAX_INT)
         // verify PID in file is right (something else instead ciphers).
@@ -270,7 +257,45 @@ class DenyMultiplyRun
             throw new ConvertPidFail($message);
         }
 
+        self::pidIsPossible($pid_int);
+
         return $pid_int;
+    }
+
+    /**
+     * @param string $pid
+     * @throws PidFileEmpty
+     */
+    private static function pidIsNoEmpty(string $pid): void
+    {
+        if ('' === $pid) {
+            throw new PidFileEmpty();
+        }
+    }
+
+    /**
+     * Verify possible value of PID in file: less than max possible on OS.
+     * @param int $pid_int
+     * @throws PidBiggerMax
+     * @throws PidLessMin
+     */
+    private static function pidIsPossible($pid_int): void
+    {
+        if ($pid_int < 0) {
+            $message = "PID in file has unavailable value: $pid_int. PID must be no negative.";
+            throw new PidLessMin($message);
+        }
+
+        // if PID not available - why it happens ?
+        // For *nix system
+        $pid_max_storage = "/proc/sys/kernel/pid_max";
+        if (file_exists($pid_max_storage)) {
+            $pid_max = (int)file_get_contents($pid_max_storage);
+            if ($pid_max < $pid_int) {
+                $message = "PID in file has unavailable value: $pid_int. In /proc/sys/kernel/pid_max set $pid_max.";
+                throw new PidBiggerMax($message);
+            }
+        }
     }
 
     /**
