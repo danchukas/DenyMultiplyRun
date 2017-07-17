@@ -6,6 +6,10 @@
 [![Code Coverage](https://codecov.io/gh/danchukas/DenyMultiplyRun/branch/master/graph/badge.svg)](https://codecov.io/gh/danchukas/DenyMultiplyRun)
 
 
+utility is work on production middlewhere, but this project for see how work github, modules, integrates with services and phpstorm.
+
+
+
 для уникнення повторного запуска скрипта (по крону, з консолі, ...)
 
     $file_name = "/var/run/some_job_or_daemon.pid";
