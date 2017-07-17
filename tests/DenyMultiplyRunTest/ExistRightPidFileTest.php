@@ -40,7 +40,7 @@ class ExistRightPidFileTest extends TestCase
     {
 
         /** @noinspection PhpUnusedParameterInspection */
-        set_error_handler(function (int $messageType, string $messageText) {
+        set_error_handler(function(int $messageType, string $messageText) {
             self::$lastError = $messageText;
         });
 
@@ -92,7 +92,7 @@ class ExistRightPidFileTest extends TestCase
     function testLockedFile()
     {
         $file_resource = fopen(self::$existFileName, "r+");
-        flock($file_resource,LOCK_EX);
+        flock($file_resource, LOCK_EX);
 
         self::expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
         DenyMultiplyRun::setPidFile(self::$existFileName);
