@@ -69,6 +69,4 @@ class ExistWrongPidFileTest extends TestCase
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\OpenFileFail");
         DenyMultiplyRun::setPidFile($file_name);
     }
-
-
 }

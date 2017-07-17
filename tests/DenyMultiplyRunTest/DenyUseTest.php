@@ -27,5 +27,4 @@ class DenyUseTest extends TestCase
         $class = "DenyMultiplyRun";
         new $class;
     }
-
 }

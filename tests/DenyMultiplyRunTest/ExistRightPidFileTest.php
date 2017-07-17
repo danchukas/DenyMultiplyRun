@@ -107,5 +107,4 @@ class ExistRightPidFileTest extends TestCase
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
-
 }
