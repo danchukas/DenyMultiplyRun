@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: danchukas
@@ -9,6 +10,11 @@ namespace DanchukAS\DenyMultiplyRunTest;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class DenyUseTest
+ * Як використовувати заборонено.
+ * @package DanchukAS\DenyMultiplyRunTest
+ */
 class DenyUseTest extends TestCase
 {
     /**

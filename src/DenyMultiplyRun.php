@@ -70,8 +70,6 @@ class DenyMultiplyRun
         self::lockPidFile($file_resource);
 
         try {
-            // оголошено тут щоб шторм не ругався нижче, бо не може зрозуміти що змінна вже оголошена
-            $prev_pid = null;
             if ($pid_file_existed) {
                 try {
                     $prev_pid = self::getPidFromFile($file_resource);
@@ -89,6 +87,7 @@ class DenyMultiplyRun
             self::setPidIntoFile($self_pid, $file_resource);
 
             if ($pid_file_existed) {
+                /** @noinspection PhpUndefinedVariableInspection */
                 $message_reason = is_null($prev_pid)
                     ? ", but file empty."
                     : ", but process with contained ID($prev_pid) in it is not exist.";
@@ -116,7 +115,7 @@ class DenyMultiplyRun
         $pid_dir = dirname($pidFilePath);
 
         if ("" !== $pid_dir && !is_dir($pid_dir)) {
-            $created_pid_dir = @mkdir($pid_dir, 0777, true);
+            $created_pid_dir = mkdir($pid_dir, 0777, true);
             if (false === $created_pid_dir) {
                 throw new \Exception('Директорія відсутня і неможливо створити: ' . $pid_dir);
             }
@@ -173,6 +172,7 @@ class DenyMultiplyRun
     {
         self::startErrorHandle();
         try {
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
             $pid_file_handle = @fopen($pidFilePath, 'r+');
         } catch (\Throwable $error) {
             self::$lastError = $error;
@@ -184,6 +184,7 @@ class DenyMultiplyRun
             throw new OpenFileFail((string) self::$lastError);
         }
 
+        /** @noinspection PhpUndefinedVariableInspection */
         return $pid_file_handle;
     }
 
@@ -214,7 +215,7 @@ class DenyMultiplyRun
     }
 
     /**
-     * @param $pidFileResource Дескриптор файла доступного для читання в якому знаходиться PID.
+     * @param resource $pidFileResource Дескриптор файла доступного для читання в якому знаходиться PID.
      * @return int PID з файла
      * @throws \Exception
      */

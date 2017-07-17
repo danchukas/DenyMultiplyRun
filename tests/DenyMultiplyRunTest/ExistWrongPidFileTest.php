@@ -11,6 +11,13 @@ namespace DanchukAS\DenyMultiplyRunTest;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use PHPUnit\Framework\TestCase;
 
+/** @noinspection PhpClassNamingConventionInspection */
+
+/**
+ * Class ExistWrongPidFileTest
+ * Тести на невірний під файл
+ * @package DanchukAS\DenyMultiplyRunTest
+ */
 class ExistWrongPidFileTest extends TestCase
 {
 
