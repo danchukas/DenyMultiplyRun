@@ -13,10 +13,13 @@ utility is work on production middlewhere, but this project for see how work git
 
 для уникнення повторного запуска скрипта (по крону, з консолі, ...)
 
-    $file_name = "/var/run/some_job_or_daemon.pid";
-    DenyMultiplyRun::setPidFile($file_name);
+    $pid_file = "/var/run/some_job_or_daemon.pid";
+    DenyMultiplyRun::setPidFile($pid_file);
+    
     // @something_do
-    DenyMultiplyRun::deletePidFile($file_name);
+    
+    // not necessary
+    DenyMultiplyRun::deletePidFile($pid_file);
 
 
 Deny multiply run php-code while previous process exist. 
