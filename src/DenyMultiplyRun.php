@@ -14,7 +14,6 @@ use DanchukAS\DenyMultiplyRun\Exception\PidFileEmpty;
 use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
 use DanchukAS\DenyMultiplyRun\Exception\ReadFileFail;
 
-
 /**
  * Class denyMultiplyRun
  * Забороняє паралельний запуск скрипта
@@ -281,8 +280,7 @@ class DenyMultiplyRun
      */
     private static function checkRunnedPid($pid)
     {
-        if (
-            // Посилає сигнал процесу щоб дізнатись чи він існує.
+        if (// Посилає сигнал процесу щоб дізнатись чи він існує.
             // Якщо true - точно існує.
             // якщо false - процес може і бути, але запущений під іншим користувачем або інші ситуації.
             true === posix_kill($pid, 0)
@@ -436,4 +434,3 @@ class DenyMultiplyRun
         return false;
     }
 }
-

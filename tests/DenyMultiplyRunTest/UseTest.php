@@ -47,6 +47,4 @@ class UseTest extends TestCase
             self::assertFileNotExists($file_name);
         }
     }
-
-
 }
