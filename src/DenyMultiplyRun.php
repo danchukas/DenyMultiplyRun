@@ -403,7 +403,6 @@ class DenyMultiplyRun
             // собачка потрібна щоб не засоряти логи.
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
             @unlink($pidFilePath);
-
         } catch (\Throwable $error) {
             self::$lastError = $error;
         } finally {
