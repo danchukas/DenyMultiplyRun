@@ -17,22 +17,23 @@ class ExistRightPidFileTest extends TestCase
 
     private static $existFileName;
 
-    function setUp()
+    public function setUp()
     {
         self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
     }
 
-    function tearDown()
+    public function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$existFileName);
     }
 
-    function testEmptyFile()
+    public function testEmptyFile()
     {
         self::waitError();
         DenyMultiplyRun::setPidFile(self::$existFileName);
-        $wait_error = "pid-file exist, but file empty. pid-file updated with pid this process: %i";
+        $wait_error = "[" . E_USER_NOTICE . "] pid-file exist, but file empty."
+            . " pid-file updated with pid this process: %i";
         self::catchError($wait_error);
     }
 
@@ -40,8 +41,8 @@ class ExistRightPidFileTest extends TestCase
     {
 
         /** @noinspection PhpUnusedParameterInspection */
-        set_error_handler(function(int $messageType, string $messageText) {
-            self::$lastError = $messageText;
+        set_error_handler(function (int $messageType, string $messageText) {
+            self::$lastError = "[$messageType] " . $messageText;
         });
 
         self::$lastError = null;
@@ -60,7 +61,7 @@ class ExistRightPidFileTest extends TestCase
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
      */
-    function testExistedPid()
+    public function testExistedPid()
     {
 
         $file_name = self::$existFileName;
@@ -69,7 +70,7 @@ class ExistRightPidFileTest extends TestCase
         DenyMultiplyRun::setPidFile($file_name);
     }
 
-    function testNoExistedPid()
+    public function testNoExistedPid()
     {
 
         $no_exist_pid = 1;
@@ -84,17 +85,18 @@ class ExistRightPidFileTest extends TestCase
 
         self::waitError();
         DenyMultiplyRun::setPidFile(self::$existFileName);
-        $wait_error = "pid-file exist, but process with contained ID(%i) in it is not exist. "
-            . "pid-file updated with pid this process: %i";
+        $wait_error = "[" . E_USER_NOTICE . "] pid-file exist"
+            . ", but process with contained ID(%i) in it is not exist."
+            . " pid-file updated with pid this process: %i";
         self::catchError($wait_error);
     }
 
-    function testLockedFile()
+    public function testLockedFile()
     {
         $file_resource = fopen(self::$existFileName, "r+");
         flock($file_resource, LOCK_EX);
 
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 

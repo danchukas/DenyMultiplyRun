@@ -16,36 +16,36 @@ class ExistWrongPidFileTest extends TestCase
 
     private static $existFileName;
 
-    function setUp()
+    public function setUp()
     {
         self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
     }
 
-    function tearDown()
+    public function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$existFileName);
     }
 
 
-    function testNoValidPid()
+    public function testNoValidPid()
     {
         file_put_contents(self::$existFileName, "12as");
 
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail");
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
 
-    function testBiggerPid()
+    public function testBiggerPid()
     {
         file_put_contents(self::$existFileName, PHP_INT_MAX);
 
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax");
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
-    function testNoAccessFile()
+    public function testNoAccessFile()
     {
         // existed file without write access for current user.
         // for Ubuntu is /etc/hosts.
@@ -59,7 +59,7 @@ class ExistWrongPidFileTest extends TestCase
             self::markTestSkipped("test runned under super/admin user. Change user.");
         }
 
-        self::expectException("DanchukAS\DenyMultiplyRun\Exception\OpenFileFail");
+        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\OpenFileFail");
         DenyMultiplyRun::setPidFile($file_name);
     }
 

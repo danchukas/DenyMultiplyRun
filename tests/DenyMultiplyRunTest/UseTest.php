@@ -22,19 +22,19 @@ class UseTest extends TestCase
 
     private static $randomFileName;
 
-    function setUp()
+    public function setUp()
     {
         self::$randomFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
     }
 
-    function tearDown()
+    public function tearDown()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink(self::$randomFileName);
     }
 
 
-    function testUsualUse()
+    public function testUsualUse()
     {
         $file_name = self::$randomFileName;
 

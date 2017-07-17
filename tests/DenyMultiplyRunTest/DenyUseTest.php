@@ -14,7 +14,7 @@ class DenyUseTest extends TestCase
     /**
      * @expectedException \Error
      */
-    function testConstructor()
+    public function testConstructor()
     {
         // Because not founded how disable inspection "Call to private from invalid context" for phpstorm.
         //new $class; new DenyMultiplyRun;
