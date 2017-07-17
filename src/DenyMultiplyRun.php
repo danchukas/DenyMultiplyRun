@@ -32,6 +32,11 @@ class DenyMultiplyRun
      */
     private static $lastError;
 
+    /**
+     * @var int
+     */
+    private static $prevPid;
+
 
     /**
      * DenyMultiplyRun constructor.
@@ -71,37 +76,17 @@ class DenyMultiplyRun
 
         try {
             if ($pid_file_existed) {
-                try {
-                    $prev_pid = self::getPidFromFile($file_resource);
-                    self::checkRunnedPid($prev_pid);
-                } catch (PidFileEmpty $exception) {
-                    // if file was once empty is not critical.
-                    // It was after crash daemon.
-                    // There are signal for admin/developer.
-                    trigger_error((string)$exception, E_USER_NOTICE);
-                }
-                self::truncatePidFile($file_resource);
+                self::pidNotActual($file_resource);
             }
 
             $self_pid = getmypid();
             self::setPidIntoFile($self_pid, $file_resource);
 
             if ($pid_file_existed) {
-                /** @noinspection PhpUndefinedVariableInspection */
-                $message_reason = is_null($prev_pid)
-                    ? ", but file empty."
-                    : ", but process with contained ID($prev_pid) in it is not exist.";
-                $message = "pid-file exist" . $message_reason
-                    . " pid-file updated with pid this process: " . $self_pid;
-
-                trigger_error($message, E_USER_NOTICE);
+                self::pidFileUpdated($self_pid);
             }
         } finally {
-            try {
-                self::unlockPidFile($file_resource);
-            } finally {
-                self::closePidFile($file_resource);
-            }
+            self::safeClosePidFile($file_resource);
         }
     }
 
@@ -224,6 +209,23 @@ class DenyMultiplyRun
     }
 
     /**
+     * @param $file_resource
+     */
+    private static function pidNotActual($file_resource)
+    {
+        try {
+            self::$prevPid = self::getPidFromFile($file_resource);
+            self::pidNoExisting(self::$prevPid);
+        } catch (PidFileEmpty $exception) {
+            // if file was once empty is not critical.
+            // It was after crash daemon.
+            // There are signal for admin/developer.
+            trigger_error((string)$exception, E_USER_NOTICE);
+        }
+        self::truncatePidFile($file_resource);
+    }
+
+    /**
      * @param resource $pidFileResource Дескриптор файла доступного для читання в якому знаходиться PID.
      * @return int PID з файла
      * @throws \Exception
@@ -312,7 +314,7 @@ class DenyMultiplyRun
      *
      * @throws ProcessExisted
      */
-    private static function checkRunnedPid($pid)
+    private static function pidNoExisting($pid)
     {
         if (// Посилає сигнал процесу щоб дізнатись чи він існує.
             // Якщо true - точно існує.
@@ -358,6 +360,32 @@ class DenyMultiplyRun
         $write_length = fwrite($pidFileResource, $self_pid, $pid_length);
         if ($write_length !== $pid_length) {
             throw new \Exception("не вдось записати pid в pid-файл. Записано $write_length байт замість $pid_length");
+        }
+    }
+
+    /**
+     * @param $self_pid
+     */
+    private static function pidFileUpdated($self_pid): void
+    {
+        $message_reason = is_null(self::$prevPid)
+            ? ", but file empty."
+            : ", but process with contained ID(" . self::$prevPid . ") in it is not exist.";
+        $message = "pid-file exist" . $message_reason
+            . " pid-file updated with pid this process: " . $self_pid;
+
+        trigger_error($message, E_USER_NOTICE);
+    }
+
+    /**
+     * @param $file_resource
+     */
+    private static function safeClosePidFile($file_resource): void
+    {
+        try {
+            self::unlockPidFile($file_resource);
+        } finally {
+            self::closePidFile($file_resource);
         }
     }
 
