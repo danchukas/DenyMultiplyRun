@@ -11,35 +11,15 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use PHPUnit\Framework\TestCase;
+use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /**
  * Class SurprisingTest
  * поглиблені тести на "всі найбільш можливі ситуації"
  * @package DanchukAS\DenyMultiplyRunTest
  */
-class SurprisingTest extends TestCase
+class SurprisingTest extends PidFileTestCase
 {
-
-    private static $noExistFileName;
-
-    private static $existFileName;
-
-
-    public function setUp()
-    {
-        self::$noExistFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
-        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
-    }
-
-    public function tearDown()
-    {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$noExistFileName);
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$existFileName);
-    }
-
 
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted

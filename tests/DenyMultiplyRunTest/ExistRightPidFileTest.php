@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use PHPUnit\Framework\TestCase;
+use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /** @noinspection PhpClassNamingConventionInspection */
 
@@ -18,23 +18,10 @@ use PHPUnit\Framework\TestCase;
  * Тести з вірним підфайлом.
  * @package DanchukAS\DenyMultiplyRunTest
  */
-class ExistRightPidFileTest extends TestCase
+class ExistRightPidFileTest extends PidFileTestCase
 {
 
     private static $lastError;
-
-    private static $existFileName;
-
-    public function setUp()
-    {
-        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
-    }
-
-    public function tearDown()
-    {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$existFileName);
-    }
 
     public function testEmptyFile()
     {
