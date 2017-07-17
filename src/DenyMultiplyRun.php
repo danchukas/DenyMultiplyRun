@@ -77,6 +77,10 @@ class DenyMultiplyRun
                     $prev_pid = self::getPidFromFile($file_resource);
                     self::checkRunnedPid($prev_pid);
                 } catch (PidFileEmpty $exception) {
+                    // if file was once empty is not critical.
+                    // It was after crash daemon.
+                    // There are signal for admin/developer.
+                    trigger_error($exception, E_USER_NOTICE);
                 }
                 self::truncatePidFile($file_resource);
             }
@@ -100,7 +104,6 @@ class DenyMultiplyRun
                 self::closePidFile($file_resource);
             }
         }
-
     }
 
     /**
@@ -141,7 +144,6 @@ class DenyMultiplyRun
 
         // файл не створений. сталась помилка
         if (!is_null(self::$lastError)) {
-
             // Файла і нема і не створився - повідомляєм про несправність проекта.
             if (!is_file($pidFilePath)) {
                 throw new self::$lastError;
@@ -353,6 +355,7 @@ class DenyMultiplyRun
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
             $closed = @fclose($pidFileResource);
         } catch (\Throwable $error) {
+            $closed = false;
             self::$lastError = $error;
         } finally {
             // Відновлюєм попередній обробник наче нічого і не робили.
@@ -360,8 +363,7 @@ class DenyMultiplyRun
         }
 
 
-        if (!is_null(self::$lastError)) {
-
+        if (false === $closed) {
             $file_close_error = self::$lastError;
 
             // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
@@ -433,7 +435,5 @@ class DenyMultiplyRun
         // Перехопити перехопили, кидаєм далі обробляти.
         return false;
     }
-
-
 }
 
