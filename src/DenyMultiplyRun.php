@@ -387,25 +387,34 @@ class DenyMultiplyRun
         }
 
         if (false === $closed) {
-            $file_close_error = self::$lastError;
-
-            // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
-            // помилку в записує в self::$lastError
-            self::startErrorHandle();
-
-            try {
-                // собачка потрібна щоб не засоряти логи.
-                /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                $resource_data = @stream_get_meta_data($pidFileResource);
-            } catch (\Throwable $error) {
-                $resource_data = ['uri' => ''];
-            } finally {
-                // Відновлюєм попередній обробник наче нічого і не робили.
-                restore_error_handler();
-            }
-
-            throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
+            self::closePidFileFailed($pidFileResource);
         }
+    }
+
+    /**
+     * @param $pidFileResource
+     * @throws CloseFileFail
+     */
+    private static function closePidFileFailed($pidFileResource): void
+    {
+        $file_close_error = self::$lastError;
+
+        // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
+        // помилку в записує в self::$lastError
+        self::startErrorHandle();
+
+        try {
+            // собачка потрібна щоб не засоряти логи.
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            $resource_data = @stream_get_meta_data($pidFileResource);
+        } catch (\Throwable $error) {
+            $resource_data = ['uri' => ''];
+        } finally {
+            // Відновлюєм попередній обробник наче нічого і не робили.
+            restore_error_handler();
+        }
+
+        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
     }
 
     /**
