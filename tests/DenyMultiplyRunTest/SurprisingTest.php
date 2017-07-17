@@ -50,10 +50,12 @@ class SurprisingTest extends TestCase
         $file_name = self::$noExistFileName;
         DenyMultiplyRun::setPidFile($file_name);
         DenyMultiplyRun::setPidFile($file_name);
-
     }
 
 
+    /**
+     * Delete if no exist pid file.
+     */
     public function testDeleteNoExistedPidFile()
     {
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
@@ -94,11 +96,10 @@ class SurprisingTest extends TestCase
     {
         $this->expectException("TypeError");
         DenyMultiplyRun::setPidFile($notString);
-
     }
 
     /**
-     * @dataProvider WrongParam
+     * @dataProvider wrongParam
      * @param string $no_valid_file_name
      */
     public function testWrongParam(string $no_valid_file_name)
@@ -113,25 +114,27 @@ class SurprisingTest extends TestCase
      */
     public function notString()
     {
-        $r = fopen(__FILE__, "r");
-        fclose($r);
+        $right_resource = fopen(__FILE__, "r");
+        fclose($right_resource);
+        $fail_resource = $right_resource;
 
         return [
             [null]
             , [false]
             , [0]
             , [[]]
-            , [function() {
+            , [function () {
             }]
             , [new \Exception]
-            , [$r]];
+            , [$fail_resource]
+        ];
     }
 
 
     /**
      * @return array
      */
-    public function WrongParam()
+    public function wrongParam()
     {
         return [[""], ["."], ["/"], ['//']];
     }
@@ -148,9 +151,5 @@ class SurprisingTest extends TestCase
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\CloseFileFail");
         $method->invoke(null, $badResource);
         $method->setAccessible(false);
-
     }
-
-
-
 }
