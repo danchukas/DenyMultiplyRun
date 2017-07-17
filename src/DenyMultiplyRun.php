@@ -75,16 +75,7 @@ class DenyMultiplyRun
         self::lockPidFile($file_resource);
 
         try {
-            if ($pid_file_existed) {
-                self::pidNotActual($file_resource);
-            }
-
-            $self_pid = getmypid();
-            self::setPidIntoFile($self_pid, $file_resource);
-
-            if ($pid_file_existed) {
-                self::pidFileUpdated($self_pid);
-            }
+            self::safeSetPidIntoFile($pid_file_existed, $file_resource);
         } finally {
             self::safeClosePidFile($file_resource);
         }
@@ -209,10 +200,30 @@ class DenyMultiplyRun
     }
 
     /**
+     * @param $pid_file_existed
+     * @param $file_resource
+     */
+    private static function safeSetPidIntoFile($pid_file_existed, $file_resource): void
+    {
+        if ($pid_file_existed) {
+            self::pidNotActual($file_resource);
+        }
+
+        $self_pid = getmypid();
+        self::setPidIntoFile($self_pid, $file_resource);
+
+        if ($pid_file_existed) {
+            self::pidFileUpdated($self_pid);
+        }
+    }
+
+    /**
      * @param $file_resource
      */
     private static function pidNotActual($file_resource)
     {
+        self::$prevPid = null;
+
         try {
             self::$prevPid = self::getPidFromFile($file_resource);
             self::pidNoExisting(self::$prevPid);
