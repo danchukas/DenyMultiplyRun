@@ -143,13 +143,7 @@ class DenyMultiplyRun
 
         // файл не створений. сталась помилка
         if (!is_null(self::$lastError)) {
-            // Файла і нема і не створився - повідомляєм про несправність проекта.
-            if (!is_file($pidFilePath)) {
-                throw new self::$lastError;
-            }
-
-            // Файл вже існує, тому не створився.
-            throw new FileExisted($pidFilePath);
+            self::createPidFileFailed($pidFilePath);
         }
 
         // файл створений успішно.
@@ -161,6 +155,21 @@ class DenyMultiplyRun
         set_error_handler([__CLASS__, 'errorHandle']);
 
         self::$lastError = null;
+    }
+
+    /**
+     * @param $pidFilePath
+     * @throws FileExisted
+     */
+    private static function createPidFileFailed($pidFilePath): void
+    {
+// Файла і нема і не створився - повідомляєм про несправність проекта.
+        if (!is_file($pidFilePath)) {
+            throw new self::$lastError;
+        }
+
+        // Файл вже існує, тому не створився.
+        throw new FileExisted($pidFilePath);
     }
 
     /**
