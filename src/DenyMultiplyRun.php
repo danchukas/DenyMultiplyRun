@@ -80,7 +80,7 @@ class DenyMultiplyRun
                     // if file was once empty is not critical.
                     // It was after crash daemon.
                     // There are signal for admin/developer.
-                    trigger_error($exception, E_USER_NOTICE);
+                    trigger_error((string)$exception, E_USER_NOTICE);
                 }
                 self::truncatePidFile($file_resource);
             }
