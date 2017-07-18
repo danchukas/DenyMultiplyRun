@@ -38,6 +38,7 @@ return array(
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
+    'DanchukAS\\Mock\\' => array($baseDir . '/tests/Mock'),
     'DanchukAS\\DenyMultiplyTest\\' => array($baseDir . '/tests/DenyMultiplyTest'),
     'DanchukAS\\DenyMultiplyRun\\' => array($baseDir . '/src'),
 );

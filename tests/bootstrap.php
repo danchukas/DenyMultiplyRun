@@ -11,3 +11,5 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/PidFileTestCase.php';
 
 error_reporting(E_ALL);
+
+//ini_set("memory_limit", "4M");

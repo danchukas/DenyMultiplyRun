@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: danchukas
@@ -7,6 +8,7 @@
 
 namespace DanchukAS\DenyMultiplyRun;
 
+use DanchukAS\Mock\TypeList\NotStringList;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -77,7 +79,7 @@ abstract class PidFileTestCase extends TestCase
     {
         static $not_string_list = null;
         if (is_null($not_string_list)) {
-            $not_string_list = self::getNotStringList();
+            $not_string_list = NotStringList::getList();
 
             foreach ($not_string_list as &$param) {
                 $param["throw"] = "TypeError";
@@ -87,27 +89,6 @@ abstract class PidFileTestCase extends TestCase
         return $not_string_list;
     }
 
-    /**
-     * @return array
-     */
-    private static function getNotStringList(): array
-    {
-        $right_resource = fopen(__FILE__, "r");
-        fclose($right_resource);
-        $fail_resource = $right_resource;
-
-        $not_string_list = [
-            "null" => [null]
-            , "boolean" => [false]
-            , "int" => [0]
-            , "array" => [[]]
-            , "function" => [function () {
-            }]
-            , "object" => [new \Exception]
-            , "resource" => [$fail_resource]
-        ];
-        return $not_string_list;
-    }
 
     /**
      * @return array
@@ -189,6 +170,10 @@ abstract class PidFileTestCase extends TestCase
                     self::fileWithExistedPid()
                     , "DanchukAS\DenyMultiplyRun\Exception\ProcessExisted"
                 ]
+                , "" => [
+                    self::noValidPidFile()
+                    , "DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail"
+                ]
             ];
         }
 
@@ -217,6 +202,19 @@ abstract class PidFileTestCase extends TestCase
         while (true) {
             $file_name = self::newTempFileName();
             file_put_contents($file_name, getmypid());
+
+            yield $file_name;
+        }
+    }
+
+    /**
+     *
+     */
+    private static function noValidPidFile()
+    {
+        while (true) {
+            $file_name = self::newTempFileName();
+            file_put_contents($file_name, "12as");
 
             yield $file_name;
         }

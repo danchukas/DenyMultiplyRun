@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "41b0d252786e67f79ffb39c335372d33",
+    "hash": "03f3cd0a04cda89a6386c857cdb94264",
     "content-hash": "0a2025a8233919653ec1ab8af7ac1e74",
     "packages": [],
     "packages-dev": [
@@ -2720,7 +2720,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -2776,7 +2776,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -2894,7 +2894,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3003,7 +3003,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -3111,7 +3111,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -3160,7 +3160,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -3273,7 +3273,7 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v2.8.24",
+            "version": "v2.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",

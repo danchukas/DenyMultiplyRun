@@ -19,7 +19,8 @@
 
   "autoload-dev": {
     "psr-4": {
-      "DanchukAS\\DenyMultiplyTest\\": "tests/DenyMultiplyTest"
+      "DanchukAS\\DenyMultiplyTest\\": "tests/DenyMultiplyTest",
+      "DanchukAS\\Mock\\": "tests/Mock"
     }
   },
 

@@ -21,15 +21,6 @@ use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 class ExistWrongPidFileTest extends PidFileTestCase
 {
 
-    public function testNoValidPid()
-    {
-        file_put_contents(self::$existFileName, "12as");
-
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail");
-        DenyMultiplyRun::setPidFile(self::$existFileName);
-    }
-
-
     public function testBiggerPid()
     {
         file_put_contents(self::$existFileName, PHP_INT_MAX);

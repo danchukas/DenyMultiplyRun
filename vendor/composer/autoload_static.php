@@ -72,6 +72,7 @@ class ComposerStaticInit5dee8653b146bc3e885c99fdd6f18e97
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'DeepCopy\\' => 9,
+            'DanchukAS\\Mock\\' => 15,
             'DanchukAS\\DenyMultiplyTest\\' => 27,
             'DanchukAS\\DenyMultiplyRun\\' => 26,
         ),
@@ -205,6 +206,10 @@ class ComposerStaticInit5dee8653b146bc3e885c99fdd6f18e97
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'DanchukAS\\Mock\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests/Mock',
         ),
         'DanchukAS\\DenyMultiplyTest\\' => 
         array (
