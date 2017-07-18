@@ -77,26 +77,35 @@ abstract class PidFileTestCase extends TestCase
     {
         static $not_string_list = null;
         if (is_null($not_string_list)) {
-            $right_resource = fopen(__FILE__, "r");
-            fclose($right_resource);
-            $fail_resource = $right_resource;
-
-            $not_string_list = [
-                "null" => [null]
-                , "boolean" => [false]
-                , "int" => [0]
-                , "array" => [[]]
-                , "function" => [function () {
-                }]
-                , "object" => [new \Exception]
-                , "resource" => [$fail_resource]
-            ];
+            $not_string_list = self::getNotStringList();
 
             foreach ($not_string_list as &$param) {
                 $param["throw"] = "TypeError";
             }
         }
 
+        return $not_string_list;
+    }
+
+    /**
+     * @return array
+     */
+    private static function getNotStringList(): array
+    {
+        $right_resource = fopen(__FILE__, "r");
+        fclose($right_resource);
+        $fail_resource = $right_resource;
+
+        $not_string_list = [
+            "null" => [null]
+            , "boolean" => [false]
+            , "int" => [0]
+            , "array" => [[]]
+            , "function" => [function () {
+            }]
+            , "object" => [new \Exception]
+            , "resource" => [$fail_resource]
+        ];
         return $not_string_list;
     }
 
