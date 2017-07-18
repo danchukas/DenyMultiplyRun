@@ -40,9 +40,7 @@ class NotStringList
         /** @noinspection PhpVariableNamingConventionInspection */
         foreach ($type_gen_list as $type => $generator) {
             foreach ($generator as $value) {
-                foreach ($value as $real_value) {
-                    $type_data_list[] = $real_value;
-                }
+                $type_data_list[] = $value;
             }
         }
 

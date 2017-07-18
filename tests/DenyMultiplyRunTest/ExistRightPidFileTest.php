@@ -77,7 +77,7 @@ class ExistRightPidFileTest extends PidFileTestCase
     /**
      * @dataProvider setPidFileParam
      */
-    public function testLockedFile(\Generator $filename, string $exception)
+    public function testSetPidFile(\Generator $filename, string $exception)
     {
         $this->expectException($exception);
         DenyMultiplyRun::setPidFile($filename->current());

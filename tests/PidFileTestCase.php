@@ -69,6 +69,7 @@ abstract class PidFileTestCase extends TestCase
             $not_file_name = $this->notStringProvider() + $this->noValidFileNameProvider();
         }
 
+
         return $not_file_name;
     }
 
@@ -85,6 +86,7 @@ abstract class PidFileTestCase extends TestCase
                 $param["throw"] = "TypeError";
             }
         }
+
 
         return $not_string_list;
     }

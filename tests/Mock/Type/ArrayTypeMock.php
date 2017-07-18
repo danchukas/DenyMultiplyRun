@@ -37,10 +37,8 @@ class ArrayTypeMock extends TypeMock
         ];
 
         foreach (TypeList::get($type_enum) as $type_gen_list) {
-            foreach ($type_gen_list as $type_mock_list) {
-                foreach ($type_mock_list as $type_mock) {
-                    yield [$type_mock];
-                }
+            foreach ($type_gen_list as $type_mock) {
+                yield [$type_mock];
             }
         }
     }

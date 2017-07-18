@@ -19,7 +19,7 @@ abstract class TypeMock
 
     /**
      * @param int $count Кількість елементів для генератора
-     * @return \Generator
+     * @return \array
      */
     public static function getGenerator($count = null)
     {
@@ -27,9 +27,17 @@ abstract class TypeMock
             $count = static::getOptimalCount();
         }
 
-        while ($count--) {
-            yield static::getSample();
+        $mock_list = [];
+
+        $generator = static::getSample();
+        foreach ($generator as $value) {
+            $mock_list[] = $value;
+            if (--$count <= 0) {
+                break;
+            }
         }
+
+        return $mock_list;
     }
 
     /**

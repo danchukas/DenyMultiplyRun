@@ -17,6 +17,17 @@ use DanchukAS\Mock\TypeMock;
  */
 class IntegerTypeMock extends TypeMock
 {
+    public const /** @noinspection PhpConstantNamingConventionInspection */
+        ZERO = "zero, false, not positive";
+    public const MINUS_ONE = "false, negative";
+    public const /** @noinspection PhpConstantNamingConventionInspection */
+        ONE = "true, positive";
+    public const /** @noinspection PhpConstantNamingConventionInspection */
+        MAX = "max";
+    public const /** @noinspection PhpConstantNamingConventionInspection */
+        MIN = "min";
+    public const USUAL = "usual";
+
     protected static $recommendCount = 6;
 
     /**
@@ -25,16 +36,19 @@ class IntegerTypeMock extends TypeMock
     public static function getSample()
     {
         $sample_list = [
-            "zero, false, not positive" => 0
-            , "false, negative" => -1
-            , "true, positive" => 1
-            , "max" => PHP_INT_MAX
-            , "min" => PHP_INT_MIN
+            self::ZERO => 0
+            , self::MINUS_ONE => -1
+            , self::ONE => 1
+            , self::MAX => PHP_INT_MAX
+            , self::MIN => PHP_INT_MIN
         ];
         foreach ($sample_list as $expression => $value) {
             yield [$expression => $value];
         }
 
-        yield ["usual" => random_int(PHP_INT_MIN, PHP_INT_MAX)];
+        yield [self::USUAL => random_int(PHP_INT_MIN, PHP_INT_MAX)];
+//        for ($sequence_number = 2; ; $sequence_number++) {
+//            yield [self::USUAL . "_$sequence_number" => random_int(PHP_INT_MIN, PHP_INT_MAX)];
+//        }
     }
 }

@@ -12,4 +12,4 @@ require __DIR__ . '/PidFileTestCase.php';
 
 error_reporting(E_ALL);
 
-//ini_set("memory_limit", "4M");
+ini_set("memory_limit", "8M");
