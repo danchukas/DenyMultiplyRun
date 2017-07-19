@@ -137,7 +137,7 @@ class DenyMultiplyRun
      * @param $pidFilePath
      * @throws FileExisted
      */
-    private static function createPidFileFailed($pidFilePath): void
+    private static function createPidFileFailed($pidFilePath)
     {
 // Файла і нема і не створився - повідомляєм про несправність проекта.
         if (!is_file($pidFilePath)) {
@@ -203,7 +203,7 @@ class DenyMultiplyRun
      * @param $pid_file_existed
      * @param $file_resource
      */
-    private static function safeSetPidIntoFile($pid_file_existed, $file_resource): void
+    private static function safeSetPidIntoFile($pid_file_existed, $file_resource)
     {
         if ($pid_file_existed) {
             self::pidNotActual($file_resource);
@@ -288,7 +288,7 @@ class DenyMultiplyRun
      * @param string $pid
      * @throws PidFileEmpty
      */
-    private static function pidIsNoEmpty(string $pid): void
+    private static function pidIsNoEmpty(string $pid)
     {
         if ('' === $pid) {
             throw new PidFileEmpty();
@@ -301,7 +301,7 @@ class DenyMultiplyRun
      * @throws PidBiggerMax
      * @throws PidLessMin
      */
-    private static function pidIsPossible($pid_int): void
+    private static function pidIsPossible($pid_int)
     {
         if ($pid_int < 0) {
             $message = "PID in file has unavailable value: $pid_int. PID must be no negative.";
@@ -377,7 +377,7 @@ class DenyMultiplyRun
     /**
      * @param $self_pid
      */
-    private static function pidFileUpdated($self_pid): void
+    private static function pidFileUpdated($self_pid)
     {
         $message_reason = is_null(self::$prevPid)
             ? ", but file empty."
@@ -391,7 +391,7 @@ class DenyMultiplyRun
     /**
      * @param $file_resource
      */
-    private static function safeClosePidFile($file_resource): void
+    private static function safeClosePidFile($file_resource)
     {
         try {
             self::unlockPidFile($file_resource);
@@ -443,7 +443,7 @@ class DenyMultiplyRun
      * @param $pidFileResource
      * @throws CloseFileFail
      */
-    private static function closePidFileFailed($pidFileResource): void
+    private static function closePidFileFailed($pidFileResource)
     {
         $file_close_error = self::$lastError;
 
