@@ -1,6 +1,7 @@
 {
   "name": "danchukas/deny-multiply-run",
   "description": "deny multiply run php-code",
+  "license": "proprietary",
   "keywords": [
     "deny",
     "multiply"
