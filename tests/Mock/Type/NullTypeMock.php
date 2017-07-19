@@ -17,10 +17,10 @@ use DanchukAS\Mock\TypeMock;
 class NullTypeMock extends TypeMock
 {
     /**
-     * @yield null[]
+     * @yield \Generator
      */
     public static function getSample()
     {
-        yield ["the only one" => null];
+        yield ['the only one' => null];
     }
 }

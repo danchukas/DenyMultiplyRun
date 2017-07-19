@@ -24,7 +24,7 @@ class BooleanTypeMock extends TypeMock
      */
     public static function getSample()
     {
-        yield ["bool(false)" => false];
-        yield ["bool(true)" => true];
+        yield ['bool(false)' => false];
+        yield ['bool(true)' => true];
     }
 }

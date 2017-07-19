@@ -65,8 +65,8 @@ abstract class PidFileTestCase extends TestCase
     {
         static $not_file_name = null;
 
-        if (is_null($not_file_name)) {
-            $not_file_name = $this->notStringProvider() + $this->noValidFileNameProvider();
+        if (null === $not_file_name) {
+            $not_file_name = \array_merge($this->notStringProvider(), $this->noValidFileNameProvider());
         }
 
 
@@ -79,11 +79,11 @@ abstract class PidFileTestCase extends TestCase
     public function notStringProvider()
     {
         static $not_string_list = null;
-        if (is_null($not_string_list)) {
+        if (null === $not_string_list) {
             $not_string_list = NotStringList::getList();
 
             foreach ($not_string_list as &$param) {
-                $param["throw"] = "TypeError";
+                $param['throw'] = 'TypeError';
             }
         }
 
@@ -99,16 +99,16 @@ abstract class PidFileTestCase extends TestCase
     {
         static $file_name_list = null;
 
-        if (is_null($file_name_list)) {
+        if (null === $file_name_list) {
             $file_name_list = [
-                [""]
-                , ["."]
-                , ["/"]
+                ['']
+                , ['.']
+                , ['/']
                 , ['//']
             ];
 
             foreach ($file_name_list as &$param) {
-                $param["throw"] = "Exception";
+                $param['throw'] = 'Exception';
             }
         }
 
@@ -122,17 +122,17 @@ abstract class PidFileTestCase extends TestCase
     {
         static $param = null;
 
-        if (is_null($param)) {
+        if (null === $param) {
             // existed file without write access for current user.
             // for Ubuntu is /etc/hosts.
-            $file_name = "/etc/hosts";
+            $file_name = '/etc/hosts';
 
             $message = $this->adminOrNotUnix($file_name);
 
             $param = [
-                "noExistFileName" => [self::getFileName()]
-                , "wrongParam" => [null]
-                , "accessDenied" => [$file_name, $message]
+                'noExistFileName' => [self::getFileName()]
+                , 'wrongParam' => [null]
+                , 'accessDenied' => [$file_name, $message]
             ];
         }
 
@@ -148,9 +148,9 @@ abstract class PidFileTestCase extends TestCase
         $message = null;
 
         if (!file_exists($file_name)) {
-            $message = "test only for *nix.";
+            $message = 'test only for *nix.';
         } elseif (is_writable($file_name)) {
-            $message = "test runned under super/admin user. Change user.";
+            $message = 'test runned under super/admin user. Change user.';
         }
         return $message;
     }
@@ -162,19 +162,19 @@ abstract class PidFileTestCase extends TestCase
     {
         static $param = null;
 
-        if (is_null($param)) {
+        if (null === $param) {
             $param = [
-                "lockedPidFile" => [
+                'lockedPidFile' => [
                     self::lockedPidFile()
-                    , "DanchukAS\DenyMultiplyRun\Exception\LockFileFail"
+                    , Exception\LockFileFail::class
                 ]
-                , "fileHasExistPid" => [
+                , 'fileHasExistPid' => [
                     self::fileWithExistedPid()
-                    , "DanchukAS\DenyMultiplyRun\Exception\ProcessExisted"
+                    , Exception\ProcessExisted::class
                 ]
-                , "" => [
+                , '' => [
                     self::noValidPidFile()
-                    , "DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail"
+                    , Exception\ConvertPidFail::class
                 ]
             ];
         }
@@ -189,7 +189,7 @@ abstract class PidFileTestCase extends TestCase
     {
         while (true) {
             $file_name = self::newTempFileName();
-            $file_resource = fopen($file_name, "r+");
+            $file_resource = fopen($file_name, 'rb+');
             flock($file_resource, LOCK_EX);
 
             yield $file_name;
@@ -216,7 +216,7 @@ abstract class PidFileTestCase extends TestCase
     {
         while (true) {
             $file_name = self::newTempFileName();
-            file_put_contents($file_name, "12as");
+            file_put_contents($file_name, '12as');
 
             yield $file_name;
         }

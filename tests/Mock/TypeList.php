@@ -24,9 +24,7 @@ class TypeList
             $need_type_list = self::getDefaultList();
         }
 
-        $type_list = self::getTypeMockList($need_type_list);
-
-        return $type_list;
+        return self::getTypeMockList($need_type_list);
     }
 
     /**

@@ -9,6 +9,8 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
+use DanchukAS\DenyMultiplyRun\Exception\OpenFileFail;
+use DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax;
 use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /** @noinspection PhpClassNamingConventionInspection */
@@ -25,7 +27,7 @@ class ExistWrongPidFileTest extends PidFileTestCase
     {
         file_put_contents(self::$existFileName, PHP_INT_MAX);
 
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax");
+        $this->expectException(PidBiggerMax::class);
         DenyMultiplyRun::setPidFile(self::$existFileName);
     }
 
@@ -33,17 +35,17 @@ class ExistWrongPidFileTest extends PidFileTestCase
     {
         // existed file without write access for current user.
         // for Ubuntu is /etc/hosts.
-        $file_name = "/etc/hosts";
+        $file_name = '/etc/hosts';
 
         if (!file_exists($file_name)) {
-            self::markTestSkipped("test only for *nix.");
+            self::markTestSkipped('test only for *nix.');
         }
 
         if (is_writable($file_name)) {
-            self::markTestSkipped("test runned under super/admin user. Change user.");
+            self::markTestSkipped('test runned under super/admin user. Change user.');
         }
 
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\OpenFileFail");
+        $this->expectException(OpenFileFail::class);
         DenyMultiplyRun::setPidFile($file_name);
     }
 }

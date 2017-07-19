@@ -23,7 +23,7 @@ abstract class TypeMock
      */
     public static function getGenerator($count = null)
     {
-        if (is_null($count)) {
+        if (null === $count) {
             $count = static::getOptimalCount();
         }
 
@@ -49,7 +49,7 @@ abstract class TypeMock
     }
 
     /**
-     * @return mixed sample of type
+     * @return \Generator sample of type
      */
     abstract public static function getSample();
 }

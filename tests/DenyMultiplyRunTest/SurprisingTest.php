@@ -11,6 +11,8 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
+use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
+use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /**
@@ -40,11 +42,11 @@ class SurprisingTest extends PidFileTestCase
      */
     public function testDeletePidFile($param, string $message = null)
     {
-        if (!is_null($message)) {
+        if (null !== $message) {
             self::markTestSkipped($message);
         }
 
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
+        $this->expectException(DeleteFileFail::class);
         DenyMultiplyRun::deletePidFile($param);
     }
 
@@ -67,10 +69,10 @@ class SurprisingTest extends PidFileTestCase
      */
     public function testLockedFileBeforeClose($badResource)
     {
-        $method = new \ReflectionMethod("DanchukAS\DenyMultiplyRun\DenyMultiplyRun", "closePidFile");
+        $method = new \ReflectionMethod(DenyMultiplyRun::class, 'closePidFile');
 
         $method->setAccessible(true);
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\CloseFileFail");
+        $this->expectException(CloseFileFail::class);
         $method->invoke(null, $badResource);
         $method->setAccessible(false);
     }

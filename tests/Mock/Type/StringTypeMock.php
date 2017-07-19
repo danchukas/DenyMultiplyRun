@@ -26,18 +26,18 @@ class StringTypeMock extends TypeMock
     {
 
         $string_list = [
-            "empty" => ""
-            , "true, cipher" => "1"
-            , "false, cipher, empty" => "0"
-            , "false, empty" => "false"
-            , "true, 1" => "true"
-            , "single ascii" => "f"
-            , "cyrillic, multiByte(2 byte)" => "ї"
-            , "special" => "0x00"
-            , "empty, space, short" => str_repeat(" ", 16)
-            , "normal usual" => str_repeat("q", 32)
-            , "spec symbols, big" => str_repeat("[]", 64)
-            , "spec symbols, huge" => str_repeat("_$~-@\"'\\.!#%^&*()+=/?><,", 10 * 1024)
+            'empty' => ''
+            , 'true, cipher' => '1'
+            , 'false, cipher, empty' => '0'
+            , 'false, empty' => 'false'
+            , 'true, 1' => 'true'
+            , 'single ascii' => 'f'
+            , 'cyrillic, multiByte(2 byte)' => 'ї'
+            , 'special' => '0x00'
+            , 'empty, space, short' => str_repeat(' ', 16)
+            , 'normal usual' => str_repeat('q', 32)
+            , 'spec symbols, big' => str_repeat('[]', 64)
+            , 'spec symbols, huge' => str_repeat("_$~-@\"'\\.!#%^&*()+=/?><,", 10 * 1024)
         ];
 
         foreach ($string_list as $pattern => $string) {

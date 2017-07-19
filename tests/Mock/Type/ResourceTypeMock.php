@@ -17,8 +17,6 @@ use DanchukAS\Mock\TypeMock;
  */
 class ResourceTypeMock extends TypeMock
 {
-    static $lastResource;
-
     /**
      * @return \Generator
      */
@@ -26,7 +24,7 @@ class ResourceTypeMock extends TypeMock
     {
 
         $resource = sem_get(1);
-        yield ["native memory" => $resource];
+        yield ['native memory' => $resource];
 
 
 // @todo: add native res
@@ -38,9 +36,9 @@ class ResourceTypeMock extends TypeMock
 //        gzopen();
 
 
-        if (function_exists("imagecreate")) {
+        if (function_exists('imagecreate')) {
             $resource = \imagecreate(1, 1);
-            yield ["gd imagecreate" => $resource];
+            yield ['gd imagecreate' => $resource];
             \imagedestroy($resource);
         }
     }

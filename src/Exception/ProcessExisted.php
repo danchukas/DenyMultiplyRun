@@ -28,7 +28,7 @@ class ProcessExisted extends \Exception
      */
     public function __construct($message, $code = 4, \Throwable $previous = null)
     {
-        $message = "Процес вже запущений. pid: " . $message;
+        $message = 'Процес вже запущений. pid: ' . $message;
         parent::__construct($message, $code, $previous);
     }
 }
