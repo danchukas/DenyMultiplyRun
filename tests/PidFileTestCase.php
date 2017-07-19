@@ -83,9 +83,6 @@ abstract class PidFileTestCase extends TestCase
             $not_string_list = NotStringList::getList();
 
             foreach ($not_string_list as &$param) {
-                if (!is_array($param)) {
-                    var_dump($param);
-                }
                 $param["throw"] = "TypeError";
             }
         }

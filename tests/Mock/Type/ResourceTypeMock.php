@@ -40,7 +40,7 @@ class ResourceTypeMock extends TypeMock
 
         if (function_exists("imagecreate")) {
             $resource = \imagecreate(1, 1);
-            yield $resource;
+            yield ["gd imagecreate" => $resource];
             \imagedestroy($resource);
         }
     }
