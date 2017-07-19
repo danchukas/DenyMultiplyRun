@@ -1,5 +1,0 @@
-<application>
-  <component name="NotificationConfiguration">
-    <notification groupId="PHPUnit" displayType="TOOL_WINDOW" />
-  </component>
-</application>

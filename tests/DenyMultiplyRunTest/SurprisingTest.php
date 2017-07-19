@@ -11,35 +11,15 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use PHPUnit\Framework\TestCase;
+use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /**
  * Class SurprisingTest
  * поглиблені тести на "всі найбільш можливі ситуації"
  * @package DanchukAS\DenyMultiplyRunTest
  */
-class SurprisingTest extends TestCase
+class SurprisingTest extends PidFileTestCase
 {
-
-    private static $noExistFileName;
-
-    private static $existFileName;
-
-
-    public function setUp()
-    {
-        self::$noExistFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
-        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
-    }
-
-    public function tearDown()
-    {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$noExistFileName);
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$existFileName);
-    }
-
 
     /**
      * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
@@ -49,100 +29,40 @@ class SurprisingTest extends TestCase
         $file_name = self::$noExistFileName;
         DenyMultiplyRun::setPidFile($file_name);
         DenyMultiplyRun::setPidFile($file_name);
-    }/** @noinspection PhpMethodNamingConventionInspection */
+    }
 
-
+    /** @noinspection PhpMethodNamingConventionInspection */
     /**
      * Delete if no exist pid file.
+     * @dataProvider deletePidFileParam
+     * @param $param
+     * @param string|null $message
      */
-    public function testDeleteNoExistedPidFile()
+    public function testDeletePidFile($param, string $message = null)
     {
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
-        DenyMultiplyRun::deletePidFile(self::$noExistFileName);
-    }
-
-
-    /** @noinspection PhpMethodNamingConventionInspection */
-    public function testDeletePidFileWrongParam()
-    {
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
-        DenyMultiplyRun::deletePidFile(null);
-    }
-
-
-    /** @noinspection PhpMethodNamingConventionInspection */
-    public function testDeleteNoAccessFile()
-    {
-        // existed file without write access for current user.
-        // for Ubuntu is /etc/hosts.
-        $file_name = "/etc/hosts";
-
-        if (!file_exists($file_name)) {
-            self::markTestSkipped("test only for *nix.");
-        }
-
-        if (is_writable($file_name)) {
-            self::markTestSkipped("test runned under super/admin user. Change user.");
+        if (!is_null($message)) {
+            self::markTestSkipped($message);
         }
 
         $this->expectException("DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail");
-        DenyMultiplyRun::deletePidFile($file_name);
-    }/** @noinspection PhpMethodNamingConventionInspection */
-
-    /**
-     * @dataProvider notString
-     * @param mixed $notString
-     */
-    public function testWrongTypeParam($notString)
-    {
-        $this->expectException("TypeError");
-        DenyMultiplyRun::setPidFile($notString);
+        DenyMultiplyRun::deletePidFile($param);
     }
 
     /**
-     * @dataProvider wrongParam
-     * @param string $no_valid_file_name
+     * @dataProvider notFileNameProvider
+     * @param mixed $no_valid_file_name
+     * @param string $throwable_type
      */
-    public function testWrongParam(string $no_valid_file_name)
+    public function testWrongParam($no_valid_file_name, string $throwable_type)
     {
-        $this->expectException("Exception");
+        $this->expectException($throwable_type);
         DenyMultiplyRun::setPidFile($no_valid_file_name);
     }
 
 
+    /** @noinspection PhpMethodNamingConventionInspection */
     /**
-     * @return array
-     */
-    public function notString()
-    {
-        $right_resource = fopen(__FILE__, "r");
-        fclose($right_resource);
-        $fail_resource = $right_resource;
-
-        return [
-            [null]
-            , [false]
-            , [0]
-            , [[]]
-            , [function () {
-            }]
-            , [new \Exception]
-            , [$fail_resource]
-        ];
-    }
-
-
-    /**
-     * @return array
-     */
-    public function wrongParam()
-    {
-        return [[""], ["."], ["/"], ['//']];
-    }/** @noinspection PhpMethodNamingConventionInspection */
-
-
-    /**
-     * @dataProvider notString
+     * @dataProvider notStringProvider
      * @param mixed $badResource from dataProvider
      */
     public function testLockedFileBeforeClose($badResource)

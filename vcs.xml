@@ -6,14 +6,6 @@
           <option name="url" value="https://github.com/danchukas/DenyMultiplyRun.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
-        <UrlAndUserName>
-          <option name="url" value="https://github.com/php/php-src.git" />
-          <option name="userName" value="" />
-        </UrlAndUserName>
-        <UrlAndUserName>
-          <option name="url" value="https://github.com/danchukas/HiddenError.git" />
-          <option name="userName" value="" />
-        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/Documents/repo/github" />

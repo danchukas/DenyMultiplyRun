@@ -9,7 +9,7 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use PHPUnit\Framework\TestCase;
+use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /** @noinspection PhpClassNamingConventionInspection */
 
@@ -18,31 +18,8 @@ use PHPUnit\Framework\TestCase;
  * Тести на невірний під файл
  * @package DanchukAS\DenyMultiplyRunTest
  */
-class ExistWrongPidFileTest extends TestCase
+class ExistWrongPidFileTest extends PidFileTestCase
 {
-
-    private static $existFileName;
-
-    public function setUp()
-    {
-        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
-    }
-
-    public function tearDown()
-    {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$existFileName);
-    }
-
-
-    public function testNoValidPid()
-    {
-        file_put_contents(self::$existFileName, "12as");
-
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail");
-        DenyMultiplyRun::setPidFile(self::$existFileName);
-    }
-
 
     public function testBiggerPid()
     {
