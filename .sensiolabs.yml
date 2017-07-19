@@ -68,13 +68,6 @@ working_directory: src
 global_exclude_dirs:
     - vendor
 
-# Configure patterns used by SensioLabsInsight to exclude specific
-# files and directories.
-exclude_patterns:
-    - *.xml
-    - .*
-    - *.yml
-
 rules:
     composer.apc_class_loader_should_be_enabled:
         enabled: true
