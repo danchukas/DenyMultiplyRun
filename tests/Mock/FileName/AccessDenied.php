@@ -12,13 +12,13 @@ namespace DanchukAS\Mock\Type;
  * Class NullTypeMock
  * @package DanchukAS\Mock\Type
  */
-class AceessDenied
+class AccessDenied
 {
     /**
-     * @return null
+     * @yield null[]
      */
     public static function getSample()
     {
-        yield ["the only one" => null];
+
     }
 }

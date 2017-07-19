@@ -17,7 +17,7 @@ use DanchukAS\Mock\TypeMock;
 class NullTypeMock extends TypeMock
 {
     /**
-     * @return null
+     * @yield null[]
      */
     public static function getSample()
     {

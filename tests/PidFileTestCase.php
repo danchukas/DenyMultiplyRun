@@ -127,7 +127,7 @@ abstract class PidFileTestCase extends TestCase
             // for Ubuntu is /etc/hosts.
             $file_name = "/etc/hosts";
 
-            $message = $this->sudoOrNotUnix($file_name);
+            $message = $this->adminOrNotUnix($file_name);
 
             $param = [
                 "noExistFileName" => [self::getFileName()]
@@ -143,7 +143,7 @@ abstract class PidFileTestCase extends TestCase
      * @param $file_name
      * @return null|string
      */
-    private function sudoOrNotUnix($file_name)
+    private function adminOrNotUnix($file_name)
     {
         $message = null;
 

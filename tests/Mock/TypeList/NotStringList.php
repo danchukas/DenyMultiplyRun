@@ -33,7 +33,7 @@ class NotStringList
             , TypeEnum::RESOURCE
             , TypeEnum::UNKNOWN
         ];
-        $type_gen_list = TypeList::get($type_enum);
+        $type_gen_list = TypeList::getMockList($type_enum);
 
         $type_data_list = [];
         $real_value = null;

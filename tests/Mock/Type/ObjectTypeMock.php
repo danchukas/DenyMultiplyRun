@@ -25,10 +25,10 @@ class ObjectTypeMock extends TypeMock
     public static function getSample()
     {
         $sample_list = [
-            "anonimous class" => new class
+            "anonymous class" => new class
             {
             }
-            , "anonimous function" => function () {
+            , "anonymous function" => function () {
             }
             , "minimal items" => new \stdClass
             , "usual" => new \Exception

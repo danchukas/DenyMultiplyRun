@@ -76,6 +76,8 @@ class ExistRightPidFileTest extends PidFileTestCase
 
     /**
      * @dataProvider setPidFileParam
+     * @param \Generator $filename
+     * @param string $exception
      */
     public function testSetPidFile(\Generator $filename, string $exception)
     {

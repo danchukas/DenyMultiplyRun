@@ -18,7 +18,7 @@ class TypeList
      * @param array $need_type_list
      * @return array
      */
-    public static function get(array $need_type_list = [])
+    public static function getMockList(array $need_type_list = [])
     {
         $type_list = [];
 

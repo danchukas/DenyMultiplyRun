@@ -36,7 +36,7 @@ class ArrayTypeMock extends TypeMock
             , TypeEnum::UNKNOWN
         ];
 
-        foreach (TypeList::get($type_enum) as $type_gen_list) {
+        foreach (TypeList::getMockList($type_enum) as $type_gen_list) {
             foreach ($type_gen_list as $type_mock) {
                 yield [$type_mock];
             }
@@ -60,9 +60,10 @@ class ArrayTypeMock extends TypeMock
                 , TypeEnum::RESOURCE
                 , TypeEnum::UNKNOWN
             ];
-            $count = count(TypeList::get($type_enum));
+            $count = count(TypeList::getMockList($type_enum));
+            self::$optimalCount = $count;
         }
 
-        return $count;
+        return parent::getOptimalCount();
     }
 }

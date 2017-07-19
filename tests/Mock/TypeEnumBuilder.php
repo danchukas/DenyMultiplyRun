@@ -9,6 +9,10 @@ declare(strict_types=1);
 namespace DanchukAS\Mock;
 
 
+/**
+ * Class TypeEnumBuilder
+ * @package DanchukAS\Mock
+ */
 class TypeEnumBuilder
 {
     // available types
@@ -24,17 +28,17 @@ class TypeEnumBuilder
 
     public static function rebuild()
     {
-        $typeList = self::getTypeList();
+        $type_list = self::getTypeList();
 
         $property_list = [];
 
-        foreach ($typeList as $type) {
-            $property_name = strtoupper($type);
-            if (5 > strlen($type)) {
+        foreach ($type_list as $type_name) {
+            $property_name = strtoupper($type_name);
+            if (5 > strlen($type_name)) {
                 $no_inspect_name = "/** @noinspection PhpConstantNamingConventionInspection */\n\t\t";
                 $property_name = $no_inspect_name . $property_name;
             }
-            $property_list[] = "const $property_name = \"$type\";";
+            $property_list[] = "const $property_name = \"$type_name\";";
 
         }
 
@@ -42,9 +46,9 @@ class TypeEnumBuilder
 
         $template = file_get_contents(__DIR__ . '/TypeEnum.tpl');
 
-        $code = str_replace("{PROPERTY}", $property_code, $template);
+        $file_content = str_replace("{PROPERTY}", $property_code, $template);
 
-        file_put_contents(__DIR__ . "/TypeEnum.php", $code);
+        file_put_contents(__DIR__ . "/TypeEnum.php", $file_content);
 
     }
 
@@ -53,19 +57,19 @@ class TypeEnumBuilder
      */
     private static function getTypeList()
     {
-        $typeList = [];
+        $type_list = [];
 
         $type_dir = __DIR__ . "/Type";
         $directory = scandir($type_dir);
 
-        foreach ($directory as $file) {
-            if (is_file($type_dir . '/' . $file)) {
-                $type = basename($file, "TypeMock.php");
-                $typeList[] = strtolower($type);
+        foreach ($directory as $file_mock) {
+            if (is_file($type_dir . '/' . $file_mock)) {
+                $type_mock = basename($file_mock, "TypeMock.php");
+                $type_list[] = strtolower($type_mock);
             }
         }
 
-        return $typeList;
+        return $type_list;
     }
 
 }

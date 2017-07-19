@@ -35,8 +35,10 @@ class SurprisingTest extends PidFileTestCase
     /**
      * Delete if no exist pid file.
      * @dataProvider deletePidFileParam
+     * @param $param
+     * @param string|null $message
      */
-    public function testDeletePidFile($param, $message = null)
+    public function testDeletePidFile($param, string $message = null)
     {
         if (!is_null($message)) {
             self::markTestSkipped($message);

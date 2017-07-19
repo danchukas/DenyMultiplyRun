@@ -26,6 +26,6 @@ class DoubleTypeMock extends TypeMock
     {
         yield ["double(big)" => PHP_INT_MAX / 0.3];
         yield ["double(small)" => PHP_INT_MIN / 0.9];
-        yield ["double(near zerro)" => -1.0 / 3.0];
+        yield ["double(near zero)" => -1.0 / 3.0];
     }
 }

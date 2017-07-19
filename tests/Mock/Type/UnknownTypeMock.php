@@ -28,6 +28,8 @@ class UnknownTypeMock extends TypeMock
         fclose($resource);
         $unknown = $resource;
         yield [$unknown];
+
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink($file_name);
 
         if (function_exists("imagecreate")) {
