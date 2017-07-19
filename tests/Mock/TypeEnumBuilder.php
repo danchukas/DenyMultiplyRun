@@ -34,7 +34,7 @@ class TypeEnumBuilder
                 $no_inspect_name = "/** @noinspection PhpConstantNamingConventionInspection */\n\t\t";
                 $property_name = $no_inspect_name . $property_name;
             }
-            $property_list[] = "public const $property_name = \"$type\";";
+            $property_list[] = "const $property_name = \"$type\";";
 
         }
 

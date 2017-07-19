@@ -17,16 +17,16 @@ use DanchukAS\Mock\TypeMock;
  */
 class IntegerTypeMock extends TypeMock
 {
-    public const /** @noinspection PhpConstantNamingConventionInspection */
+    const /** @noinspection PhpConstantNamingConventionInspection */
         ZERO = "zero, false, not positive";
-    public const MINUS_ONE = "false, negative";
-    public const /** @noinspection PhpConstantNamingConventionInspection */
+    const MINUS_ONE = "false, negative";
+    const /** @noinspection PhpConstantNamingConventionInspection */
         ONE = "true, positive";
-    public const /** @noinspection PhpConstantNamingConventionInspection */
+    const /** @noinspection PhpConstantNamingConventionInspection */
         MAX = "max";
-    public const /** @noinspection PhpConstantNamingConventionInspection */
+    const /** @noinspection PhpConstantNamingConventionInspection */
         MIN = "min";
-    public const USUAL = "usual";
+    const USUAL = "usual";
 
     protected static $recommendCount = 6;
 
