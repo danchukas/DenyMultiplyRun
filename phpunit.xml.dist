@@ -18,6 +18,19 @@
     <php>
         <env name="COMPOSER_ALLOW_XDEBUG" value="1"></env>
         <env name="display_errors" value="0"></env>
+
+        <ini name="memory_limit" value="10M"/>
     </php>
+
+    <logging>
+        <log type="coverage-html" target="/tmp/report" lowUpperBound="80"
+             highLowerBound="90"/>
+        <log type="coverage-clover" target="/tmp/coverage.xml"/>
+        <log type="coverage-php" target="/tmp/coverage.serialized"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="junit" target="/tmp/logfile.xml" logIncompleteSkipped="false"/>
+        <log type="testdox-html" target="/tmp/testdox.html"/>
+        <log type="testdox-text" target="/tmp/testdox.txt"/>
+    </logging>
 
 </phpunit>
