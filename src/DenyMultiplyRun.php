@@ -59,6 +59,7 @@ class DenyMultiplyRun
      * @param string $pidFilePath Шлях до файла. Вимоги: користувач під яким запущений
      *                            даний код має мати право на створення, читання і зміну
      *                            даного файла.
+     * @throws \Exception
      */
     public static function setPidFile(string $pidFilePath)
     {
@@ -88,13 +89,14 @@ class DenyMultiplyRun
      */
     private static function preparePidDir($pidFilePath)
     {
-        $pid_dir = dirname($pidFilePath);
+        $pid_dir = \dirname($pidFilePath);
 
-        if ("" !== $pid_dir && !is_dir($pid_dir)) {
-            $created_pid_dir = mkdir($pid_dir, 0777, true);
-            if (false === $created_pid_dir) {
-                throw new \Exception('Директорія відсутня і неможливо створити: ' . $pid_dir);
-            }
+        /** @noinspection MkdirRaceConditionInspection */
+        if ('' !== $pid_dir
+            && !\is_dir($pid_dir)
+            && !\mkdir($pid_dir, 0777, true)
+        ) {
+            throw new \RuntimeException('Директорія відсутня і неможливо створити: ' . $pid_dir);
         }
     }
 
@@ -112,13 +114,13 @@ class DenyMultiplyRun
 
         // собачка потрібна щоб не засоряти логи.
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        $pid_file_handle = @fopen($pidFilePath, 'x');
+        $pid_file_handle = @fopen($pidFilePath, 'xb');
 
         // Відновлюєм попередній обробник наче нічого і не робили.
         restore_error_handler();
 
         // файл не створений. сталась помилка
-        if (!is_null(self::$lastError)) {
+        if (null !== self::$lastError) {
             self::createPidFileFailed($pidFilePath);
         }
 
@@ -158,14 +160,14 @@ class DenyMultiplyRun
         self::startErrorHandle();
         try {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $pid_file_handle = @fopen($pidFilePath, 'r+');
+            $pid_file_handle = @fopen($pidFilePath, 'rb+');
         } catch (\Throwable $error) {
             self::$lastError = $error;
         } finally {
             restore_error_handler();
         }
 
-        if (!is_null(self::$lastError)) {
+        if (null !== self::$lastError) {
             throw new OpenFileFail((string) self::$lastError);
         }
 
@@ -202,6 +204,7 @@ class DenyMultiplyRun
     /**
      * @param $pid_file_existed
      * @param $file_resource
+     * @throws \Exception
      */
     private static function safeSetPidIntoFile($pid_file_existed, $file_resource)
     {
@@ -219,6 +222,8 @@ class DenyMultiplyRun
 
     /**
      * @param $file_resource
+     * @throws \Exception
+     * @throws \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
      */
     private static function pidNotActual($file_resource)
     {
@@ -231,7 +236,7 @@ class DenyMultiplyRun
             // if file was once empty is not critical.
             // It was after crash daemon.
             // There are signal for admin/developer.
-            trigger_error((string)$exception, E_USER_NOTICE);
+            trigger_error((string)$exception);
         }
         self::truncatePidFile($file_resource);
     }
@@ -250,17 +255,17 @@ class DenyMultiplyRun
 
 
         if (false === $pid_from_file) {
-            throw new ReadFileFail("pid-файл є, але прочитати що в ньому не вдалось.");
+            throw new ReadFileFail('pid-файл є, але прочитати що в ньому не вдалось.');
         }
 
-        $pid_int = self::validatePid($pid_from_file);
-
-        return $pid_int;
+        return self::validatePid($pid_from_file);
     }
 
     /**
      * @param string $pid_from_file
      * @return int
+     * @throws \DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail
+     * @throws \DanchukAS\DenyMultiplyRun\Exception\PidLessMin
      * @throws PidBiggerMax
      * @throws PidFileEmpty
      */
@@ -310,7 +315,7 @@ class DenyMultiplyRun
 
         // if PID not available - why it happens ?
         // For *nix system
-        $pid_max_storage = "/proc/sys/kernel/pid_max";
+        $pid_max_storage = '/proc/sys/kernel/pid_max';
         if (file_exists($pid_max_storage)) {
             $pid_max = (int)file_get_contents($pid_max_storage);
             if ($pid_max < $pid_int) {
@@ -349,12 +354,12 @@ class DenyMultiplyRun
     {
         $truncated = ftruncate($pidFileResource, 0);
         if (false === $truncated) {
-            throw new \Exception("не вдалось очистити pid-файл.");
+            throw new \RuntimeException('не вдалось очистити pid-файл.');
         }
 
         $cursor_to_begin = rewind($pidFileResource);
         if (!$cursor_to_begin) {
-            throw new \Exception("не вдалось перемістити курсор на початок pid-файла.");
+            throw new \RuntimeException('не вдалось перемістити курсор на початок pid-файла.');
         }
     }
 
@@ -366,11 +371,11 @@ class DenyMultiplyRun
      */
     private static function setPidIntoFile($self_pid, $pidFileResource)
     {
-        $self_pid = '' . $self_pid;
-        $pid_length = strlen($self_pid);
-        $write_length = fwrite($pidFileResource, $self_pid, $pid_length);
+        $self_pid_str = (string)$self_pid;
+        $pid_length = strlen($self_pid_str);
+        $write_length = fwrite($pidFileResource, $self_pid_str, $pid_length);
         if ($write_length !== $pid_length) {
-            throw new \Exception("не вдось записати pid в pid-файл. Записано $write_length байт замість $pid_length");
+            throw new \RuntimeException("не вдось записати pid в pid-файл. Записано $write_length байт замість $pid_length");
         }
     }
 
@@ -379,17 +384,18 @@ class DenyMultiplyRun
      */
     private static function pidFileUpdated($self_pid)
     {
-        $message_reason = is_null(self::$prevPid)
-            ? ", but file empty."
-            : ", but process with contained ID(" . self::$prevPid . ") in it is not exist.";
-        $message = "pid-file exist" . $message_reason
-            . " pid-file updated with pid this process: " . $self_pid;
+        $message_reason = null === self::$prevPid
+            ? ', but file empty.'
+            : ', but process with contained ID(' . self::$prevPid . ') in it is not exist.';
+        $message = 'pid-file exist' . $message_reason
+            . ' pid-file updated with pid this process: ' . $self_pid;
 
-        trigger_error($message, E_USER_NOTICE);
+        trigger_error($message);
     }
 
     /**
      * @param $file_resource
+     * @throws \DanchukAS\DenyMultiplyRun\Exception\CloseFileFail
      */
     private static function safeClosePidFile($file_resource)
     {
@@ -407,7 +413,7 @@ class DenyMultiplyRun
     {
         $unlocked = flock($pidFileResource, LOCK_UN | LOCK_NB);
         if (false === $unlocked) {
-            trigger_error("не вдось розблокувати pid-файл.");
+            trigger_error('не вдось розблокувати pid-файл.');
         }
     }
 
@@ -491,11 +497,12 @@ class DenyMultiplyRun
             restore_error_handler();
         }
 
-        if (!is_null(self::$lastError)) {
+        if (null !== self::$lastError) {
             throw new DeleteFileFail(self::$lastError);
         }
     }
 
+    /** @noinspection MoreThanThreeArgumentsInspection */
     /**
      * @param int $messageType
      * @param string $messageText

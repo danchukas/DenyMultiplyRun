@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysis>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
   <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8" rel="project" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19" rel="self" type="text/html"/>
+  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21" rel="self" type="text/html"/>
   <status><![CDATA[finished]]></status>
   <violations>
     <violation severity="minor" category="bugrisk" ignored="true">
@@ -23,7 +23,7 @@ If you need to do that, you should probably implement a better way to qualify an
             restore_error_handler();
 
             throw new LockFileFail($resource_data['uri'] . ' - ' . $error);]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=ignored#538176092" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=ignored#538259109" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="bugrisk" ignored="true">
       <line>457</line>
@@ -42,7 +42,7 @@ If you need to do that, you should probably implement a better way to qualify an
         } finally {
             // Відновлюєм попередній обробник наче нічого і не робили.
             restore_error_handler();]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=ignored#538176095" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=ignored#538259112" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>22</line>
@@ -60,7 +60,7 @@ If you need to do that, you should probably implement a better way to qualify an
  */
 class DenyMultiplyRun
 {]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176093" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=existing#538259110" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>248</line>
@@ -78,7 +78,7 @@ class DenyMultiplyRun
 
         if (false === $pid_from_file) {
             throw new ReadFileFail("pid-файл є, але прочитати що в ньому не вдалось.");]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176094" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=existing#538259111" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>470</line>
@@ -96,7 +96,7 @@ class DenyMultiplyRun
      * @param string $pidFilePath
      *
      * @throws DeleteFileFail]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176091" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=existing#538259108" rel="self" type="text/html"/>
     </violation>
   </violations>
   <grades>
@@ -109,14 +109,14 @@ class DenyMultiplyRun
   <failed>false</failed>
   <grade><![CDATA[silver]]></grade>
   <next-grade><![CDATA[gold]]></next-grade>
-  <begin-at><![CDATA[2017-07-19T15:40:01+0200]]></begin-at>
-  <end-at><![CDATA[2017-07-19T15:40:29+0200]]></end-at>
-  <duration>4</duration>
-  <number>19</number>
+  <begin-at><![CDATA[2017-07-19T20:50:19+0200]]></begin-at>
+  <end-at><![CDATA[2017-07-19T20:50:39+0200]]></end-at>
+  <duration>1</duration>
+  <number>21</number>
   <altered>false</altered>
   <remediation-cost>12</remediation-cost>
   <nb-violations>3</nb-violations>
-  <reference><![CDATA[30cab61b953c7869f78a5a6286f18578097c78f0]]></reference>
+  <reference><![CDATA[c0b7425cdbe3a385bdd913c2ec0a5d93e1737c65]]></reference>
   <configuration>
     <ignored-branches>
       <branch><![CDATA[gh-pages]]></branch>
@@ -181,6 +181,9 @@ class DenyMultiplyRun
     <env/>
   </configuration>
   <previous-analyses-references>
+    <analysis-reference number="23">72bce4407dc20e2c0c65544f0ff7e961e47f577e</analysis-reference>
+    <analysis-reference number="22">ea1e8259611e56401ef82ea6a3f108878e3f30b6</analysis-reference>
+    <analysis-reference number="21">c0b7425cdbe3a385bdd913c2ec0a5d93e1737c65</analysis-reference>
     <analysis-reference number="20">8813791096444779fa51c0b832970e7a0561e301</analysis-reference>
     <analysis-reference number="19">30cab61b953c7869f78a5a6286f18578097c78f0</analysis-reference>
     <analysis-reference number="18">b83e21c501753090187b79f69c27d587858c9706</analysis-reference>
@@ -201,8 +204,8 @@ class DenyMultiplyRun
     <analysis-reference number="2">ea77634ee28dbd0bd4003f0002edb26bb555eb79</analysis-reference>
     <analysis-reference number="1">3a9fd35f45babcbd262680df1860cc0e64c26a5f</analysis-reference>
   </previous-analyses-references>
-  <nb-violations-new>3</nb-violations-new>
-  <nb-violations-existing>0</nb-violations-existing>
-  <nb-violations-fixed>35</nb-violations-fixed>
+  <nb-violations-new>0</nb-violations-new>
+  <nb-violations-existing>3</nb-violations-existing>
+  <nb-violations-fixed>0</nb-violations-fixed>
   <nb-violations-ignored>2</nb-violations-ignored>
 </analysis>

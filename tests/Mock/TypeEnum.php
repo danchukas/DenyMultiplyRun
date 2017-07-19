@@ -17,14 +17,14 @@ namespace DanchukAS\Mock;
 class TypeEnum
 {
     // available types
-    const ARRAY = "array";
-    const BOOLEAN = "boolean";
-    const DOUBLE = "double";
-    const INTEGER = "integer";
+    const ARRAY = 'array';
+    const BOOLEAN = 'boolean';
+    const DOUBLE = 'double';
+    const INTEGER = 'integer';
     const /** @noinspection PhpConstantNamingConventionInspection */
-        NULL = "null";
-    const OBJECT = "object";
-    const RESOURCE = "resource";
-    const STRING = "string";
-    const UNKNOWN = "unknown";
+        NULL = 'null';
+    const OBJECT = 'object';
+    const RESOURCE = 'resource';
+    const STRING = 'string';
+    const UNKNOWN = 'unknown';
 }

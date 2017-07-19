@@ -23,7 +23,7 @@ class ArrayTypeMock extends TypeMock
      */
     public static function getSample()
     {
-        yield ["empty" => []];
+        yield ['empty' => []];
 
         $type_enum = [
             TypeEnum::STRING
@@ -37,6 +37,7 @@ class ArrayTypeMock extends TypeMock
         ];
 
         foreach (TypeList::getMockList($type_enum) as $type_gen_list) {
+            /** @noinspection ForeachSourceInspection */
             foreach ($type_gen_list as $type_mock) {
                 yield [$type_mock];
             }
@@ -49,7 +50,7 @@ class ArrayTypeMock extends TypeMock
     protected static function getOptimalCount()
     {
         static $count = null;
-        if (is_null($count)) {
+        if (null === $count) {
             $type_enum = [
                 TypeEnum::STRING
                 , TypeEnum::BOOLEAN

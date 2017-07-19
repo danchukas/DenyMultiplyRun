@@ -19,12 +19,12 @@ class UnknownTypeMock extends TypeMock
 {
 
     /**
-     * @return \Generator|resource
+     * @return \Generator
      */
     public static function getSample()
     {
         $file_name = self::newTempFile();
-        $resource = fopen($file_name, 'r');
+        $resource = fopen($file_name, 'rb');
         fclose($resource);
         $unknown = $resource;
         yield [$unknown];
@@ -32,7 +32,7 @@ class UnknownTypeMock extends TypeMock
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @unlink($file_name);
 
-        if (function_exists("imagecreate")) {
+        if (function_exists('imagecreate')) {
             $resource = \imagecreate(1, 1);
             \imagedestroy($resource);
             $unknown = $resource;
@@ -45,8 +45,6 @@ class UnknownTypeMock extends TypeMock
      */
     private static function newTempFile()
     {
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
-
-        return $file_name;
+        return tempnam(sys_get_temp_dir(), 'vo_');
     }
 }

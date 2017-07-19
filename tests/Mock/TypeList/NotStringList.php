@@ -39,6 +39,7 @@ class NotStringList
         $real_value = null;
         /** @noinspection PhpVariableNamingConventionInspection */
         foreach ($type_gen_list as $type => $generator) {
+            /** @noinspection ForeachSourceInspection */
             foreach ($generator as $value) {
                 $type_data_list[] = $value;
             }

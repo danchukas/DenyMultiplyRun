@@ -16,15 +16,15 @@ namespace DanchukAS\Mock;
 class TypeEnumBuilder
 {
     // available types
-    protected static $boolean = "boolean";
-    protected static $integer = "integer";
-    protected static $double = "double";
-    protected static $string = "string";
-    protected static $array = "array";
-    protected static $object = "object";
-    protected static $resource = "resource";
-    protected static $null = "null";
-    protected static $unknown = "unknown";
+    protected static $boolean = 'boolean';
+    protected static $integer = 'integer';
+    protected static $double = 'double';
+    protected static $string = 'string';
+    protected static $array = 'array';
+    protected static $object = 'object';
+    protected static $resource = 'resource';
+    protected static $null = 'null';
+    protected static $unknown = 'unknown';
 
     public static function rebuild()
     {
@@ -46,9 +46,9 @@ class TypeEnumBuilder
 
         $template = file_get_contents(__DIR__ . '/TypeEnum.tpl');
 
-        $file_content = str_replace("{PROPERTY}", $property_code, $template);
+        $file_content = str_replace('{PROPERTY}', $property_code, $template);
 
-        file_put_contents(__DIR__ . "/TypeEnum.php", $file_content);
+        file_put_contents(__DIR__ . '/TypeEnum.php', $file_content);
 
     }
 
@@ -59,12 +59,13 @@ class TypeEnumBuilder
     {
         $type_list = [];
 
-        $type_dir = __DIR__ . "/Type";
-        $directory = scandir($type_dir);
+        $type_dir = __DIR__ . '/Type';
+        // SCANDIR_SORT_ASCENDING - щоб уникнути зайвих комітів пов'язаних з білдом при різних умовах.
+        $directory = scandir($type_dir, SCANDIR_SORT_ASCENDING);
 
         foreach ($directory as $file_mock) {
             if (is_file($type_dir . '/' . $file_mock)) {
-                $type_mock = basename($file_mock, "TypeMock.php");
+                $type_mock = basename($file_mock, 'TypeMock.php');
                 $type_list[] = strtolower($type_mock);
             }
         }

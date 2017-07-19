@@ -24,7 +24,7 @@ class DenyUseTest extends TestCase
     {
         // Because not founded how disable inspection "Call to private from invalid context" for phpstorm.
         //new $class; new DenyMultiplyRun;
-        $class = "DenyMultiplyRun";
+        $class = 'DenyMultiplyRun';
         new $class;
     }
 }

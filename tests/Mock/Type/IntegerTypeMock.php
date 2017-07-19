@@ -18,20 +18,20 @@ use DanchukAS\Mock\TypeMock;
 class IntegerTypeMock extends TypeMock
 {
     const /** @noinspection PhpConstantNamingConventionInspection */
-        ZERO = "zero, false, not positive";
-    const MINUS_ONE = "false, negative";
+        ZERO = 'zero, false, not positive';
+    const MINUS_ONE = 'false, negative';
     const /** @noinspection PhpConstantNamingConventionInspection */
-        ONE = "true, positive";
+        ONE = 'true, positive';
     const /** @noinspection PhpConstantNamingConventionInspection */
-        MAX = "max";
+        MAX = 'max';
     const /** @noinspection PhpConstantNamingConventionInspection */
-        MIN = "min";
-    const USUAL = "usual";
+        MIN = 'min';
+    const USUAL = 'usual';
 
     protected static $recommendCount = 6;
 
     /**
-     * @return \Generator|int
+     * @return \Generator
      */
     public static function getSample()
     {
