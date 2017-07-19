@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysis>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8" rel="project" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19" rel="self" type="text/html"/>
+  <status><![CDATA[finished]]></status>
+  <violations>
+    <violation severity="minor" category="bugrisk" ignored="true">
+      <line>193</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Error silenced by the at sign (@)</title>
+      <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
+If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
+      <context start-line="188" end-line="198"><![CDATA[            // помилку в записує в self::$lastError
+            self::startErrorHandle();
+
+            // собачка потрібна щоб не засоряти логи.
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            $resource_data = @stream_get_meta_data($pidFileResource);
+
+            // Відновлюєм попередній обробник наче нічого і не робили.
+            restore_error_handler();
+
+            throw new LockFileFail($resource_data['uri'] . ' - ' . $error);]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=ignored#538176092" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="bugrisk" ignored="true">
+      <line>457</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Error silenced by the at sign (@)</title>
+      <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
+If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
+      <context start-line="452" end-line="462"><![CDATA[        self::startErrorHandle();
+
+        try {
+            // собачка потрібна щоб не засоряти логи.
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            $resource_data = @stream_get_meta_data($pidFileResource);
+        } catch (\Throwable $error) {
+            $resource_data = ['uri' => ''];
+        } finally {
+            // Відновлюєм попередній обробник наче нічого і не робили.
+            restore_error_handler();]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=ignored#538176095" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>22</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="17" end-line="27"><![CDATA[
+/**
+ * Class denyMultiplyRun
+ * Забороняє паралельний запуск скрипта
+ *
+ * @todo: extract work with file to another lib.
+ *
+ * @package DanchukAS\DenyMultiplyRun
+ */
+class DenyMultiplyRun
+{]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176093" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>248</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="243" end-line="253"><![CDATA[     */
+    private static function getPidFromFile($pidFileResource)
+    {
+        // Розмір PID (int в ОС) навряд буде більший ніж розмір int в PHP.
+        // Зазвичай PID має до 5 цифр.
+        // @todo: if error - warning, error_handler, ...
+        $pid_from_file = fread($pidFileResource, 64);
+
+
+        if (false === $pid_from_file) {
+            throw new ReadFileFail("pid-файл є, але прочитати що в ньому не вдалось.");]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176094" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>470</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="465" end-line="475"><![CDATA[        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
+    }
+
+    /**
+     * Відключає встановлену заборону паралельного запуска у яких спільний $pidFilePath
+     * @todo добавити перевірку що цей файл ще для цього процеса,
+     * може цей файл вже був видалений вручну, і створений іншим процесом.
+     *
+     * @param string $pidFilePath
+     *
+     * @throws DeleteFileFail]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176091" rel="self" type="text/html"/>
+    </violation>
+  </violations>
+  <grades>
+    <entry><![CDATA[none]]></entry>
+    <entry><![CDATA[bronze]]></entry>
+    <entry><![CDATA[silver]]></entry>
+    <entry><![CDATA[gold]]></entry>
+    <entry><![CDATA[platinum]]></entry>
+  </grades>
+  <failed>false</failed>
+  <grade><![CDATA[silver]]></grade>
+  <next-grade><![CDATA[gold]]></next-grade>
+  <begin-at><![CDATA[2017-07-19T15:40:01+0200]]></begin-at>
+  <end-at><![CDATA[2017-07-19T15:40:29+0200]]></end-at>
+  <duration>4</duration>
+  <number>19</number>
+  <altered>false</altered>
+  <remediation-cost>12</remediation-cost>
+  <nb-violations>3</nb-violations>
+  <reference><![CDATA[30cab61b953c7869f78a5a6286f18578097c78f0]]></reference>
+  <configuration>
+    <ignored-branches>
+      <branch><![CDATA[gh-pages]]></branch>
+    </ignored-branches>
+    <pre-composer-script/>
+    <post-composer-script/>
+    <working-directory/>
+    <php-version/>
+    <php-ini/>
+    <commit-failure-conditions>
+      <branch><![CDATA[project.severity.critical > 0]]></branch>
+      <branch><![CDATA[project.severity.major > 0]]></branch>
+    </commit-failure-conditions>
+    <global-excluded-dirs>
+      <dir><![CDATA[vendor]]></dir>
+      <dir><![CDATA[vendors]]></dir>
+      <dir><![CDATA[test]]></dir>
+      <dir><![CDATA[tests]]></dir>
+      <dir><![CDATA[Tests]]></dir>
+      <dir><![CDATA[spec]]></dir>
+      <dir><![CDATA[features]]></dir>
+      <dir><![CDATA[Fixtures]]></dir>
+      <dir><![CDATA[DataFixtures]]></dir>
+      <dir><![CDATA[var]]></dir>
+    </global-excluded-dirs>
+    <excluded-patterns>
+      <pattern><![CDATA[app/check.php]]></pattern>
+      <pattern><![CDATA[app/SymfonyRequirements.php]]></pattern>
+      <pattern><![CDATA[web/config.php]]></pattern>
+      <pattern><![CDATA[web/app_*.php]]></pattern>
+    </excluded-patterns>
+    <patterns>
+      <file>
+        <pattern><![CDATA[*.php]]></pattern>
+        <pattern><![CDATA[*.twig]]></pattern>
+        <pattern><![CDATA[*.xml]]></pattern>
+        <pattern><![CDATA[*.yml]]></pattern>
+        <pattern><![CDATA[*.yaml]]></pattern>
+        <pattern><![CDATA[*.ini]]></pattern>
+        <pattern><![CDATA[*.dist]]></pattern>
+        <pattern><![CDATA[*.sql]]></pattern>
+        <pattern><![CDATA[*.md]]></pattern>
+        <pattern><![CDATA[*.rst]]></pattern>
+        <pattern><![CDATA[composer.*]]></pattern>
+        <pattern><![CDATA[.gitignore]]></pattern>
+        <pattern><![CDATA[LICENSE]]></pattern>
+        <pattern><![CDATA[README]]></pattern>
+        <pattern><![CDATA[Makefile]]></pattern>
+        <pattern><![CDATA[.htaccess]]></pattern>
+      </file>
+      <php>
+        <pattern><![CDATA[*.php]]></pattern>
+      </php>
+      <twig>
+        <pattern><![CDATA[*.twig]]></pattern>
+      </twig>
+    </patterns>
+    <rules/>
+    <parameters>
+      <parameter name="project_type">1</parameter>
+    </parameters>
+    <env/>
+  </configuration>
+  <previous-analyses-references>
+    <analysis-reference number="20">8813791096444779fa51c0b832970e7a0561e301</analysis-reference>
+    <analysis-reference number="19">30cab61b953c7869f78a5a6286f18578097c78f0</analysis-reference>
+    <analysis-reference number="18">b83e21c501753090187b79f69c27d587858c9706</analysis-reference>
+    <analysis-reference number="16">a2e0cd8bbde48d4b2a44ac2f5ba318d5e6c582a9</analysis-reference>
+    <analysis-reference number="15">2431198b202e603b3f5b17c690fb7c6ef324eda5</analysis-reference>
+    <analysis-reference number="14">dd658325c025b20cdea3dd1a9ef2c62f0d22df92</analysis-reference>
+    <analysis-reference number="13">4a8c3290711ac36faeed768fb9153a9f98c8f76d</analysis-reference>
+    <analysis-reference number="12">37a4c4dd9487df358a8f2d4336d1ece0ac4c6a0d</analysis-reference>
+    <analysis-reference number="11">39317c979f0d0a4e88ab52a9300c080f10f45d1d</analysis-reference>
+    <analysis-reference number="10">12836d164c42e52f6abf3c94974af6a091dcf25e</analysis-reference>
+    <analysis-reference number="9">b9c2b90bd47c6602d7256f8ba64646efb5b6e94d</analysis-reference>
+    <analysis-reference number="8">3f31e4cb3ea302cc6b76f843790aca91c1c73bcc</analysis-reference>
+    <analysis-reference number="7">71408c8b93931fa036bad990e64a185f540b2c98</analysis-reference>
+    <analysis-reference number="6">f3642efa20b06751a50b5b5b1d33a3f5f1b7d2f8</analysis-reference>
+    <analysis-reference number="5">262558e3a43837f9cfa6975bc9671caf0644a5fb</analysis-reference>
+    <analysis-reference number="4">afd8116742fae97a4604ec87c69bb4f8cdccff06</analysis-reference>
+    <analysis-reference number="3">bafd23155c6477843160623b22384162ac9e7582</analysis-reference>
+    <analysis-reference number="2">ea77634ee28dbd0bd4003f0002edb26bb555eb79</analysis-reference>
+    <analysis-reference number="1">3a9fd35f45babcbd262680df1860cc0e64c26a5f</analysis-reference>
+  </previous-analyses-references>
+  <nb-violations-new>3</nb-violations-new>
+  <nb-violations-existing>0</nb-violations-existing>
+  <nb-violations-fixed>35</nb-violations-fixed>
+  <nb-violations-ignored>2</nb-violations-ignored>
+</analysis>

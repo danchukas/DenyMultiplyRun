@@ -9,7 +9,7 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use PHPUnit\Framework\TestCase;
+use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /**
  * Class UseTest
@@ -17,26 +17,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package DanchukAS\DenyMultiplyRunTest
  */
-class UseTest extends TestCase
+class UseTest extends PidFileTestCase
 {
-
-    private static $randomFileName;
-
-    public function setUp()
-    {
-        self::$randomFileName = sys_get_temp_dir() . '/' . uniqid('vd_', true);
-    }
-
-    public function tearDown()
-    {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$randomFileName);
-    }
-
 
     public function testUsualUse()
     {
-        $file_name = self::$randomFileName;
+        $file_name = self::$noExistFileName;
 
         $count_try = 2;
         while (--$count_try) {

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use PHPUnit\Framework\TestCase;
+use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /** @noinspection PhpClassNamingConventionInspection */
 
@@ -18,23 +18,10 @@ use PHPUnit\Framework\TestCase;
  * Тести з вірним підфайлом.
  * @package DanchukAS\DenyMultiplyRunTest
  */
-class ExistRightPidFileTest extends TestCase
+class ExistRightPidFileTest extends PidFileTestCase
 {
 
     private static $lastError;
-
-    private static $existFileName;
-
-    public function setUp()
-    {
-        self::$existFileName = tempnam(sys_get_temp_dir(), 'vo_');
-    }
-
-    public function tearDown()
-    {
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @unlink(self::$existFileName);
-    }
 
     public function testEmptyFile()
     {
@@ -66,18 +53,6 @@ class ExistRightPidFileTest extends TestCase
         self::assertStringMatchesFormat("$message", self::$lastError);
     }
 
-    /**
-     * @expectedException \DanchukAS\DenyMultiplyRun\Exception\ProcessExisted
-     */
-    public function testExistedPid()
-    {
-
-        $file_name = self::$existFileName;
-        file_put_contents($file_name, getmypid());
-
-        DenyMultiplyRun::setPidFile($file_name);
-    }
-
     public function testNoExistedPid()
     {
 
@@ -99,12 +74,14 @@ class ExistRightPidFileTest extends TestCase
         self::catchError($wait_error);
     }
 
-    public function testLockedFile()
+    /**
+     * @dataProvider setPidFileParam
+     * @param \Generator $filename
+     * @param string $exception
+     */
+    public function testSetPidFile(\Generator $filename, string $exception)
     {
-        $file_resource = fopen(self::$existFileName, "r+");
-        flock($file_resource, LOCK_EX);
-
-        $this->expectException("DanchukAS\DenyMultiplyRun\Exception\LockFileFail");
-        DenyMultiplyRun::setPidFile(self::$existFileName);
+        $this->expectException($exception);
+        DenyMultiplyRun::setPidFile($filename->current());
     }
 }

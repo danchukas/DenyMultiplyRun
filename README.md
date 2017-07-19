@@ -5,7 +5,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/279f7dc7abed4027819beb644620fd88)](https://www.codacy.com/app/volk160590/DenyMultiplyRun?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danchukas/DenyMultiplyRun&amp;utm_campaign=Badge_Grade)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/danchukas/DenyMultiplyRun/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/danchukas/DenyMultiplyRun/?branch=master)
 [![Code Coverage](https://codecov.io/gh/danchukas/DenyMultiplyRun/branch/master/graph/badge.svg)](https://codecov.io/gh/danchukas/DenyMultiplyRun)
-
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/mini.png)](https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8)
 
 utility is work on production middlewhere, but this project for see how work github, modules, integrates with services and phpstorm.
 
