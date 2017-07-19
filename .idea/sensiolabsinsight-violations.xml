@@ -1,378 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysis>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
   <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8" rel="project" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15" rel="self" type="text/html"/>
+  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19" rel="self" type="text/html"/>
   <status><![CDATA[finished]]></status>
   <violations>
-    <violation severity="info" category="bugrisk" ignored="false">
-      <line>0</line>
-      <resource><![CDATA[composer.json]]></resource>
-      <title>The composer.json file should not raise warnings</title>
-      <message><![CDATA[No license specified, it is recommended to do so. For closed-source software you may use "proprietary" as license.]]></message>
-      <context/>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135039" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>5</line>
-      <resource><![CDATA[code.style.schemes.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="5"><![CDATA[<application>
-  <component name="CodeStyleSchemeSettings">
-    <option name="CURRENT_SCHEME_NAME" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135043" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>1</line>
-      <resource><![CDATA[codestyles/Default.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="1"><![CDATA[<code_scheme name="Default" />]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135051" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>5</line>
-      <resource><![CDATA[colors.scheme.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="5"><![CDATA[<application>
-  <component name="EditorColorsManagerImpl">
-    <global_color_scheme name="DanchukAS" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135049" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>3</line>
-      <resource><![CDATA[editor.codeinsight.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="3"><![CDATA[<application>
-  <component name="DaemonCodeAnalyzerSettings" profile="FULL PHP" />
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135029" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>6</line>
-      <resource><![CDATA[editor.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="6"><![CDATA[<application>
-  <component name="SqlEditorOptions">
-    <option name="concatenateStringsOnEnter" value="true" />
-    <option name="qualificationType" value="On collisions" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135033" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>10</line>
-      <resource><![CDATA[find.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="5" end-line="10"><![CDATA[    <option name="SEARCH_SCOPE" value="php_lib_usual" />
-    <recentFileMasks>
-      <mask>*.php</mask>
-    </recentFileMasks>
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135037" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>6</line>
-      <resource><![CDATA[github_settings.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="6"><![CDATA[<application>
-  <component name="GithubSettings">
-    <option name="LOGIN" value="danchukas" />
-    <option name="AUTH_TYPE" value="BASIC" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135052" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>4</line>
-      <resource><![CDATA[.idea/blade.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="4"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="BladeInjectionConfiguration" escapedTextEnd="!!}" escapedTextStart="{!!" />
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135041" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>2</line>
-      <resource><![CDATA[.idea/dataSources/0e49d27f-a6a8-402f-99a3-fc8965f54574/storage.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="2"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<storage-settings staging-layout="plain" base-layout="schema-zip" language="MySQL"/>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135026" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>7</line>
-      <resource><![CDATA[.idea/dictionaries/danchukas.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="2" end-line="7"><![CDATA[  <dictionary name="danchukas">
-    <words>
-      <w>danchuk</w>
-    </words>
-  </dictionary>
-</component>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135019" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>276</line>
-      <resource><![CDATA[.idea/inspectionProfiles/FULL_PHP.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="271" end-line="276"><![CDATA[    <inspection_tool class="XsltDeclarations" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="XsltTemplateInvocation" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="XsltUnusedDeclaration" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="XsltVariableShadowing" enabled="false" level="WARNING" enabled_by_default="false" />
-  </profile>
-</component>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135036" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>9</line>
-      <resource><![CDATA[.idea/inspectionProfiles/profiles_settings.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="4" end-line="9"><![CDATA[    <option name="useProjectProfile" value="false" />
-    <option name="PROJECT_PROFILE" value="FULL PHP" />
-    <option name="USE_PROJECT_PROFILE" value="false" />
-    <version value="1.0" />
-  </settings>
-</component>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135040" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>6</line>
-      <resource><![CDATA[.idea/misc.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="6"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SvnConfiguration">
-    <configuration>$USER_HOME$/.subversion</configuration>
-  </component>
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135053" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>8</line>
-      <resource><![CDATA[.idea/modules.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="3" end-line="8"><![CDATA[  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DenyMultiplyRun.iml" filepath="$PROJECT_DIR$/.idea/DenyMultiplyRun.iml" />
-    </modules>
-  </component>
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135028" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>14</line>
-      <resource><![CDATA[.idea/php-test-framework.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="9" end-line="14"><![CDATA[          </versions>
-        </cache>
-      </tool>
-    </tools_cache>
-  </component>
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135027" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>9</line>
-      <resource><![CDATA[.idea/php.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="4" end-line="9"><![CDATA[  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings load_method="CUSTOM_LOADER" bootstrap_file_path="$PROJECT_DIR$/tests/bootstrap.php" configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" phpunit_phar_path="$PROJECT_DIR$/test/phpunit.phar" use_bootstrap_file="true" use_configuration_file="true" />
-    </phpunit_settings>
-  </component>
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135023" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>3</line>
-      <resource><![CDATA[.idea/scopes/php_lib_usual.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="3"><![CDATA[<component name="DependencyValidationManager">
-  <scope name="php_lib_usual" pattern="file:src//*||file:tests//*" />
-</component>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135050" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>7</line>
-      <resource><![CDATA[.idea/vagrant.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="2" end-line="7"><![CDATA[<project version="4">
-  <component name="VagrantProjectSettings">
-    <option name="instanceFolder" value="" />
-    <option name="provider" value="" />
-  </component>
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135031" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>6</line>
-      <resource><![CDATA[.idea/vcs.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="6"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
-  </component>
-</project>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135020" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>274</line>
-      <resource><![CDATA[inspection/FULL PHP.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="269" end-line="274"><![CDATA[  <inspection_tool class="XmlWrongRootElement" enabled="false" level="ERROR" enabled_by_default="false" />
-  <inspection_tool class="XsltDeclarations" enabled="false" level="ERROR" enabled_by_default="false" />
-  <inspection_tool class="XsltTemplateInvocation" enabled="false" level="ERROR" enabled_by_default="false" />
-  <inspection_tool class="XsltUnusedDeclaration" enabled="false" level="WARNING" enabled_by_default="false" />
-  <inspection_tool class="XsltVariableShadowing" enabled="false" level="WARNING" enabled_by_default="false" />
-</profile>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135045" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>5</line>
-      <resource><![CDATA[_linux/git.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="5"><![CDATA[<application>
-  <component name="Git.Application.Settings">
-    <option name="SSH_EXECUTABLE" value="IDEA_SSH" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135021" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>5</line>
-      <resource><![CDATA[_linux/laf.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="1" end-line="5"><![CDATA[<application>
-  <component name="LafManager">
-    <laf class-name="com.intellij.ide.ui.laf.IntelliJLaf" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135048" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>9</line>
-      <resource><![CDATA[markdown.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="4" end-line="9"><![CDATA[      <HtmlPanelProviderInfo>
-        <ProviderInfo name="JavaFX WebView" className="org.intellij.plugins.markdown.ui.preview.javafx.JavaFxHtmlPanelProvider" />
-      </HtmlPanelProviderInfo>
-    </MarkdownPreviewSettings>
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135035" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>7</line>
-      <resource><![CDATA[phpcs.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="2" end-line="7"><![CDATA[<ruleset>
-    <file>./</file>
-    <include-pattern>src/*</include-pattern>
-    <include-pattern>tests/*</include-pattern>
-    <rule ref="PSR2"/>
-</ruleset>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135046" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>36</line>
-      <resource><![CDATA[phpunit.xml.dist]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="31" end-line="36"><![CDATA[        <log type="junit" target="/tmp/logfile.xml" logIncompleteSkipped="false"/>
-        <log type="testdox-html" target="/tmp/testdox.html"/>
-        <log type="testdox-text" target="/tmp/testdox.txt"/>
-    </logging>
-
-</phpunit>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135034" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>312</line>
-      <resource><![CDATA[php.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="307" end-line="312"><![CDATA[          </loaded_extensions>
-        </phpinfo>
-      </interpreter>
-    </phpInfoCache>
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135044" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>26</line>
-      <resource><![CDATA[.scrutinizer.yml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="21" end-line="26"><![CDATA[        enabled: true
-        excluded_dirs: [vendor, docs]
-filter:
-    excluded_paths:
-        - 'vendor/*'
-        - 'docs/*']]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135030" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>25</line>
-      <resource><![CDATA[.travis.yml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="20" end-line="25"><![CDATA[  - php vendor/bin/phpunit
-after_script:
-  - php vendor/bin/codacycoverage clover /tmp/clover.xml
-  # next all for scrutinizer-ci.com
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover /logs/clover.xml]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135042" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="info" category="codestyle" ignored="false">
-      <line>16</line>
-      <resource><![CDATA[vcs.xml]]></resource>
-      <title>Text files should end with a newline character</title>
-      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
-      <context start-line="11" end-line="16"><![CDATA[    <option name="cloneParentDir" value="$USER_HOME$/Documents/repo/github" />
-  </component>
-  <component name="VcsApplicationSettings">
-    <option name="PATCH_STORAGE_LOCATION" value="$USER_HOME$/Documents/repo/github/DenyMultiplyRun" />
-  </component>
-</application>]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135032" rel="self" type="text/html"/>
-    </violation>
-    <violation severity="minor" category="bugrisk" ignored="false">
+    <violation severity="minor" category="bugrisk" ignored="true">
       <line>193</line>
-      <resource><![CDATA[src/DenyMultiplyRun.php]]></resource>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Error silenced by the at sign (@)</title>
       <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
 If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
@@ -387,11 +23,11 @@ If you need to do that, you should probably implement a better way to qualify an
             restore_error_handler();
 
             throw new LockFileFail($resource_data['uri'] . ' - ' . $error);]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135022" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=ignored#538176092" rel="self" type="text/html"/>
     </violation>
-    <violation severity="minor" category="bugrisk" ignored="false">
+    <violation severity="minor" category="bugrisk" ignored="true">
       <line>457</line>
-      <resource><![CDATA[src/DenyMultiplyRun.php]]></resource>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Error silenced by the at sign (@)</title>
       <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
 If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
@@ -406,11 +42,11 @@ If you need to do that, you should probably implement a better way to qualify an
         } finally {
             // Відновлюєм попередній обробник наче нічого і не робили.
             restore_error_handler();]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135024" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=ignored#538176095" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>22</line>
-      <resource><![CDATA[src/DenyMultiplyRun.php]]></resource>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
       <context start-line="17" end-line="27"><![CDATA[
@@ -424,11 +60,11 @@ If you need to do that, you should probably implement a better way to qualify an
  */
 class DenyMultiplyRun
 {]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135025" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176093" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>248</line>
-      <resource><![CDATA[src/DenyMultiplyRun.php]]></resource>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
       <context start-line="243" end-line="253"><![CDATA[     */
@@ -442,11 +78,11 @@ class DenyMultiplyRun
 
         if (false === $pid_from_file) {
             throw new ReadFileFail("pid-файл є, але прочитати що в ньому не вдалось.");]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135047" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176094" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>470</line>
-      <resource><![CDATA[src/DenyMultiplyRun.php]]></resource>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
       <context start-line="465" end-line="475"><![CDATA[        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
@@ -460,7 +96,7 @@ class DenyMultiplyRun
      * @param string $pidFilePath
      *
      * @throws DeleteFileFail]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/15?status=existing#538135038" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/19?status=new#538176091" rel="self" type="text/html"/>
     </violation>
   </violations>
   <grades>
@@ -473,14 +109,14 @@ class DenyMultiplyRun
   <failed>false</failed>
   <grade><![CDATA[silver]]></grade>
   <next-grade><![CDATA[gold]]></next-grade>
-  <begin-at><![CDATA[2017-07-19T13:42:10+0200]]></begin-at>
-  <end-at><![CDATA[2017-07-19T13:42:38+0200]]></end-at>
-  <duration>3</duration>
-  <number>15</number>
+  <begin-at><![CDATA[2017-07-19T15:40:01+0200]]></begin-at>
+  <end-at><![CDATA[2017-07-19T15:40:29+0200]]></end-at>
+  <duration>4</duration>
+  <number>19</number>
   <altered>false</altered>
-  <remediation-cost>28.25</remediation-cost>
-  <nb-violations>35</nb-violations>
-  <reference><![CDATA[2431198b202e603b3f5b17c690fb7c6ef324eda5]]></reference>
+  <remediation-cost>12</remediation-cost>
+  <nb-violations>3</nb-violations>
+  <reference><![CDATA[30cab61b953c7869f78a5a6286f18578097c78f0]]></reference>
   <configuration>
     <ignored-branches>
       <branch><![CDATA[gh-pages]]></branch>
@@ -545,6 +181,9 @@ class DenyMultiplyRun
     <env/>
   </configuration>
   <previous-analyses-references>
+    <analysis-reference number="20">8813791096444779fa51c0b832970e7a0561e301</analysis-reference>
+    <analysis-reference number="19">30cab61b953c7869f78a5a6286f18578097c78f0</analysis-reference>
+    <analysis-reference number="18">b83e21c501753090187b79f69c27d587858c9706</analysis-reference>
     <analysis-reference number="16">a2e0cd8bbde48d4b2a44ac2f5ba318d5e6c582a9</analysis-reference>
     <analysis-reference number="15">2431198b202e603b3f5b17c690fb7c6ef324eda5</analysis-reference>
     <analysis-reference number="14">dd658325c025b20cdea3dd1a9ef2c62f0d22df92</analysis-reference>
@@ -562,8 +201,8 @@ class DenyMultiplyRun
     <analysis-reference number="2">ea77634ee28dbd0bd4003f0002edb26bb555eb79</analysis-reference>
     <analysis-reference number="1">3a9fd35f45babcbd262680df1860cc0e64c26a5f</analysis-reference>
   </previous-analyses-references>
-  <nb-violations-new>0</nb-violations-new>
-  <nb-violations-existing>35</nb-violations-existing>
-  <nb-violations-fixed>0</nb-violations-fixed>
-  <nb-violations-ignored>0</nb-violations-ignored>
+  <nb-violations-new>3</nb-violations-new>
+  <nb-violations-existing>0</nb-violations-existing>
+  <nb-violations-fixed>35</nb-violations-fixed>
+  <nb-violations-ignored>2</nb-violations-ignored>
 </analysis>
