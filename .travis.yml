@@ -14,8 +14,6 @@ after_success:
 
 # next all for codacy.com
 before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install -n
   - composer update
 script:
   - php vendor/bin/phpunit
