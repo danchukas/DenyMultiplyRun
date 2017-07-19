@@ -4,21 +4,7 @@
     <option name="defaultScopeName" value="php_lib_usual" />
     <option name="SEARCH_SCOPE" value="php_lib_usual" />
     <recentFileMasks>
-      <mask>*.properties</mask>
-      <mask>*.html</mask>
-      <mask>*.jsp</mask>
-      <mask>*.xml</mask>
-      <mask>*.java</mask>
-      <mask>*.js</mask>
-      <mask>*.as</mask>
-      <mask>*.mxml</mask>
       <mask>*.php</mask>
-      <mask>*.ph</mask>
-      <mask>*.p</mask>
-      <mask>*.css</mask>
-      <mask>*.cs</mask>
-      <mask>*.c</mask>
-      <mask>*.</mask>
     </recentFileMasks>
   </component>
 </application>

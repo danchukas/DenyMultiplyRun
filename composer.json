@@ -30,7 +30,7 @@
   },
   "config": {
     "preferred-install": {
-      "*": "dist"
+      "*": "source"
     }
   }
 

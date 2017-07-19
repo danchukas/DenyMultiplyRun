@@ -14,7 +14,7 @@ after_success:
 
 # next all for codacy.com
 before_script:
-  - composer install --optimize-autoloader
+  - composer install --optimize-autoloader -n
   - composer update --optimize-autoloader
 script:
   - php vendor/bin/phpunit
