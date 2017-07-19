@@ -2,9 +2,6 @@
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter home="/usr/bin/php" id="6cccd5f0-4e75-4b51-883a-1f8219eae924" name="PHP 7" debugger_id="php.debugger.XDebug" />
-      <interpreter home="vagrant:///home/danchukas/Documents/repo/github/DenyMultiplyRun/usr/bin/php" id="08787648-f1cd-4cec-a281-7c7a2870ef6c" name="Remote PHP" debugger_id="php.debugger.XDebug">
-        <remote_data VAGRANT_FOLDER="$USER_HOME$/Documents/repo/github/DenyMultiplyRun" INTERPRETER_PATH="/usr/bin/php" HELPERS_PATH="" INITIALIZED="false" VALID="true" />
-      </interpreter>
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
