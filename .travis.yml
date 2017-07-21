@@ -1,4 +1,8 @@
 language: php
+
+# for test php hhvm
+dist: trusty
+
 php:
   # min 7.0
   - '7.0'
@@ -7,8 +11,8 @@ php:
   - nightly
   # for interest test
   - hhvm
-    #blackfire
 
+#blackfire
 env: BLACKFIRE=on
 
 #blackfire
