@@ -5,7 +5,7 @@ dist: trusty
 
 php:
   # min 7.0
-  - '7.0'
+  #- '7.0'
   - '7.1'
   # for find out max version php
   - nightly
