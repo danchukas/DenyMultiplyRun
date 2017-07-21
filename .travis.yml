@@ -5,7 +5,14 @@ php:
   - '7.1'
   # for find out max version php
   - nightly
+  # for interest test
   - hhvm
+    #blackfire
+    env: BLACKFIRE=on
+
+#blackfire
+cache:
+    - $HOME/.composer/cache/files
 
 matrix:
   allow_failures:
@@ -14,11 +21,29 @@ matrix:
 
 before_script:
   - composer install --optimize-autoloader
-
+  #blackfire
+  - |
+      if [[ "$BLACKFIRE" = "on" ]]; then
+          curl -L https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$(php -r "echo PHP_MAJOR_VERSION . PHP_MINOR_VERSION;")-zts | tar zxpf -
+          echo "extension=$(pwd)/$(ls blackfire-*.so | tr -d '[[:space:]]')" > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
+          echo "blackfire.agent_socket=unix:///tmp/blackfire.sock" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
+      fi
 
 # next all for codecov.io
 before_install:
   - sudo pip install codecov
+  #blackfire
+  - |
+      if [[ "$BLACKFIRE" = "on" ]]; then
+          openssl aes-256-cbc -K $encrypted_16ab3ffdcd52_key -iv $encrypted_16ab3ffdcd52_iv -in .blackfire.travis.ini.enc -out ~/.blackfire.ini -d
+          curl -L https://blackfire.io/api/v1/releases/agent/linux/amd64 | tar zxpf -
+          chmod 755 agent && ./agent --config=~/.blackfire.ini --socket=unix:///tmp/blackfire.sock &
+      fi
+
+#blackfire
+install:
+    - travis_retry composer install
+
 after_success:
   - codecov
 
@@ -30,3 +55,4 @@ after_script:
   # next all for scrutinizer-ci.com
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover /logs/clover.xml
+
