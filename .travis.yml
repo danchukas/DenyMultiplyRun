@@ -5,9 +5,16 @@ php:
   - '7.1'
   # for find out max version php
   - nightly
+  - hhvm
+
+matrix:
+  allow_failures:
+    - php: hhvm
+
 
 before_script:
   - composer install --optimize-autoloader
+
 
 # next all for codecov.io
 before_install:
