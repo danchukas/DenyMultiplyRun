@@ -8,7 +8,8 @@ php:
   # for interest test
   - hhvm
     #blackfire
-    env: BLACKFIRE=on
+
+env: BLACKFIRE=on
 
 #blackfire
 cache:
