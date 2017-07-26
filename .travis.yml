@@ -1,16 +1,14 @@
 language: php
 
-# for test php hhvm
-dist: trusty
+# any *nix system
+os: linux
 
 php:
   # min 7.0
-  #- '7.0'
+  - '7.0'
   - '7.1'
   # for find out max version php
   - nightly
-  # for interest test
-  - hhvm
 
 #blackfire
 env: BLACKFIRE=on
@@ -18,10 +16,6 @@ env: BLACKFIRE=on
 #blackfire
 cache:
     - $HOME/.composer/cache/files
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 before_install:
   # for codecov.io
@@ -48,7 +42,6 @@ before_script:
           echo "blackfire.agent_socket=unix:///tmp/blackfire.sock" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
       fi
 
-
 script:
   #codacy.com and etc...
   - vendor/bin/phpunit
@@ -59,7 +52,7 @@ script:
 
 after_script:
   # for codacy.com
-  - php vendor/bin/codacycoverage clover /tmp/coverage.xml
+  - vendor/bin/codacycoverage clover /tmp/coverage.xml
   # next all for scrutinizer-ci.com
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover /tmp/coverage.xml
