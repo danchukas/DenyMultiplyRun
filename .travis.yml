@@ -56,10 +56,10 @@ script:
 
 after_script:
   # for codacy.com
-  - php vendor/bin/codacycoverage clover /tmp/clover.xml
+  - php vendor/bin/codacycoverage clover /tmp/coverage.xml
   # next all for scrutinizer-ci.com
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover /logs/clover.xml
+  - php ocular.phar code-coverage:upload --format=php-clover /tmp/coverage.xml
 
 after_success:
   - codecov
