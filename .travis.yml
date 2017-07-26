@@ -51,7 +51,10 @@ before_script:
 
 script:
   #codacy.com and etc...
-  - php vendor/bin/phpunit
+  - vendor/bin/phpunit
+  # for codecov
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+  # check only travis
   - vendor/bin/behat
 
 after_script:
