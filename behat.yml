@@ -1,0 +1,17 @@
+#behat.yml
+default:
+  autoload:
+    '': %paths.base%/test/BDD/Behat/FeatureContext
+  suites:
+#    default:
+#      paths: [%paths.base%/test/BDD/Gherkin]
+    base_use:
+      paths:    [ %paths.base%/test/BDD/Gherkin/base_use.feature ]
+      contexts: [ BaseUse ]
+#    alert_failed_try:
+#      paths:    [ %paths.base%/test/BDD/Behat/Gherkin/alert_failed_try.feature ]
+#      contexts: [ AlertFailedTry ]
+
+#    main:
+#      paths:    [ %paths.base%/test/BDD/Gherkin/main.feature ]
+#      contexts: [ Main ]

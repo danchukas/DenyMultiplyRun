@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysis>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
   <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8" rel="project" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21" rel="self" type="text/html"/>
+  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35" rel="self" type="text/html"/>
   <status><![CDATA[finished]]></status>
   <violations>
     <violation severity="minor" category="bugrisk" ignored="true">
-      <line>193</line>
+      <line>195</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Error silenced by the at sign (@)</title>
       <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
 If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
-      <context start-line="188" end-line="198"><![CDATA[            // помилку в записує в self::$lastError
+      <context start-line="190" end-line="200"><![CDATA[            // помилку в записує в self::$lastError
             self::startErrorHandle();
 
             // собачка потрібна щоб не засоряти логи.
@@ -23,15 +23,15 @@ If you need to do that, you should probably implement a better way to qualify an
             restore_error_handler();
 
             throw new LockFileFail($resource_data['uri'] . ' - ' . $error);]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=ignored#538259109" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=ignored#538858835" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="bugrisk" ignored="true">
-      <line>457</line>
+      <line>463</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Error silenced by the at sign (@)</title>
       <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
 If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
-      <context start-line="452" end-line="462"><![CDATA[        self::startErrorHandle();
+      <context start-line="458" end-line="468"><![CDATA[        self::startErrorHandle();
 
         try {
             // собачка потрібна щоб не засоряти логи.
@@ -42,7 +42,7 @@ If you need to do that, you should probably implement a better way to qualify an
         } finally {
             // Відновлюєм попередній обробник наче нічого і не робили.
             restore_error_handler();]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=ignored#538259112" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=ignored#538858838" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
       <line>22</line>
@@ -60,14 +60,14 @@ If you need to do that, you should probably implement a better way to qualify an
  */
 class DenyMultiplyRun
 {]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=existing#538259110" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=existing#538858836" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
-      <line>248</line>
+      <line>253</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
-      <context start-line="243" end-line="253"><![CDATA[     */
+      <context start-line="248" end-line="258"><![CDATA[     */
     private static function getPidFromFile($pidFileResource)
     {
         // Розмір PID (int в ОС) навряд буде більший ніж розмір int в PHP.
@@ -77,15 +77,15 @@ class DenyMultiplyRun
 
 
         if (false === $pid_from_file) {
-            throw new ReadFileFail("pid-файл є, але прочитати що в ньому не вдалось.");]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=existing#538259111" rel="self" type="text/html"/>
+            throw new ReadFileFail('pid-файл є, але прочитати що в ньому не вдалось.');]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=existing#538858837" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
-      <line>470</line>
+      <line>476</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
-      <context start-line="465" end-line="475"><![CDATA[        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
+      <context start-line="471" end-line="481"><![CDATA[        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
     }
 
     /**
@@ -96,7 +96,7 @@ class DenyMultiplyRun
      * @param string $pidFilePath
      *
      * @throws DeleteFileFail]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/21?status=existing#538259108" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=existing#538858834" rel="self" type="text/html"/>
     </violation>
   </violations>
   <grades>
@@ -109,14 +109,14 @@ class DenyMultiplyRun
   <failed>false</failed>
   <grade><![CDATA[silver]]></grade>
   <next-grade><![CDATA[gold]]></next-grade>
-  <begin-at><![CDATA[2017-07-19T20:50:19+0200]]></begin-at>
-  <end-at><![CDATA[2017-07-19T20:50:39+0200]]></end-at>
+  <begin-at><![CDATA[2017-07-21T16:55:03+0200]]></begin-at>
+  <end-at><![CDATA[2017-07-21T16:55:22+0200]]></end-at>
   <duration>1</duration>
-  <number>21</number>
+  <number>35</number>
   <altered>false</altered>
   <remediation-cost>12</remediation-cost>
   <nb-violations>3</nb-violations>
-  <reference><![CDATA[c0b7425cdbe3a385bdd913c2ec0a5d93e1737c65]]></reference>
+  <reference><![CDATA[48f1e3de6a195da2e07b001f16a2e97ddc02ac14]]></reference>
   <configuration>
     <ignored-branches>
       <branch><![CDATA[gh-pages]]></branch>
@@ -181,6 +181,20 @@ class DenyMultiplyRun
     <env/>
   </configuration>
   <previous-analyses-references>
+    <analysis-reference number="37">99c859402a1b64affc063c1c86ebc181a977f997</analysis-reference>
+    <analysis-reference number="36">0e4284a1227f9b7f1a5add336967d0040f133471</analysis-reference>
+    <analysis-reference number="35">48f1e3de6a195da2e07b001f16a2e97ddc02ac14</analysis-reference>
+    <analysis-reference number="34">cafb7aa2207c9c984e3c859cc5e2f7c8669c7c54</analysis-reference>
+    <analysis-reference number="33">75f4e022a56e1b986b9d8e0b186aa8914ca70b15</analysis-reference>
+    <analysis-reference number="32">c3b2dfabe4e6680523a70fe8e82a09bd04037012</analysis-reference>
+    <analysis-reference number="31">1de4c72fb6a64ac8b6e8e00f6f6b35ebfe1df3a5</analysis-reference>
+    <analysis-reference number="30">be0cf1f666f5029502ca1483af58e173a04e6e34</analysis-reference>
+    <analysis-reference number="29">756510558273bdba7b7a4f5457f96025806f9714</analysis-reference>
+    <analysis-reference number="28">e70857f78d4517e8cca16957ebe59bbdf791f93b</analysis-reference>
+    <analysis-reference number="27">9409214aa4aa139589ef6bdcc05ec6ce352390e1</analysis-reference>
+    <analysis-reference number="26">f8d21bf7d2b22e130edaa9486d81ce21c05dc9bd</analysis-reference>
+    <analysis-reference number="25">bf151ba66e589d74ff9e388792521ed5b89c05f0</analysis-reference>
+    <analysis-reference number="24">b39e3196eb0ecc7e46a3aa56638fc343cae3b7cb</analysis-reference>
     <analysis-reference number="23">72bce4407dc20e2c0c65544f0ff7e961e47f577e</analysis-reference>
     <analysis-reference number="22">ea1e8259611e56401ef82ea6a3f108878e3f30b6</analysis-reference>
     <analysis-reference number="21">c0b7425cdbe3a385bdd913c2ec0a5d93e1737c65</analysis-reference>

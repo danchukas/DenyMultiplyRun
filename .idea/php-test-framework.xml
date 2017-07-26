@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PhpTestFrameworkVersionCache">
     <tools_cache>
+      <tool tool_name="Behat">
+        <cache>
+          <versions>
+            <info id="Local" version="3.3" />
+          </versions>
+        </cache>
+      </tool>
       <tool tool_name="PHPUnit">
         <cache>
           <versions>

@@ -6,7 +6,7 @@ declare(strict_types = 1);
  * Date: 2017-06-30 01:14
  */
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 
 require __DIR__ . '/PidFileTestCase.php';
 

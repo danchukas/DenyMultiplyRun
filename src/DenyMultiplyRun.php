@@ -3,12 +3,9 @@ declare(strict_types = 1);
 
 namespace DanchukAS\DenyMultiplyRun;
 
-use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail;
 use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\FileExisted;
-use DanchukAS\DenyMultiplyRun\Exception\LockFileFail;
-use DanchukAS\DenyMultiplyRun\Exception\OpenFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax;
 use DanchukAS\DenyMultiplyRun\Exception\PidFileEmpty;
 use DanchukAS\DenyMultiplyRun\Exception\PidLessMin;
@@ -25,12 +22,7 @@ use DanchukAS\DenyMultiplyRun\Exception\ReadFileFail;
  */
 class DenyMultiplyRun
 {
-    /**
-     * Для перехвата помилок що не кидають ексепшини.
-     *
-     * @var \Throwable
-     */
-    private static $lastError;
+
 
     /**
      * @var int
@@ -63,143 +55,27 @@ class DenyMultiplyRun
      */
     public static function setPidFile(string $pidFilePath)
     {
-        self::preparePidDir($pidFilePath);
+        File::prepareDir($pidFilePath);
 
         try {
-            $file_resource = self::createPidFile($pidFilePath);
+            $file_resource = File::createPidFile($pidFilePath);
             $pid_file_existed = false;
         } catch (FileExisted $exception) {
-            $file_resource = self::openPidFile($pidFilePath);
+            $file_resource = File::openFile($pidFilePath, 'rb+');
             $pid_file_existed = true;
         }
 
-        self::lockPidFile($file_resource);
+        File::lockPidFile($file_resource);
 
         try {
             self::safeSetPidIntoFile($pid_file_existed, $file_resource);
         } finally {
-            self::safeClosePidFile($file_resource);
+            File::safeCloseFile($file_resource);
         }
     }
 
-    /**
-     * @param string $pidFilePath
-     *
-     * @throws \Exception
-     */
-    private static function preparePidDir($pidFilePath)
-    {
-        $pid_dir = \dirname($pidFilePath);
 
-        /** @noinspection MkdirRaceConditionInspection */
-        if ('' !== $pid_dir
-            && !\is_dir($pid_dir)
-            && !\mkdir($pid_dir, 0777, true)
-        ) {
-            throw new \RuntimeException('Директорія відсутня і неможливо створити: ' . $pid_dir);
-        }
-    }
 
-    /**
-     * @param string $pidFilePath
-     * @return resource
-     * @throws FileExisted
-     * @throws \Exception
-     */
-    private static function createPidFile($pidFilePath)
-    {
-        // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
-        // помилку в записує в self::$lastError
-        self::startErrorHandle();
-
-        // собачка потрібна щоб не засоряти логи.
-        /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        $pid_file_handle = @fopen($pidFilePath, 'xb');
-
-        // Відновлюєм попередній обробник наче нічого і не робили.
-        restore_error_handler();
-
-        // файл не створений. сталась помилка
-        if (null !== self::$lastError) {
-            self::createPidFileFailed($pidFilePath);
-        }
-
-        // файл створений успішно.
-        return $pid_file_handle;
-    }
-
-    private static function startErrorHandle()
-    {
-        set_error_handler([__CLASS__, 'errorHandle']);
-
-        self::$lastError = null;
-    }
-
-    /**
-     * @param $pidFilePath
-     * @throws FileExisted
-     */
-    private static function createPidFileFailed($pidFilePath)
-    {
-// Файла і нема і не створився - повідомляєм про несправність проекта.
-        if (!is_file($pidFilePath)) {
-            throw new self::$lastError;
-        }
-
-        // Файл вже існує, тому не створився.
-        throw new FileExisted($pidFilePath);
-    }
-
-    /**
-     * @param string $pidFilePath
-     * @return resource
-     * @throws \Exception
-     */
-    private static function openPidFile($pidFilePath)
-    {
-        self::startErrorHandle();
-        try {
-            /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $pid_file_handle = @fopen($pidFilePath, 'rb+');
-        } catch (\Throwable $error) {
-            self::$lastError = $error;
-        } finally {
-            restore_error_handler();
-        }
-
-        if (null !== self::$lastError) {
-            throw new OpenFileFail((string) self::$lastError);
-        }
-
-        /** @noinspection PhpUndefinedVariableInspection */
-        return $pid_file_handle;
-    }
-
-    /**
-     * @param $pidFileResource
-     *
-     * @throws \Exception
-     */
-    private static function lockPidFile($pidFileResource)
-    {
-        $locked = flock($pidFileResource, LOCK_EX | LOCK_NB);
-        if (false === $locked) {
-            $error = self::$lastError;
-
-            // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
-            // помилку в записує в self::$lastError
-            self::startErrorHandle();
-
-            // собачка потрібна щоб не засоряти логи.
-            /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $resource_data = @stream_get_meta_data($pidFileResource);
-
-            // Відновлюєм попередній обробник наче нічого і не робили.
-            restore_error_handler();
-
-            throw new LockFileFail($resource_data['uri'] . ' - ' . $error);
-        }
-    }
 
     /**
      * @param $pid_file_existed
@@ -233,12 +109,13 @@ class DenyMultiplyRun
             self::$prevPid = self::getPidFromFile($file_resource);
             self::pidNoExisting(self::$prevPid);
         } catch (PidFileEmpty $exception) {
-            // if file was once empty is not critical.
-            // It was after crash daemon.
-            // There are signal for admin/developer.
-            trigger_error((string)$exception);
+            //@todo when add Debug mode fix
+//            // if file was once empty is not critical.
+//            // It was after crash daemon.
+//            // There are signal for admin/developer.
+//            trigger_error((string)$exception);
         }
-        self::truncatePidFile($file_resource);
+        File::truncateFile($file_resource);
     }
 
     /**
@@ -275,7 +152,7 @@ class DenyMultiplyRun
         self::pidIsNoEmpty($pid_from_file);
 
         $pid_int = (int) $pid_from_file;
-
+        //@todo when add Debug mode fix check
         // verify converting. (PHP_MAX_INT)
         // verify PID in file is right (something else instead ciphers).
         if ("{$pid_int}" !== $pid_from_file) {
@@ -308,6 +185,7 @@ class DenyMultiplyRun
      */
     private static function pidIsPossible($pid_int)
     {
+        //@todo when add Debug mode fix check
         if ($pid_int < 0) {
             $message = "PID in file has unavailable value: $pid_int. PID must be no negative.";
             throw new PidLessMin($message);
@@ -345,23 +223,7 @@ class DenyMultiplyRun
         }
     }
 
-    /**
-     * @param $pidFileResource
-     *
-     * @throws \Exception
-     */
-    private static function truncatePidFile($pidFileResource)
-    {
-        $truncated = ftruncate($pidFileResource, 0);
-        if (false === $truncated) {
-            throw new \RuntimeException('не вдалось очистити pid-файл.');
-        }
 
-        $cursor_to_begin = rewind($pidFileResource);
-        if (!$cursor_to_begin) {
-            throw new \RuntimeException('не вдалось перемістити курсор на початок pid-файла.');
-        }
-    }
 
     /**
      * @param int $self_pid
@@ -375,7 +237,8 @@ class DenyMultiplyRun
         $pid_length = strlen($self_pid_str);
         $write_length = fwrite($pidFileResource, $self_pid_str, $pid_length);
         if ($write_length !== $pid_length) {
-            throw new \RuntimeException("не вдось записати pid в pid-файл. Записано $write_length байт замість $pid_length");
+            $message = "не вдось записати pid в pid-файл. Записано $write_length байт замість $pid_length";
+            throw new \RuntimeException($message);
         }
     }
 
@@ -384,92 +247,17 @@ class DenyMultiplyRun
      */
     private static function pidFileUpdated($self_pid)
     {
-        $message_reason = null === self::$prevPid
-            ? ', but file empty.'
-            : ', but process with contained ID(' . self::$prevPid . ') in it is not exist.';
-        $message = 'pid-file exist' . $message_reason
-            . ' pid-file updated with pid this process: ' . $self_pid;
-
-        trigger_error($message);
+        // @todo: maybe reference with Debug mode.
+//        $message_reason = null === self::$prevPid
+//            ? ', but file empty.'
+//            : ', but process with contained ID(' . self::$prevPid . ') in it is not exist.';
+//        $message = 'pid-file exist' . $message_reason
+//            . ' pid-file updated with pid this process: ' . $self_pid;
+//
+//        trigger_error($message);
     }
 
-    /**
-     * @param $file_resource
-     * @throws \DanchukAS\DenyMultiplyRun\Exception\CloseFileFail
-     */
-    private static function safeClosePidFile($file_resource)
-    {
-        try {
-            self::unlockPidFile($file_resource);
-        } finally {
-            self::closePidFile($file_resource);
-        }
-    }
 
-    /**
-     * @param $pidFileResource
-     */
-    private static function unlockPidFile($pidFileResource)
-    {
-        $unlocked = flock($pidFileResource, LOCK_UN | LOCK_NB);
-        if (false === $unlocked) {
-            trigger_error('не вдось розблокувати pid-файл.');
-        }
-    }
-
-    /**
-     * @param $pidFileResource
-     *
-     * @throws CloseFileFail
-     */
-    private static function closePidFile($pidFileResource)
-    {
-        // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
-        // помилку в записує в self::$lastError
-        self::startErrorHandle();
-
-        try {
-            // собачка потрібна щоб не засоряти логи.
-            /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $closed = @fclose($pidFileResource);
-        } catch (\Throwable $error) {
-            $closed = false;
-            self::$lastError = $error;
-        } finally {
-            // Відновлюєм попередній обробник наче нічого і не робили.
-            restore_error_handler();
-        }
-
-        if (false === $closed) {
-            self::closePidFileFailed($pidFileResource);
-        }
-    }
-
-    /**
-     * @param $pidFileResource
-     * @throws CloseFileFail
-     */
-    private static function closePidFileFailed($pidFileResource)
-    {
-        $file_close_error = self::$lastError;
-
-        // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
-        // помилку в записує в self::$lastError
-        self::startErrorHandle();
-
-        try {
-            // собачка потрібна щоб не засоряти логи.
-            /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $resource_data = @stream_get_meta_data($pidFileResource);
-        } catch (\Throwable $error) {
-            $resource_data = ['uri' => ''];
-        } finally {
-            // Відновлюєм попередній обробник наче нічого і не робили.
-            restore_error_handler();
-        }
-
-        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
-    }
 
     /**
      * Відключає встановлену заборону паралельного запуска у яких спільний $pidFilePath
@@ -482,44 +270,8 @@ class DenyMultiplyRun
      */
     public static function deletePidFile($pidFilePath)
     {
-        // перехоплювач на 1 команду, щоб в разі потреби потім дізнатись причину несправності.
-        // помилку в записує в self::$lastError
-        self::startErrorHandle();
-
-        try {
-            // собачка потрібна щоб не засоряти логи.
-            /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            @unlink($pidFilePath);
-        } catch (\Throwable $error) {
-            self::$lastError = $error;
-        } finally {
-            // Відновлюєм попередній обробник наче нічого і не робили.
-            restore_error_handler();
-        }
-
-        if (null !== self::$lastError) {
-            throw new DeleteFileFail(self::$lastError);
-        }
+        File::deleteFile($pidFilePath);
     }
 
-    /** @noinspection MoreThanThreeArgumentsInspection */
-    /**
-     * @param int $messageType
-     * @param string $messageText
-     * @param string $messageFile
-     * @param int $messageLine
-     *
-     * @return bool
-     */
-    public static function errorHandle(int $messageType, string $messageText, string $messageFile, int $messageLine)
-    {
-        // добавляємо лише інформацію яка є.
-        // все інше добавляти має обробник самого проекта.
-        $message = "[$messageType] $messageText in $messageFile on line $messageLine";
 
-        self::$lastError = new \Exception($message);
-
-        // Перехопити перехопили, кидаєм далі обробляти.
-        return false;
-    }
 }

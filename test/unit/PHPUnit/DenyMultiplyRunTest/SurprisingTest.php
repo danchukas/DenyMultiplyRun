@@ -13,6 +13,7 @@ namespace DanchukAS\DenyMultiplyRunTest;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
+use DanchukAS\DenyMultiplyRun\File;
 use DanchukAS\DenyMultiplyRun\PidFileTestCase;
 
 /**
@@ -69,7 +70,7 @@ class SurprisingTest extends PidFileTestCase
      */
     public function testLockedFileBeforeClose($badResource)
     {
-        $method = new \ReflectionMethod(DenyMultiplyRun::class, 'closePidFile');
+        $method = new \ReflectionMethod(File::class, 'closeFile');
 
         $method->setAccessible(true);
         $this->expectException(CloseFileFail::class);

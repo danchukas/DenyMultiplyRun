@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
-use PHPUnit\Framework\Assert;
 
 
 /**
- * Defines application features from the specific context.
+ * Defines application Behat from the specific context.
  */
-class FeatureContext implements Context
+class Buffer implements Context
 {
 
     public $variableList = [];
@@ -36,24 +35,10 @@ class FeatureContext implements Context
         $this->variableList[$arg1] = sys_get_temp_dir() . '/' . uniqid('vd_', true);;
     }
 
-    /**
-     * @When I run :arg1
-     */
-    public function iRun($arg1)
-    {
-        extract($this->variableList, EXTR_SKIP);
-        eval($arg1);
-
-    }
 
 
-    /**
-     * @Then file :arg2 should created with :arg1
-     */
-    public function fileShouldCreatedWith($arg1, $arg2)
-    {
-        Assert::assertStringEqualsFile($arg2, $this->variableList[$arg1]);
-    }
+
+
 
     /**
      * @Given an existed file named :arg1 with no write access
@@ -71,22 +56,29 @@ class FeatureContext implements Context
         throw new PendingException();
     }
 
+
+    /**
+     * @Given a non existed file named :arg1
+     */
+    public function aNonExistedFileNamed($arg1)
+    {
+        throw new PendingException();
+    }
+
+
+    /**
+     * @Given a non existed file as :arg1
+     */
+    public function aNonExistedFileAs2($arg1)
+    {
+        throw new PendingException();
+    }
+
     /**
      * @Given an existed file named :arg1
      */
     public function anExistedFileNamed($arg1)
     {
-        $arg1 = str_replace("$", "", $arg1);
-        $this->variableList[$arg1] = sys_get_temp_dir() . '/' . uniqid('vd_', true);;
+        throw new PendingException();
     }
-
-    /**
-     * @Then file :arg2 should updated with :arg1
-     */
-    public function fileShouldUpdatedWith($arg1, $arg2)
-    {
-        Assert::assertStringEqualsFile($arg2, $this->variableList[$arg1]);
-
-    }
-
 }

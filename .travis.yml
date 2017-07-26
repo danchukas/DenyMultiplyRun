@@ -23,8 +23,8 @@ matrix:
   allow_failures:
     - php: hhvm
 
-# next all for codecov.io
 before_install:
+  # for codecov.io
   - sudo pip install codecov
   #blackfire
   - |
@@ -48,10 +48,14 @@ before_script:
           echo "blackfire.agent_socket=unix:///tmp/blackfire.sock" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
       fi
 
-# next all for codacy.com
+
 script:
+  #codacy.com and etc...
   - php vendor/bin/phpunit
+  - vendor/bin/behat
+
 after_script:
+  # for codacy.com
   - php vendor/bin/codacycoverage clover /tmp/clover.xml
   # next all for scrutinizer-ci.com
   - wget https://scrutinizer-ci.com/ocular.phar

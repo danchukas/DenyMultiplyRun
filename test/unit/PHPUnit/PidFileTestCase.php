@@ -221,4 +221,20 @@ abstract class PidFileTestCase extends TestCase
             yield $file_name;
         }
     }
+
+    /**
+     * @return int
+     */
+    protected function getNoExistPid()
+    {
+        $no_exist_pid = 1;
+        while (++$no_exist_pid < PHP_INT_MAX) {
+            if (false === posix_kill($no_exist_pid, 0)
+                && 3 === posix_get_last_error()
+            ) {
+                break;
+            }
+        }
+        return $no_exist_pid;
+    }
 }

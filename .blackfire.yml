@@ -1,10 +1,6 @@
 tests:
-    "Pages should be fast enough":
-        path: "/.*" # run the assertions for all HTTP requests
-        assertions:
-            - "main.wall_time < 100ms" # wall clock time is less than 100ms
-
     "Commands should be fast enough":
         command: ".*" # run the assertions for all CLI commands
         assertions:
-            - "main.wall_time < 2s" # wall clock time is less than 2s
+            - "main.wall_time < 5ms" # wall clock time is less than 2s
+            - "main.peak_memory < 1M" # memory does not exceed 10mb

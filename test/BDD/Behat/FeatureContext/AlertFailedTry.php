@@ -5,7 +5,7 @@ use Behat\Behat\Context\Context;
 
 
 /**
- * Defines application features from the specific context.
+ * Defines application Behat from the specific context.
  */
 class AlertFailedTry implements Context
 {
