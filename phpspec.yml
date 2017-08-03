@@ -1,0 +1,6 @@
+suites:
+    default_suite:
+        namespace: DanchukAS\DenyMultiplyRun
+        psr4_prefix: DanchukAS\DenyMultiplyRun
+        src_path: %paths.config%/src
+        spec_path: %paths.config%

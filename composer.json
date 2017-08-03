@@ -15,14 +15,14 @@
   },
 
   "require": {
-    "php": "^7.0",
-    "phpspec/phpspec": "4.0.0"
+    "php": "^7.0"
   },
 
   "autoload-dev": {
     "psr-4": {
       "DanchukAS\\DenyMultiplyTest\\": "test/unit/PHPUnit",
-      "DanchukAS\\Mock\\": "test/unit/PHPUnit/Mock"
+      "DanchukAS\\Mock\\": "test/unit/PHPUnit/Mock",
+      "spec\\DanchukAS\\DenyMultiplyRun\\": "spec"
     }
   },
 
@@ -30,7 +30,8 @@
     "phpunit/PHPUnit": "~6.2",
     "behat/behat": "~3.3",
     "codacy/coverage": "~1.1",
-    "phpmetrics/phpmetrics": "~2.2"
+    "phpmetrics/phpmetrics": "~2.2",
+    "phpspec/phpspec": "~4.0"
   },
   "config": {
     "preferred-install": {
