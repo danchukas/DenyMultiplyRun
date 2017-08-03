@@ -6,8 +6,11 @@ declare(strict_types=1);
  * Date: 2017-07-17 21:51
  */
 
-namespace DanchukAS\DenyMultiplyRun;
+namespace DanchukAS\Mock;
 
+use DanchukAS\DenyMultiplyRun\Exception\ConvertPidFail;
+use DanchukAS\DenyMultiplyRun\Exception\LockFileFail;
+use DanchukAS\DenyMultiplyRun\Exception\ProcessExisted;
 use DanchukAS\Mock\TypeList\NotStringList;
 use PHPUnit\Framework\TestCase;
 
@@ -23,6 +26,18 @@ abstract class PidFileTestCase extends TestCase
     protected static $existFileName;
 
     private static $tempFileList = [];
+
+    private static $saveUntilEnd = [];
+
+    /**
+     * @return bool|string
+     */
+    public static function generateTempFile()
+    {
+        $tmp_file_res = \tmpfile();
+        self::$saveUntilEnd[] = $tmp_file_res;
+        return \stream_get_meta_data($tmp_file_res)['uri'];
+    }
 
     public function setUp()
     {
@@ -45,7 +60,7 @@ abstract class PidFileTestCase extends TestCase
      */
     private static function newTempFileName()
     {
-        $file_name = tempnam(sys_get_temp_dir(), 'vo_');
+        $file_name = self::generateTempFile();
         self::$tempFileList[] = $file_name;
         return $file_name;
     }
@@ -166,15 +181,15 @@ abstract class PidFileTestCase extends TestCase
             $param = [
                 'lockedPidFile' => [
                     self::lockedPidFile()
-                    , Exception\LockFileFail::class
+                    , LockFileFail::class
                 ]
                 , 'fileHasExistPid' => [
                     self::fileWithExistedPid()
-                    , Exception\ProcessExisted::class
+                    , ProcessExisted::class
                 ]
                 , '' => [
                     self::noValidPidFile()
-                    , Exception\ConvertPidFail::class
+                    , ConvertPidFail::class
                 ]
             ];
         }

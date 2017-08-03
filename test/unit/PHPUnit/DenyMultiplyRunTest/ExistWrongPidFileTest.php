@@ -11,7 +11,7 @@ namespace DanchukAS\DenyMultiplyRunTest;
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use DanchukAS\DenyMultiplyRun\Exception\OpenFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\PidBiggerMax;
-use DanchukAS\DenyMultiplyRun\PidFileTestCase;
+use DanchukAS\Mock\PidFileTestCase;
 
 /** @noinspection PhpClassNamingConventionInspection */
 

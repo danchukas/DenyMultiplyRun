@@ -20,13 +20,13 @@
 
   "autoload-dev": {
     "psr-4": {
-      "DanchukAS\\DenyMultiplyTest\\": "test/DenyMultiplyTest",
+      "DanchukAS\\DenyMultiplyTest\\": "test/unit/PHPUnit",
       "DanchukAS\\Mock\\": "test/unit/PHPUnit/Mock"
     }
   },
 
   "require-dev": {
-    "phpunit/PHPUnit": "~6.2@stable",
+    "phpunit/PHPUnit": "~6.2",
     "behat/behat": "~3.3",
     "codacy/coverage": "~1.1",
     "phpmetrics/phpmetrics": "~2.2"

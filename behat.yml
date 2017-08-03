@@ -12,6 +12,6 @@ default:
 #      paths:    [ %paths.base%/test/BDD/Behat/Gherkin/alert_failed_try.feature ]
 #      contexts: [ AlertFailedTry ]
 
-#    main:
-#      paths:    [ %paths.base%/test/BDD/Gherkin/main.feature ]
-#      contexts: [ Main ]
+    main:
+      paths:    [ %paths.base%/test/BDD/Gherkin/main.feature ]
+      contexts: [ Main ]

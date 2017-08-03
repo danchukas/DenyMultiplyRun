@@ -14,7 +14,7 @@ use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
 use DanchukAS\DenyMultiplyRun\Exception\CloseFileFail;
 use DanchukAS\DenyMultiplyRun\Exception\DeleteFileFail;
 use DanchukAS\DenyMultiplyRun\File;
-use DanchukAS\DenyMultiplyRun\PidFileTestCase;
+use DanchukAS\Mock\PidFileTestCase;
 
 /**
  * Class SurprisingTest

@@ -1,37 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysis>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
   <link href="https://insight.sensiolabs.com/api/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8" rel="project" type="application/vnd.com.sensiolabs.insight+xml"/>
-  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35" rel="self" type="text/html"/>
+  <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43" rel="self" type="text/html"/>
   <status><![CDATA[finished]]></status>
   <violations>
-    <violation severity="minor" category="bugrisk" ignored="true">
-      <line>195</line>
+    <violation severity="info" category="codestyle" ignored="false">
+      <line>54</line>
+      <resource><![CDATA[ErrorHandler.php]]></resource>
+      <title>Text files should end with a newline character</title>
+      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
+      <context start-line="49" end-line="54"><![CDATA[        // Перехопити перехопили, кидаєм далі обробляти.
+        return false;
+    }
+
+
+}]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761468" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="info" category="codestyle" ignored="false">
+      <line>273</line>
+      <resource><![CDATA[File.php]]></resource>
+      <title>Text files should end with a newline character</title>
+      <message><![CDATA[This file ends with no newline character. It won't render properly on a terminal, and it's considered a bad practice. Add a simple line feed as the last character to fix it.]]></message>
+      <context start-line="268" end-line="273"><![CDATA[        if (!$cursor_to_begin) {
+            throw new \RuntimeException('не вдалось перемістити курсор на початок pid-файла.');
+        }
+    }
+
+}]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761458" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="deadcode" ignored="false">
+      <line>116</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Commented code should not be committed</title>
+      <message><![CDATA[Commented out code reduces readability and lowers the code confidence for other developers. If it's common usage for debug, it should not be committed. Using a version control system, such code can be safely removed.]]></message>
+      <context start-line="111" end-line="121"><![CDATA[        } catch (PidFileEmpty $exception) {
+            //@todo when add Debug mode fix
+//            // if file was once empty is not critical.
+//            // It was after crash daemon.
+//            // There are signal for admin/developer.
+//            trigger_error((string)$exception);
+        }
+        File::truncateFile($file_resource);
+    }
+
+    /**]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761461" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="deadcode" ignored="false">
+      <line>257</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Commented code should not be committed</title>
+      <message><![CDATA[Commented out code reduces readability and lowers the code confidence for other developers. If it's common usage for debug, it should not be committed. Using a version control system, such code can be safely removed.]]></message>
+      <context start-line="252" end-line="262"><![CDATA[//            ? ', but file empty.'
+//            : ', but process with contained ID(' . self::$prevPid . ') in it is not exist.';
+//        $message = 'pid-file exist' . $message_reason
+//            . ' pid-file updated with pid this process: ' . $self_pid;
+//
+//        trigger_error($message);
+    }
+
+
+
+    /**]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761462" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="bugrisk" ignored="false">
+      <line>41</line>
+      <resource><![CDATA[File.php]]></resource>
       <title>Error silenced by the at sign (@)</title>
-      <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
+      <message><![CDATA[Adding "@" before stream_get_meta_data($file_resource) prevents warning and errors during this function execution from being displayed.
 If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
-      <context start-line="190" end-line="200"><![CDATA[            // помилку в записує в self::$lastError
-            self::startErrorHandle();
+      <context start-line="36" end-line="46"><![CDATA[            // помилку в записує в ErrorHandler::$lastError
+            ErrorHandler::startErrorHandle();
 
             // собачка потрібна щоб не засоряти логи.
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $resource_data = @stream_get_meta_data($pidFileResource);
+            $resource_data = @stream_get_meta_data($file_resource);
 
             // Відновлюєм попередній обробник наче нічого і не робили.
             restore_error_handler();
 
             throw new LockFileFail($resource_data['uri'] . ' - ' . $error);]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=ignored#538858835" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761459" rel="self" type="text/html"/>
     </violation>
-    <violation severity="minor" category="bugrisk" ignored="true">
-      <line>463</line>
-      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+    <violation severity="minor" category="bugrisk" ignored="false">
+      <line>119</line>
+      <resource><![CDATA[File.php]]></resource>
       <title>Error silenced by the at sign (@)</title>
       <message><![CDATA[Adding "@" before stream_get_meta_data($pidFileResource) prevents warning and errors during this function execution from being displayed.
 If you need to do that, you should probably implement a better way to qualify and recover from errors, using Exceptions.]]></message>
-      <context start-line="458" end-line="468"><![CDATA[        self::startErrorHandle();
+      <context start-line="114" end-line="124"><![CDATA[        ErrorHandler::startErrorHandle();
 
         try {
             // собачка потрібна щоб не засоряти логи.
@@ -42,14 +104,14 @@ If you need to do that, you should probably implement a better way to qualify an
         } finally {
             // Відновлюєм попередній обробник наче нічого і не робили.
             restore_error_handler();]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=ignored#538858838" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761465" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
-      <line>22</line>
+      <line>19</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
-      <context start-line="17" end-line="27"><![CDATA[
+      <context start-line="14" end-line="24"><![CDATA[
 /**
  * Class denyMultiplyRun
  * Забороняє паралельний запуск скрипта
@@ -60,14 +122,32 @@ If you need to do that, you should probably implement a better way to qualify an
  */
 class DenyMultiplyRun
 {]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=existing#538858836" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761463" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
-      <line>253</line>
+      <line>112</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
-      <context start-line="248" end-line="258"><![CDATA[     */
+      <context start-line="107" end-line="117"><![CDATA[
+        try {
+            self::$prevPid = self::getPidFromFile($file_resource);
+            self::pidNoExisting(self::$prevPid);
+        } catch (PidFileEmpty $exception) {
+            //@todo when add Debug mode fix
+//            // if file was once empty is not critical.
+//            // It was after crash daemon.
+//            // There are signal for admin/developer.
+//            trigger_error((string)$exception);
+        }]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761466" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>130</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="125" end-line="135"><![CDATA[     */
     private static function getPidFromFile($pidFileResource)
     {
         // Розмір PID (int в ОС) навряд буде більший ніж розмір int в PHP.
@@ -78,15 +158,69 @@ class DenyMultiplyRun
 
         if (false === $pid_from_file) {
             throw new ReadFileFail('pid-файл є, але прочитати що в ньому не вдалось.');]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=existing#538858837" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761467" rel="self" type="text/html"/>
     </violation>
     <violation severity="minor" category="architecture" ignored="false">
-      <line>476</line>
+      <line>155</line>
       <resource><![CDATA[DenyMultiplyRun.php]]></resource>
       <title>Source code should not contain TODO comments</title>
       <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
-      <context start-line="471" end-line="481"><![CDATA[        throw new CloseFileFail($resource_data['uri'], 457575, $file_close_error);
-    }
+      <context start-line="150" end-line="160"><![CDATA[    {
+        // На випадок коли станеться виліт скрипта після створення файла і до запису ІД.
+        self::pidIsNoEmpty($pid_from_file);
+
+        $pid_int = (int) $pid_from_file;
+        //@todo when add Debug mode fix check
+        // verify converting. (PHP_MAX_INT)
+        // verify PID in file is right (something else instead ciphers).
+        if ("{$pid_int}" !== $pid_from_file) {
+            $message = "pid_int({$pid_int}) !== pid_string($pid_from_file)"
+                . ", or pid_string($pid_from_file) is not Process ID)";]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761460" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>188</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="183" end-line="193"><![CDATA[     * @throws PidBiggerMax
+     * @throws PidLessMin
+     */
+    private static function pidIsPossible($pid_int)
+    {
+        //@todo when add Debug mode fix check
+        if ($pid_int < 0) {
+            $message = "PID in file has unavailable value: $pid_int. PID must be no negative.";
+            throw new PidLessMin($message);
+        }
+]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761457" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>250</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="245" end-line="255"><![CDATA[    /**
+     * @param $self_pid
+     */
+    private static function pidFileUpdated($self_pid)
+    {
+        // @todo: maybe reference with Debug mode.
+//        $message_reason = null === self::$prevPid
+//            ? ', but file empty.'
+//            : ', but process with contained ID(' . self::$prevPid . ') in it is not exist.';
+//        $message = 'pid-file exist' . $message_reason
+//            . ' pid-file updated with pid this process: ' . $self_pid;]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761455" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>264</line>
+      <resource><![CDATA[DenyMultiplyRun.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="259" end-line="269"><![CDATA[
+
 
     /**
      * Відключає встановлену заборону паралельного запуска у яких спільний $pidFilePath
@@ -96,7 +230,25 @@ class DenyMultiplyRun
      * @param string $pidFilePath
      *
      * @throws DeleteFileFail]]></context>
-      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/35?status=existing#538858834" rel="self" type="text/html"/>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761456" rel="self" type="text/html"/>
+    </violation>
+    <violation severity="minor" category="architecture" ignored="false">
+      <line>133</line>
+      <resource><![CDATA[File.php]]></resource>
+      <title>Source code should not contain TODO comments</title>
+      <message><![CDATA[TODO comments are left in the code when a feature (or a bug) isn't completely developed (or fixed). You should complete the implementation and remove the comment.]]></message>
+      <context start-line="128" end-line="138"><![CDATA[    }
+
+
+    /**
+     * Відключає встановлену заборону паралельного запуска у яких спільний $pidFilePath
+     * @todo добавити перевірку що цей файл ще для цього процеса,
+     * може цей файл вже був видалений вручну, і створений іншим процесом.
+     *
+     * @param string $filePath
+     *
+     * @throws DeleteFileFail]]></context>
+      <link href="https://insight.sensiolabs.com/projects/5bcced71-d02e-40b8-bf9c-0cbff1f473e8/analyses/43?status=existing#539761464" rel="self" type="text/html"/>
     </violation>
   </violations>
   <grades>
@@ -109,14 +261,14 @@ class DenyMultiplyRun
   <failed>false</failed>
   <grade><![CDATA[silver]]></grade>
   <next-grade><![CDATA[gold]]></next-grade>
-  <begin-at><![CDATA[2017-07-21T16:55:03+0200]]></begin-at>
-  <end-at><![CDATA[2017-07-21T16:55:22+0200]]></end-at>
+  <begin-at><![CDATA[2017-07-26T14:07:19+0200]]></begin-at>
+  <end-at><![CDATA[2017-07-26T14:07:37+0200]]></end-at>
   <duration>1</duration>
-  <number>35</number>
+  <number>43</number>
   <altered>false</altered>
-  <remediation-cost>12</remediation-cost>
-  <nb-violations>3</nb-violations>
-  <reference><![CDATA[48f1e3de6a195da2e07b001f16a2e97ddc02ac14]]></reference>
+  <remediation-cost>41.5</remediation-cost>
+  <nb-violations>14</nb-violations>
+  <reference><![CDATA[a2de90313750f5dc59fdb30f2e7acb58bc3dc2db]]></reference>
   <configuration>
     <ignored-branches>
       <branch><![CDATA[gh-pages]]></branch>
@@ -181,6 +333,13 @@ class DenyMultiplyRun
     <env/>
   </configuration>
   <previous-analyses-references>
+    <analysis-reference number="44">8ba67ccd24b71873fb77b66f1ff5d806cd5e90c1</analysis-reference>
+    <analysis-reference number="43">a2de90313750f5dc59fdb30f2e7acb58bc3dc2db</analysis-reference>
+    <analysis-reference number="42">4d523b710dad509cede879f4fe248367aa7645d6</analysis-reference>
+    <analysis-reference number="41">92e9be9a674292fb36dc9c6a00c08087c68379a5</analysis-reference>
+    <analysis-reference number="40">b5cf688778c45252fc77dfed835d8155f477c74e</analysis-reference>
+    <analysis-reference number="39">07502ff55e5b59b6ef6e2115273777a6d4efbffc</analysis-reference>
+    <analysis-reference number="38">79a05cd876508eaa9fb9b7c4ff67a91dfd1b0924</analysis-reference>
     <analysis-reference number="37">99c859402a1b64affc063c1c86ebc181a977f997</analysis-reference>
     <analysis-reference number="36">0e4284a1227f9b7f1a5add336967d0040f133471</analysis-reference>
     <analysis-reference number="35">48f1e3de6a195da2e07b001f16a2e97ddc02ac14</analysis-reference>
@@ -219,7 +378,7 @@ class DenyMultiplyRun
     <analysis-reference number="1">3a9fd35f45babcbd262680df1860cc0e64c26a5f</analysis-reference>
   </previous-analyses-references>
   <nb-violations-new>0</nb-violations-new>
-  <nb-violations-existing>3</nb-violations-existing>
+  <nb-violations-existing>14</nb-violations-existing>
   <nb-violations-fixed>0</nb-violations-fixed>
-  <nb-violations-ignored>2</nb-violations-ignored>
+  <nb-violations-ignored>0</nb-violations-ignored>
 </analysis>

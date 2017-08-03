@@ -9,7 +9,7 @@ declare(strict_types = 1);
 namespace DanchukAS\DenyMultiplyRunTest;
 
 use DanchukAS\DenyMultiplyRun\DenyMultiplyRun;
-use DanchukAS\DenyMultiplyRun\PidFileTestCase;
+use DanchukAS\Mock\PidFileTestCase;
 
 /**
  * Class UseTest

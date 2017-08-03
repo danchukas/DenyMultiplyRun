@@ -25,9 +25,12 @@ declare(strict_types=1);
 //    DenyMultiplyRun::deletePidFile($pid_file);
 //if (!is_file($pid_file)) {
 
-$r = fopen("/tmp/run/some_job_or_daemon.pid", 'x');
-fwrite($r, (string)getmypid());
-fclose($r);
-//}
+//$r = fopen("/tmp/run/some_job_or_daemon.pid", 'x');
+//fwrite($r, (string)getmypid());
+//fclose($r);
+////}
+//
+//unlink("/tmp/run/some_job_or_daemon.pid");
 
-unlink("/tmp/run/some_job_or_daemon.pid");
+
+var_dump(stream_get_meta_data(tmpfile()));
