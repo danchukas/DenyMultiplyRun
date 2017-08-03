@@ -27,28 +27,80 @@ class ErrorHandler
         \set_error_handler([__CLASS__, 'errorHandle']);
 
         self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+        \set_error_handler([__CLASS__, 'errorHandle']);
+
+        self::$lastError = null;
+
     }
-
-    /** @noinspection MoreThanThreeArgumentsInspection */
-    /**
-     * @param int $messageType
-     * @param string $messageText
-     * @param string $messageFile
-     * @param int $messageLine
-     *
-     * @return bool
-     */
-    public static function errorHandle(int $messageType, string $messageText, string $messageFile, int $messageLine)
-    {
-        // добавляємо лише інформацію яка є.
-        // все інше добавляти має обробник самого проекта.
-        $message = "[$messageType] $messageText in $messageFile on line $messageLine";
-
-        self::$lastError = new \LogicException($message);
-
-        // Перехопити перехопили, кидаєм далі обробляти.
-        return false;
-    }
+//
+//    /** @noinspection MoreThanThreeArgumentsInspection */
+//    /**
+//     * @param int $messageType
+//     * @param string $messageText
+//     * @param string $messageFile
+//     * @param int $messageLine
+//     *
+//     * @return bool
+//     */
+//    public static function errorHandle(int $messageType, string $messageText, string $messageFile, int $messageLine)
+//    {
+//        // добавляємо лише інформацію яка є.
+//        // все інше добавляти має обробник самого проекта.
+//        $message = "[$messageType] $messageText in $messageFile on line $messageLine";
+//
+//        self::$lastError = new \LogicException($message);
+//
+//        // Перехопити перехопили, кидаєм далі обробляти.
+//        return false;
+//    }
 
 
 }
