@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '[DenyMultiplyRun] - .../test/BDD/Behat/FeatureContext/Main.php'" />
-    <option name="defaultScopeName" value="File '[DenyMultiplyRun] - .../test/BDD/Behat/FeatureContext/Main.php'" />
-    <option name="SEARCH_SCOPE" value="File '[DenyMultiplyRun] - .../test/BDD/Behat/FeatureContext/Main.php'" />
+    <option name="customScope" value="Project 'linki.api.com'" />
+    <option name="defaultScopeName" value="Project 'linki.api.com'" />
+    <option name="SEARCH_SCOPE" value="Project 'linki.api.com'" />
     <recentFileMasks>
       <mask>*.php</mask>
     </recentFileMasks>
