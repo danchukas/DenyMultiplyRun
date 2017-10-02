@@ -2,5 +2,15 @@
   <component name="SettingsState">
     <option name="host" value="https://gitlab.com/" />
     <option name="token" value="L6gZdwV_zgfTxNmy25dH" />
+    <option name="projects">
+      <list>
+        <ProjectDto>
+          <option name="httpUrl" value="https://gitlab.com/anatoliy.danchuk.softimus/links.git" />
+          <option name="name" value="links" />
+          <option name="namespace" value="anatoliy.danchuk.softimus" />
+          <option name="sshUrl" value="git@gitlab.com:anatoliy.danchuk.softimus/links.git" />
+        </ProjectDto>
+      </list>
+    </option>
   </component>
 </application>
