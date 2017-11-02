@@ -5,6 +5,8 @@
     <option name="SEARCH_SCOPE" value="All Places" />
     <recentFileMasks>
       <mask>*.php</mask>
+      <mask>*.s</mask>
+      <mask>*.sh</mask>
     </recentFileMasks>
   </component>
 </application>
