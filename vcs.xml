@@ -14,9 +14,17 @@
           <option name="url" value="http://gitlab.com" />
           <option name="userName" value="anatoliy.danchuk.softimus@gmail.com" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/danchukas/Behat.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Behat/Behat.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="$USER_HOME$/Documents/repo" />
+    <option name="cloneParentDir" value="/data/repo/github" />
   </component>
   <component name="VcsApplicationSettings">
     <option name="PATCH_STORAGE_LOCATION" value="$USER_HOME$/Documents/repo/github/DenyMultiplyRun" />
