@@ -1,33 +1,19 @@
 <application>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter home="/usr/bin/php7.0" id="6cccd5f0-4e75-4b51-883a-1f8219eae924" name="PHP 7" debugger_id="php.debugger.XDebug" />
+      <interpreter home="/usr/bin/php7.1" id="6cccd5f0-4e75-4b51-883a-1f8219eae924" name="PHP 7" debugger_id="php.debugger.XDebug" />
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
       <interpreter name="PHP 7">
-        <phpinfo binary_type="PHP" php_cli="/usr/bin/php7.0" path_separator=":" version="7.0.22-2+ubuntu16.04.1+deb.sury.org+4">
-          <additional_php_ini>/etc/php/7.0/cli/conf.d/10-mysqlnd.ini, /etc/php/7.0/cli/conf.d/10-opcache.ini, /etc/php/7.0/cli/conf.d/10-pdo.ini, /etc/php/7.0/cli/conf.d/15-xml.ini, /etc/php/7.0/cli/conf.d/20-amqp.ini, /etc/php/7.0/cli/conf.d/20-calendar.ini, /etc/php/7.0/cli/conf.d/20-ctype.ini, /etc/php/7.0/cli/conf.d/20-curl.ini, /etc/php/7.0/cli/conf.d/20-dom.ini, /etc/php/7.0/cli/conf.d/20-exif.ini, /etc/php/7.0/cli/conf.d/20-fileinfo.ini, /etc/php/7.0/cli/conf.d/20-ftp.ini, /etc/php/7.0/cli/conf.d/20-gettext.ini, /etc/php/7.0/cli/conf.d/20-iconv.ini, /etc/php/7.0/cli/conf.d/20-json.ini, /etc/php/7.0/cli/conf.d/20-mbstring.ini, /etc/php/7.0/cli/conf.d/20-mysqli.ini, /etc/php/7.0/cli/conf.d/20-pdo_mysql.ini, /etc/php/7.0/cli/conf.d/20-phar.ini, /etc/php/7.0/cli/conf.d/20-posix.ini, /etc/php/7.0/cli/conf.d/20-readline.ini, /etc/php/7.0/cli/conf.d/20-shmop.ini, /etc/php/7.0/cli/conf.d/20-simplexml.ini, /etc/php/7.0/cli/conf.d/20-sockets.ini, /etc/php/7.0/cli/conf.d/20-sysvmsg.ini, /etc/php/7.0/cli/conf.d/20-sysvsem.ini, /etc/php/7.0/cli/conf.d/20-sysvshm.ini, /etc/php/7.0/cli/conf.d/20-tokenizer.ini, /etc/php/7.0/cli/conf.d/20-wddx.ini, /etc/php/7.0/cli/conf.d/20-xdebug.ini, /etc/php/7.0/cli/conf.d/20-xmlreader.ini, /etc/php/7.0/cli/conf.d/20-xmlwriter.ini, /etc/php/7.0/cli/conf.d/20-xsl.ini, /etc/php/7.0/cli/conf.d/90-blackfire.ini</additional_php_ini>
-          <configuration_file>/etc/php/7.0/cli/php.ini</configuration_file>
+        <phpinfo binary_type="PHP" php_cli="/usr/bin/php7.1" path_separator=":" version="7.1.11-1+ubuntu16.04.1+deb.sury.org+1">
+          <additional_php_ini>/etc/php/7.1/cli/conf.d/10-mysqlnd.ini, /etc/php/7.1/cli/conf.d/10-opcache.ini, /etc/php/7.1/cli/conf.d/10-pdo.ini, /etc/php/7.1/cli/conf.d/15-xml.ini, /etc/php/7.1/cli/conf.d/20-calendar.ini, /etc/php/7.1/cli/conf.d/20-ctype.ini, /etc/php/7.1/cli/conf.d/20-curl.ini, /etc/php/7.1/cli/conf.d/20-dom.ini, /etc/php/7.1/cli/conf.d/20-exif.ini, /etc/php/7.1/cli/conf.d/20-fileinfo.ini, /etc/php/7.1/cli/conf.d/20-ftp.ini, /etc/php/7.1/cli/conf.d/20-gettext.ini, /etc/php/7.1/cli/conf.d/20-iconv.ini, /etc/php/7.1/cli/conf.d/20-json.ini, /etc/php/7.1/cli/conf.d/20-mbstring.ini, /etc/php/7.1/cli/conf.d/20-mysqli.ini, /etc/php/7.1/cli/conf.d/20-pdo_mysql.ini, /etc/php/7.1/cli/conf.d/20-phar.ini, /etc/php/7.1/cli/conf.d/20-posix.ini, /etc/php/7.1/cli/conf.d/20-readline.ini, /etc/php/7.1/cli/conf.d/20-shmop.ini, /etc/php/7.1/cli/conf.d/20-simplexml.ini, /etc/php/7.1/cli/conf.d/20-sockets.ini, /etc/php/7.1/cli/conf.d/20-sysvmsg.ini, /etc/php/7.1/cli/conf.d/20-sysvsem.ini, /etc/php/7.1/cli/conf.d/20-sysvshm.ini, /etc/php/7.1/cli/conf.d/20-tokenizer.ini, /etc/php/7.1/cli/conf.d/20-wddx.ini, /etc/php/7.1/cli/conf.d/20-xdebug.ini, /etc/php/7.1/cli/conf.d/20-xmlreader.ini, /etc/php/7.1/cli/conf.d/20-xmlwriter.ini, /etc/php/7.1/cli/conf.d/20-xsl.ini, /etc/php/7.1/cli/conf.d/20-zip.ini, /etc/php/7.1/cli/conf.d/90-blackfire.ini</additional_php_ini>
+          <configuration_file>/etc/php/7.1/cli/php.ini</configuration_file>
           <configuration_options>
             <configuration_option name="SMTP" value="localhost" />
             <configuration_option name="allow_url_fopen" value="1" />
             <configuration_option name="allow_url_include" value="" />
-            <configuration_option name="amqp.auto_ack" value="0" />
-            <configuration_option name="amqp.channel_max" value="256" />
-            <configuration_option name="amqp.connect_timeout" value="0" />
-            <configuration_option name="amqp.frame_max" value="131072" />
-            <configuration_option name="amqp.heartbeat" value="0" />
-            <configuration_option name="amqp.host" value="localhost" />
-            <configuration_option name="amqp.login" value="guest" />
-            <configuration_option name="amqp.password" value="guest" />
-            <configuration_option name="amqp.port" value="5672" />
-            <configuration_option name="amqp.prefetch_count" value="3" />
-            <configuration_option name="amqp.read_timeout" value="0" />
-            <configuration_option name="amqp.timeout" value="" />
-            <configuration_option name="amqp.vhost" value="/" />
-            <configuration_option name="amqp.write_timeout" value="0" />
             <configuration_option name="arg_separator.input" value="&amp;" />
             <configuration_option name="arg_separator.output" value="&amp;" />
             <configuration_option name="assert.active" value="1" />
@@ -79,13 +65,13 @@
             <configuration_option name="exif.decode_unicode_motorola" value="UCS-2BE" />
             <configuration_option name="exif.encode_jis" value="" />
             <configuration_option name="exif.encode_unicode" value="ISO-8859-15" />
-            <configuration_option name="exit_on_timeout" value="0" />
             <configuration_option name="expose_php" value="1" />
-            <configuration_option name="extension_dir" value="/usr/lib/php/20151012" />
+            <configuration_option name="extension_dir" value="/usr/lib/php/20160303" />
             <configuration_option name="file_uploads" value="1" />
             <configuration_option name="filter.default" value="unsafe_raw" />
             <configuration_option name="filter.default_flags" value="" />
             <configuration_option name="from" value="" />
+            <configuration_option name="hard_timeout" value="2" />
             <configuration_option name="highlight.comment" value="#FF8000" />
             <configuration_option name="highlight.default" value="#0000BB" />
             <configuration_option name="highlight.html" value="#000000" />
@@ -160,13 +146,14 @@
             <configuration_option name="opcache.force_restart_timeout" value="180" />
             <configuration_option name="opcache.huge_code_pages" value="0" />
             <configuration_option name="opcache.inherited_hack" value="1" />
-            <configuration_option name="opcache.interned_strings_buffer" value="4" />
+            <configuration_option name="opcache.interned_strings_buffer" value="8" />
             <configuration_option name="opcache.lockfile_path" value="/tmp" />
             <configuration_option name="opcache.log_verbosity_level" value="1" />
-            <configuration_option name="opcache.max_accelerated_files" value="2000" />
+            <configuration_option name="opcache.max_accelerated_files" value="10000" />
             <configuration_option name="opcache.max_file_size" value="0" />
             <configuration_option name="opcache.max_wasted_percentage" value="5" />
-            <configuration_option name="opcache.memory_consumption" value="64" />
+            <configuration_option name="opcache.memory_consumption" value="128" />
+            <configuration_option name="opcache.opt_debug_level" value="0" />
             <configuration_option name="opcache.optimization_level" value="0x7FFFBFFF" />
             <configuration_option name="opcache.preferred_memory_model" value="" />
             <configuration_option name="opcache.protect_memory" value="0" />
@@ -201,7 +188,7 @@
             <configuration_option name="request_order" value="GP" />
             <configuration_option name="sendmail_from" value="" />
             <configuration_option name="sendmail_path" value="/usr/sbin/sendmail -t -i " />
-            <configuration_option name="serialize_precision" value="17" />
+            <configuration_option name="serialize_precision" value="-1" />
             <configuration_option name="session.auto_start" value="0" />
             <configuration_option name="session.cache_expire" value="180" />
             <configuration_option name="session.cache_limiter" value="nocache" />
@@ -210,19 +197,19 @@
             <configuration_option name="session.cookie_lifetime" value="0" />
             <configuration_option name="session.cookie_path" value="/" />
             <configuration_option name="session.cookie_secure" value="" />
-            <configuration_option name="session.entropy_file" value="/dev/urandom" />
-            <configuration_option name="session.entropy_length" value="32" />
             <configuration_option name="session.gc_divisor" value="1000" />
             <configuration_option name="session.gc_maxlifetime" value="1440" />
             <configuration_option name="session.gc_probability" value="0" />
-            <configuration_option name="session.hash_bits_per_character" value="5" />
-            <configuration_option name="session.hash_function" value="0" />
             <configuration_option name="session.lazy_write" value="1" />
             <configuration_option name="session.name" value="PHPSESSID" />
             <configuration_option name="session.referer_check" value="" />
             <configuration_option name="session.save_handler" value="files" />
             <configuration_option name="session.save_path" value="/var/lib/php/sessions" />
             <configuration_option name="session.serialize_handler" value="php" />
+            <configuration_option name="session.sid_bits_per_character" value="5" />
+            <configuration_option name="session.sid_length" value="26" />
+            <configuration_option name="session.trans_sid_hosts" value="" />
+            <configuration_option name="session.trans_sid_tags" value="a=href,area=href,frame=src,form=" />
             <configuration_option name="session.upload_progress.cleanup" value="1" />
             <configuration_option name="session.upload_progress.enabled" value="1" />
             <configuration_option name="session.upload_progress.freq" value="1%" />
@@ -241,7 +228,8 @@
             <configuration_option name="unserialize_callback_func" value="" />
             <configuration_option name="upload_max_filesize" value="2M" />
             <configuration_option name="upload_tmp_dir" value="" />
-            <configuration_option name="url_rewriter.tags" value="a=href,area=href,frame=src,input=src,form=fakeentry" />
+            <configuration_option name="url_rewriter.hosts" value="" />
+            <configuration_option name="url_rewriter.tags" value="form=" />
             <configuration_option name="user_agent" value="" />
             <configuration_option name="user_dir" value="" />
             <configuration_option name="user_ini.cache_ttl" value="300" />
@@ -278,7 +266,7 @@
             <configuration_option name="xdebug.overload_var_dump" value="2" />
             <configuration_option name="xdebug.profiler_aggregate" value="0" />
             <configuration_option name="xdebug.profiler_append" value="0" />
-            <configuration_option name="xdebug.profiler_enable" value="1" />
+            <configuration_option name="xdebug.profiler_enable" value="0" />
             <configuration_option name="xdebug.profiler_enable_trigger" value="0" />
             <configuration_option name="xdebug.profiler_enable_trigger_value" value="" />
             <configuration_option name="xdebug.profiler_output_dir" value="/tmp" />
@@ -297,10 +285,10 @@
             <configuration_option name="xdebug.show_error_trace" value="0" />
             <configuration_option name="xdebug.show_exception_trace" value="0" />
             <configuration_option name="xdebug.show_local_vars" value="0" />
-            <configuration_option name="xdebug.show_mem_delta" value="1" />
+            <configuration_option name="xdebug.show_mem_delta" value="0" />
             <configuration_option name="xdebug.trace_enable_trigger" value="0" />
             <configuration_option name="xdebug.trace_enable_trigger_value" value="" />
-            <configuration_option name="xdebug.trace_format" value="1" />
+            <configuration_option name="xdebug.trace_format" value="0" />
             <configuration_option name="xdebug.trace_options" value="0" />
             <configuration_option name="xdebug.trace_output_dir" value="/tmp" />
             <configuration_option name="xdebug.trace_output_name" value="trace.%c" />
@@ -314,6 +302,7 @@
             <configuration_option name="zend.enable_gc" value="1" />
             <configuration_option name="zend.multibyte" value="0" />
             <configuration_option name="zend.script_encoding" value="" />
+            <configuration_option name="zend.signal_check" value="0" />
             <configuration_option name="zlib.output_compression" value="" />
             <configuration_option name="zlib.output_compression_level" value="-1" />
             <configuration_option name="zlib.output_handler" value="" />
@@ -331,7 +320,6 @@
             <extension name="SPL" />
             <extension name="SimpleXML" />
             <extension name="Zend OPcache" />
-            <extension name="amqp" />
             <extension name="blackfire" />
             <extension name="calendar" />
             <extension name="ctype" />
@@ -370,6 +358,7 @@
             <extension name="xmlreader" />
             <extension name="xmlwriter" />
             <extension name="xsl" />
+            <extension name="zip" />
             <extension name="zlib" />
           </loaded_extensions>
         </phpinfo>
