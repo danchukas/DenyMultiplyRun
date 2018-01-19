@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../private/config.php [2.11-redesign]'" />
-    <option name="defaultScopeName" value="File '.../private/config.php [2.11-redesign]'" />
-    <option name="SEARCH_SCOPE" value="File '.../private/config.php [2.11-redesign]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <recentFileMasks>
       <mask>*.s</mask>
       <mask>*.sh</mask>
