@@ -1,6 +1,7 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
+      <mapping pattern=".env" type="Ini" />
       <mapping ext="view" type="Native" />
       <mapping pattern=".blackfire.travis.ini.enc" type="PLAIN_TEXT" />
     </extensionMap>
