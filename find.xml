@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Project 'animal'" />
-    <option name="defaultScopeName" value="Project 'animal'" />
-    <option name="SEARCH_SCOPE" value="Project 'animal'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <recentFileMasks>
       <mask>*.s</mask>
       <mask>*.sh</mask>
