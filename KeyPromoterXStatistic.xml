@@ -17,6 +17,14 @@
           <Count>1</Count>
         </Item>
       </Statistic>
+      <Statistic Action="Run '1.php'">
+        <Item>
+          <IdeaActionID>Run</IdeaActionID>
+          <ShortCut>'Shift+F10'</ShortCut>
+          <Description>Run '1.php'</Description>
+          <Count>6</Count>
+        </Item>
+      </Statistic>
     </option>
   </component>
 </application>
