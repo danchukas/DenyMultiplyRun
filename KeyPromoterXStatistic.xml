@@ -17,12 +17,28 @@
           <Count>1</Count>
         </Item>
       </Statistic>
+      <Statistic Action="Rerun '1.php'">
+        <Item>
+          <IdeaActionID>Rerun</IdeaActionID>
+          <ShortCut>'Ctrl+F5'</ShortCut>
+          <Description>Rerun '1.php'</Description>
+          <Count>7</Count>
+        </Item>
+      </Statistic>
       <Statistic Action="Run '1.php'">
         <Item>
           <IdeaActionID>Run</IdeaActionID>
           <ShortCut>'Shift+F10'</ShortCut>
           <Description>Run '1.php'</Description>
-          <Count>6</Count>
+          <Count>7</Count>
+        </Item>
+      </Statistic>
+      <Statistic Action="Settings...">
+        <Item>
+          <IdeaActionID>ShowSettings</IdeaActionID>
+          <ShortCut>'Ctrl+Alt+S'</ShortCut>
+          <Description>Settings...</Description>
+          <Count>1</Count>
         </Item>
       </Statistic>
     </option>
