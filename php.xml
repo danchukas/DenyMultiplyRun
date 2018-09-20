@@ -1,5 +1,11 @@
 <application>
-  <component name="PhpAutoImport" auto_import_file_scope="true" prepend_global_functions_and_constants="true" />
+  <component name="MessDetector">
+    <phpmd_settings_migrated />
+  </component>
+  <component name="PhpAutoImport" auto_import_file_scope="true" global_constant_behavior="PREFER_FQN" global_function_behavior="PREFER_FQN" />
+  <component name="PhpCodeSniffer">
+    <phpcs_settings_migrated />
+  </component>
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter home="/usr/bin/php7.2" id="6cccd5f0-4e75-4b51-883a-1f8219eae924" name="PHP 7" debugger_id="php.debugger.XDebug" />
